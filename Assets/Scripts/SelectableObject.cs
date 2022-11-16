@@ -4,15 +4,25 @@ using UnityEngine;
 
 public class SelectableObject : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] GameObject _selectCirle;
+    private void Start()
     {
-        
+        _selectCirle.SetActive(false);
     }
-
-    // Update is called once per frame
-    void Update()
+    public virtual void OnHover()
     {
-        
+        transform.localScale = Vector3.one * 1.1f;
+    }
+    public virtual void OnUnhover()
+    {
+        transform.localScale = Vector3.one;
+    }
+    public virtual void OnSelect()
+    {
+        _selectCirle.SetActive(true);
+    }
+    public virtual void OnUnselect()
+    {
+        _selectCirle.SetActive(false);
     }
 }
