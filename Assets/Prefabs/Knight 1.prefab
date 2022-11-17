@@ -109,9 +109,9 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 937211449}
   m_LocalRotation: {x: -0.079242095, y: 0, z: 0, w: 0.99685544}
-  m_LocalPosition: {x: 0, y: -1.81, z: 0.01}
-  m_LocalScale: {x: -1.03, y: -0.10724316, z: -1.03}
-  m_ConstrainProportionsScale: 1
+  m_LocalPosition: {x: 0.004, y: -1.931, z: -0.095}
+  m_LocalScale: {x: -1.0836629, y: -0.11283052, z: -1.2942705}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5608482160464542453}
   m_RootOrder: 0
@@ -176,6 +176,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6444019509327481973}
   - component: {fileID: 75884786908453242}
+  - component: {fileID: 917068796652805481}
   m_Layer: 0
   m_Name: Knight 1
   m_TagString: Untagged
@@ -212,6 +213,30 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _selectCirle: {fileID: 4042191300321796834}
+  _navMeshAgent: {fileID: 917068796652805481}
+  _animator: {fileID: 8097103795047013914}
+--- !u!195 &917068796652805481
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1261121359502877190}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.3
+  m_Speed: 2
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 360
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
 --- !u!1 &4042191300321796834
 GameObject:
   m_ObjectHideFlags: 0

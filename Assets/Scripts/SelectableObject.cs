@@ -25,4 +25,8 @@ public class SelectableObject : MonoBehaviour
     {
         _selectCirle.SetActive(false);
     }
+    public virtual void WhenClickOnGround(Vector3 point)
+    {
+
+    }
 }
