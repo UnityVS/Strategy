@@ -4,5 +4,5 @@ using UnityEngine;
 
 public class SelectableCollider : MonoBehaviour
 {
-    [SerializeField] SelectableObject _selectableObject;
+    public SelectableObject SelectableObject;
 }
