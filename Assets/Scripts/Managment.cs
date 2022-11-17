@@ -1,17 +1,48 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Managment : MonoBehaviour
 {
     Camera _camera;
     SelectableObject _hovered;
     List<SelectableObject> _listOfSelected = new List<SelectableObject>();
+    [SerializeField] Image _frameSelect;
+    Vector2 _frameStart;
+    Vector2 _frameEnd;
 
     private void Start()
     {
         _camera = FindObjectOfType<Camera>();
+        _frameSelect.enabled = false;
     }
     private void Update()
+    {
+        CheckSelect();
+        FrameSelect();
+    }
+    void FrameSelect()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            _frameSelect.enabled = true;
+            _frameStart = Input.mousePosition;
+        }
+        if (Input.GetMouseButton(0))
+        {
+            _frameEnd = Input.mousePosition;
+            Vector2 min = Vector2.Min(_frameStart, _frameEnd);
+            Vector2 max = Vector2.Max(_frameStart, _frameEnd);
+            _frameSelect.rectTransform.anchoredPosition = min;
+            Vector2 size = max - min;
+            _frameSelect.rectTransform.sizeDelta = size;
+        }
+        if (Input.GetMouseButtonUp(0))
+        {
+            _frameSelect.enabled = true;
+        }
+    }
+    void CheckSelect()
     {
         Ray ray = _camera.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
