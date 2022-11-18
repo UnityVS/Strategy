@@ -1,33 +1,60 @@
+using System.Collections;
 using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
-public class CameraMove : MonoBehaviour
+public class CameraMove : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
-    Camera _camera;
+    [SerializeField] Transform _camera;
     Vector3 _startPoint;
     Vector3 _cameraStartPosition;
     Plane _plane;
-    float _speed = 0.3f;
+    [SerializeField] float _speed = 0.3f;
+    [SerializeField] Vector3 _direction = new Vector3(0, 0, 1);
+    Coroutine _coroutine;
 
-    private void Start()
+    public void OnPointerEnter(PointerEventData eventData)
     {
-        _camera = FindObjectOfType<Camera>();
-        _plane = new Plane(Vector3.up, Vector3.zero);
+        _coroutine = StartCoroutine(CameraMovement());
     }
-    private void Update()
+
+    public void OnPointerExit(PointerEventData eventData)
     {
-        Ray ray = _camera.ScreenPointToRay(Input.mousePosition);
-        float distance;
-        _plane.Raycast(ray, out distance);
-        Vector3 point = ray.GetPoint(distance);
-        if (Input.GetMouseButtonDown(2))
+        StopCoroutine(_coroutine);
+    }
+
+    IEnumerator CameraMovement()
+    {
+        while (true)
         {
-            _startPoint = point;
-            _cameraStartPosition = transform.position;
-        }
-        if (Input.GetMouseButton(2))
-        {
-            Vector3 offset = point - _startPoint;
-            transform.position = _cameraStartPosition - offset * _speed;
+            _camera.transform.Translate(_direction * _speed * Time.deltaTime);
+            yield return null;
         }
     }
+    //private void Start()
+    //{
+    //    _camera = FindObjectOfType<Camera>();
+    //    _plane = new Plane(Vector3.up, Vector3.zero);
+    //}
+    //    private void Update()
+    //    {
+    //        Ray ray = _camera.ScreenToViewportPoint(Input.mousePosition);
+    //        Vector3 rayPoint = _camera.ViewportToScreenPoint(Input.mousePosition);
+
+    //        Ray ray = _camera.ScreenPointToRay(Input.mousePosition);
+    //        float distance;
+    //        _plane.Raycast(ray, out distance);
+    //        Vector3 point = ray.GetPoint(distance);
+    //        if (Input.GetMouseButtonDown(2))
+    //        {
+    //            _startPoint = point;
+    //            _cameraStartPosition = transform.position;
+    //        }
+    //        if (Input.GetMouseButton(2))
+    //        {
+    //            Vector3 offset = point - _startPoint;
+    //            transform.position = _cameraStartPosition - offset * _speed;
+    //        }
+    //    }
+    //}
 }
