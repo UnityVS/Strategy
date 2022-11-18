@@ -28,6 +28,7 @@ public class Managment : MonoBehaviour
     {
         CheckSelect();
         FrameSelect();
+        _camera.transform.Translate(0f, 0f, Input.mouseScrollDelta.y);
     }
     void FrameSelect()
     {
