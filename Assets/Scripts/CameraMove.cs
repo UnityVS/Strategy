@@ -27,7 +27,7 @@ public class CameraMove : MonoBehaviour
         if (Input.GetMouseButton(2))
         {
             Vector3 offset = point - _startPoint;
-            transform.position = _cameraStartPosition + offset * _speed;
+            transform.position = _cameraStartPosition - offset * _speed;
         }
     }
 }
