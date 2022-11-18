@@ -2,6 +2,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+public enum SelectionState
+{
+    UnitsSelected,
+    Frame,
+    Other
+}
+
 public class Managment : MonoBehaviour
 {
     Camera _camera;
@@ -10,6 +17,7 @@ public class Managment : MonoBehaviour
     [SerializeField] Image _frameSelect;
     Vector2 _frameStart;
     Vector2 _frameEnd;
+    SelectionState _currentSelectionState;
 
     private void Start()
     {
@@ -25,7 +33,6 @@ public class Managment : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            _frameSelect.enabled = true;
             _frameStart = Input.mousePosition;
         }
         if (Input.GetMouseButton(0))
@@ -33,13 +40,39 @@ public class Managment : MonoBehaviour
             _frameEnd = Input.mousePosition;
             Vector2 min = Vector2.Min(_frameStart, _frameEnd);
             Vector2 max = Vector2.Max(_frameStart, _frameEnd);
-            _frameSelect.rectTransform.anchoredPosition = min;
+
             Vector2 size = max - min;
-            _frameSelect.rectTransform.sizeDelta = size;
+            if (size.magnitude > 10)
+            {
+                _frameSelect.enabled = true;
+                _frameSelect.rectTransform.anchoredPosition = min;
+                _frameSelect.rectTransform.sizeDelta = size;
+                Rect rect = new Rect(min, size);
+                Unit[] allUnits = FindObjectsOfType<Unit>();
+                UnselectAll();
+                for (int i = 0; i < allUnits.Length; i++)
+                {
+                    Vector2 screenPosition = _camera.WorldToScreenPoint(allUnits[i].transform.position);
+                    if (rect.Contains(screenPosition))
+                    {
+                        Select(allUnits[i]);
+                    }
+                }
+                _currentSelectionState = SelectionState.Frame;
+            }
+
         }
         if (Input.GetMouseButtonUp(0))
         {
-            _frameSelect.enabled = true;
+            _frameSelect.enabled = false;
+            if (_listOfSelected.Count > 0)
+            {
+                _currentSelectionState = SelectionState.UnitsSelected;
+            }
+            else
+            {
+                _currentSelectionState = SelectionState.Other;
+            }
         }
     }
     void CheckSelect()
@@ -82,13 +115,20 @@ public class Managment : MonoBehaviour
                 {
                     UnselectAll();
                 }
+                _currentSelectionState = SelectionState.UnitsSelected;
                 Select(_hovered);
             }
-            if (hit.collider.tag == "Ground")
+        }
+        if (_currentSelectionState == SelectionState.UnitsSelected)
+        {
+            if (Input.GetMouseButtonUp(0))
             {
-                for (int i = 0; i < _listOfSelected.Count; i++)
+                if (hit.collider.tag == "Ground")
                 {
-                    _listOfSelected[i].WhenClickOnGround(hit.point);
+                    for (int i = 0; i < _listOfSelected.Count; i++)
+                    {
+                        _listOfSelected[i].WhenClickOnGround(hit.point);
+                    }
                 }
             }
         }
@@ -111,6 +151,7 @@ public class Managment : MonoBehaviour
         {
             _listOfSelected[i].OnUnselect();
         }
+        _currentSelectionState = SelectionState.Other;
         _listOfSelected.Clear();
     }
     void UnhoverCurrent()
