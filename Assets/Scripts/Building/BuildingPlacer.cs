@@ -46,6 +46,12 @@ public class BuildingPlacer : MonoBehaviour
             {
                 mine.MineWork();
             }
+            Buy(_currentBuilding);
+            _currentBuilding = null;
+        }
+        else if (Input.GetMouseButtonDown(1))
+        {
+            Destroy(_currentBuilding.gameObject);
             _currentBuilding = null;
         }
     }
@@ -55,7 +61,6 @@ public class BuildingPlacer : MonoBehaviour
         int price = buildingPrefab.CheckPrice();
         if (balance >= price)
         {
-            _resources.UpdateResource(balance - price);
             Building newBuilding = Instantiate(buildingPrefab);
             _currentBuilding = newBuilding;
         }
@@ -63,5 +68,11 @@ public class BuildingPlacer : MonoBehaviour
         {
             _showHint.DisplayHint("You can't buy this building. Need more money");
         }
+    }
+    public void Buy(Building buildingPrefab)
+    {
+        int balance = _resources.CheckBalance();
+        int price = buildingPrefab.CheckPrice();
+        _resources.UpdateResource(balance - price);
     }
 }
