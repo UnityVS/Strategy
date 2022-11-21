@@ -16,7 +16,11 @@ public class AddedValue : MonoBehaviour
     [SerializeField] AnimationCurve _curve;
     private void Awake()
     {
-        _text.color = new Color(_text.color.r, _text.color.g, _text.color.b, 0);
+        _text.DOFade(0, 0);
+        _textShadow.DOFade(0, 0);
+    }
+    public void SetStartPosition()
+    {
         _startPosition = _transform.position;
     }
     public void AddResource(float timeResource)
@@ -55,7 +59,6 @@ public class AddedValue : MonoBehaviour
                 Invoke(nameof(Fade), _time - _fadeOutTime);
                 Invoke(nameof(Nulling), _time + 0.1f);
             }
-
         }
     }
     void Fade()

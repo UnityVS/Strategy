@@ -1,18 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
-public class Barack : MonoBehaviour
+public class Barack : Building
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] int _capacity = 2;
+    [SerializeField] int _availabelCapacity = 2;
+    [SerializeField] TextMeshProUGUI _textCapacity;
+    [SerializeField] TextMeshProUGUI _shadowCapacityText;
+    private void Start()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        _textCapacity.text = (_capacity - _availabelCapacity).ToString() + "/" + _capacity.ToString();
+        _shadowCapacityText.text = (_capacity - _availabelCapacity).ToString() + "/" + _capacity.ToString();
     }
 }
