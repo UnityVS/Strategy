@@ -7,7 +7,7 @@ public class SelectableObject : MonoBehaviour
     [SerializeField] GameObject _selectCirle;
     private void Start()
     {
-        _selectCirle.SetActive(false);
+        _selectCirle.SetActive(true);
     }
     public virtual void OnHover()
     {
