@@ -51,6 +51,7 @@ MonoBehaviour:
   _price: 20
   _xSize: 2
   _zSize: 2
+  _renderer: {fileID: 2623471241263863513}
   _capacity: 2
   _availabelCapacity: 2
   _textCapacity: {fileID: 7367332116888971944}
@@ -1039,6 +1040,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 563c26c827eb3584caf81c26d9bdada8, type: 3}
+--- !u!23 &2623471241263863513 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -7511558181221131132, guid: 563c26c827eb3584caf81c26d9bdada8,
+    type: 3}
+  m_PrefabInstance: {fileID: 3722757875859114589}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &3756949787080109494 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 563c26c827eb3584caf81c26d9bdada8,

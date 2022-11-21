@@ -12,6 +12,7 @@ public class BuildingPlacer : MonoBehaviour
     Building _currentBuilding;
     Resources _resources;
     ShowHint _showHint;
+    Dictionary<Vector2Int, Building> _buildingDictionary = new Dictionary<Vector2Int, Building>();
     private void Awake()
     {
         if (!Instance)
@@ -40,19 +41,56 @@ public class BuildingPlacer : MonoBehaviour
         int x = Mathf.RoundToInt(point.x);
         int z = Mathf.RoundToInt(point.z);
         _currentBuilding.transform.position = new Vector3(x, 0, z) * CellSize;
-        if (Input.GetMouseButtonDown(0))
+        if (CheckAllow(x, z, _currentBuilding))
         {
-            if (_currentBuilding.GetComponent<Mine>() is Mine mine)
+            _currentBuilding.ShowCorrectColorPosition();
+            if (Input.GetMouseButtonDown(0))
             {
-                mine.MineWork();
+                InstallBuilding(x, z, _currentBuilding);
+                if (_currentBuilding.GetComponent<Mine>() is Mine mine)
+                {
+                    mine.MineWork();
+                }
+                Buy(_currentBuilding);
+                _currentBuilding = null;
             }
-            Buy(_currentBuilding);
-            _currentBuilding = null;
         }
-        else if (Input.GetMouseButtonDown(1))
+        else
+        {
+            _currentBuilding.ShowIncorrectColorPosition();
+        }
+        if (Input.GetMouseButtonDown(1))
         {
             Destroy(_currentBuilding.gameObject);
             _currentBuilding = null;
+        }
+    }
+    bool CheckAllow(int xPosition, int zPosition, Building building)
+    {
+        Vector2Int size = building.CheckSize();
+        for (int x = 0; x < size.x; x++)
+        {
+            for (int z = 0; z < size.y; z++)
+            {
+                Vector2Int coordinate = new Vector2Int(xPosition + x, zPosition + z);
+                if (_buildingDictionary.ContainsKey(coordinate))
+                {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+    void InstallBuilding(int xPosition, int zPosition, Building building)
+    {
+        Vector2Int size = building.CheckSize();
+        for (int x = 0; x < size.x; x++)
+        {
+            for (int z = 0; z < size.y; z++)
+            {
+                Vector2Int coordinate = new Vector2Int(xPosition + x, zPosition + z);
+                _buildingDictionary.Add(coordinate, building);
+            }
         }
     }
     public void TryBuy(Building buildingPrefab)
