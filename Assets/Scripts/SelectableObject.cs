@@ -29,4 +29,8 @@ public class SelectableObject : MonoBehaviour
     {
 
     }
+    public void SelectObjectStatus(bool status)
+    {
+        _selectCirle.SetActive(status);
+    }
 }

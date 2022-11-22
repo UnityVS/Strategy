@@ -17,7 +17,7 @@ public class Mine : Building
     [SerializeField] FarmResource _currentFarm;
     [SerializeField] Coroutine _coroutine;
     Resources _resources;
-    private void Awake()
+    private void Start()
     {
         _resources = FindObjectOfType<Resources>();
     }
@@ -38,6 +38,7 @@ public class Mine : Building
     }
     public void MineWork()
     {
+        SelectObjectStatus(false);
         _addedValue.SetStartPosition();
         _isActive = true;
     }

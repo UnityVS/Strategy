@@ -51,6 +51,10 @@ public class BuildingPlacer : MonoBehaviour
                 {
                     mine.MineWork();
                 }
+                else if (_currentBuilding.GetComponent<Barack>() is Barack barack)
+                {
+                    barack.BuildingSetInScene();
+                }
                 Buy(_currentBuilding);
                 _currentBuilding = null;
             }

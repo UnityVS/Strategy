@@ -14,4 +14,8 @@ public class Barack : Building
         _textCapacity.text = (_capacity - _availabelCapacity).ToString() + "/" + _capacity.ToString();
         _shadowCapacityText.text = (_capacity - _availabelCapacity).ToString() + "/" + _capacity.ToString();
     }
+    public void BuildingSetInScene()
+    {
+        SelectObjectStatus(false);
+    }
 }
