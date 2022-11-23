@@ -85,7 +85,7 @@ public class BuildingPlacer : MonoBehaviour
         }
         return true;
     }
-    void InstallBuilding(int xPosition, int zPosition, Building building)
+    public void InstallBuilding(int xPosition, int zPosition, Building building)
     {
         Vector2Int size = building.CheckSize();
         for (int x = 0; x < size.x; x++)
