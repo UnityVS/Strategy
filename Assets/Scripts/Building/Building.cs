@@ -10,6 +10,10 @@ public class Building : SelectableObject
     [SerializeField] int _zSize = 3;
     Color _startColor;
     [SerializeField] Renderer _renderer;
+    public override void OnHover()
+    {
+        //base.OnHover();
+    }
     private void Awake()
     {
         _startColor = _renderer.material.color;
