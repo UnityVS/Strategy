@@ -176,6 +176,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2374730372761947287}
   - component: {fileID: 2374730372761947286}
+  - component: {fileID: 1812195718}
   m_Layer: 0
   m_Name: Rock
   m_TagString: Untagged
@@ -221,6 +222,24 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.32, y: 1, z: 0.85}
   m_Center: {x: 0.4, y: 0, z: -0.05}
+--- !u!114 &1812195718
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2374730372761947284}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95cd055694ec56a4a8c067dc37ba3be3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _selectCirle: {fileID: 3414556105833112943}
+  _price: 100
+  _xSize: 2
+  _zSize: 2
+  _renderer: {fileID: 2374730372611381732}
+  _static: 0
 --- !u!1 &2374730372869006261
 GameObject:
   m_ObjectHideFlags: 0
@@ -667,6 +686,12 @@ PrefabInstance:
 --- !u!4 &3414556105833112928 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1391106159496581739, guid: 6e0199cea18673f4daf20549b696e50e,
+    type: 3}
+  m_PrefabInstance: {fileID: 4336054952065775371}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &3414556105833112943 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1391106159496581732, guid: 6e0199cea18673f4daf20549b696e50e,
     type: 3}
   m_PrefabInstance: {fileID: 4336054952065775371}
   m_PrefabAsset: {fileID: 0}

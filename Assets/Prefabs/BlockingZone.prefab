@@ -112,10 +112,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _selectCirle: {fileID: 1856315198702949877}
-  _price: 10
+  _price: 100
   _xSize: 1
   _zSize: 1
   _renderer: {fileID: 384756866909885807}
+  _static: 1
 --- !u!1001 &384756866022910287
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -117,4 +117,9 @@ public class BuildingPlacer : MonoBehaviour
         int price = buildingPrefab.CheckPrice();
         _resources.UpdateResource(balance - price);
     }
+    public void DeleteBuilding(int xPosition, int zPosition, Building building)
+    {
+        Vector2Int coordinate = new Vector2Int(xPosition, zPosition);
+        _buildingDictionary.Remove(coordinate, out building);
+    }
 }
