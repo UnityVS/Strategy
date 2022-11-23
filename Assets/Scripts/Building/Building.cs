@@ -10,12 +10,24 @@ public class Building : SelectableObject
     [SerializeField] int _zSize = 3;
     Color _startColor;
     [SerializeField] Renderer _renderer;
+    [SerializeField] GameObject _menuObject;
     public override void OnHover()
     {
         //base.OnHover();
     }
+    public override void OnSelect()
+    {
+        base.OnSelect();
+        _menuObject.SetActive(true);
+    }
+    public override void OnUnselect()
+    {
+        base.OnUnselect();
+        _menuObject.SetActive(false);
+    }
     private void Awake()
     {
+        _menuObject.SetActive(false);
         _startColor = _renderer.material.color;
     }
     private void OnDrawGizmos()

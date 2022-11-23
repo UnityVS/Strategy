@@ -20,4 +20,8 @@ public class Environment : Building
     {
         BuildingPlacer.Instance.DeleteBuilding(_point.x, _point.y, this);
     }
+    private void Awake() { }
+    public override void OnHover() { }
+    public override void OnSelect() { }
+    public override void OnUnselect() { }
 }
