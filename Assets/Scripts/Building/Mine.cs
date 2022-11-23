@@ -1,4 +1,5 @@
 using System.Collections;
+using TMPro;
 using UnityEngine;
 
 public enum FarmResource
@@ -38,6 +39,7 @@ public class Mine : Building
     }
     public void MineWork()
     {
+        _addedValue.SetValueMining(_generatedCount);
         SelectObjectStatus(false);
         _addedValue.SetStartPosition();
         _isActive = true;

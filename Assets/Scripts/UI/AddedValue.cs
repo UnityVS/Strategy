@@ -23,6 +23,12 @@ public class AddedValue : MonoBehaviour
     {
         _startPosition = _transform.position;
     }
+    public void SetValueMining(int value)
+    {
+        _text.text = value.ToString();
+        _textShadow.text = value.ToString();
+
+    }
     public void AddResource(float timeResource)
     {
         if (_showValue == null)

@@ -92,7 +92,7 @@ GameObject:
   - component: {fileID: 8903758139449510406}
   - component: {fileID: 8903758139449510407}
   m_Layer: 0
-  m_Name: Mine
+  m_Name: StoneMine
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -131,14 +131,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _selectCirle: {fileID: 8990591705580481064}
-  _price: 10
+  _price: 15
   _xSize: 2
   _zSize: 1
   _renderer: {fileID: 7805043247675443005}
   _addedValue: {fileID: 8903758139408729851}
   _timeResource: 3
-  _generatedCount: 10
-  _currentFarm: 2
+  _generatedCount: 8
+  _currentFarm: 1
 --- !u!1 &8903758139463571250
 GameObject:
   m_ObjectHideFlags: 0
@@ -479,7 +479,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: Wood SawMill
+  m_Text: Stone Mine
 --- !u!1 &8903758140878429914
 GameObject:
   m_ObjectHideFlags: 0
@@ -715,7 +715,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: Wood SawMill
+  m_Text: Stone Mine
 --- !u!1001 &6940298848004445842
 PrefabInstance:
   m_ObjectHideFlags: 0

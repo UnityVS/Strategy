@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 [ExecuteAlways]
@@ -13,6 +14,8 @@ public class BuildingPlacer : MonoBehaviour
     Resources _resources;
     ShowHint _showHint;
     Dictionary<Vector2Int, Building> _buildingDictionary = new Dictionary<Vector2Int, Building>();
+    [SerializeField] Building[] _listOfPrefabs;
+    [SerializeField] UISettingOnPlay[] _listOfUI;
     private void Awake()
     {
         if (!Instance)
@@ -30,6 +33,16 @@ public class BuildingPlacer : MonoBehaviour
         _raycastCamera = FindObjectOfType<Camera>();
         _resources = FindObjectOfType<Resources>();
         _showHint = FindObjectOfType<ShowHint>();
+        for (int i = 0; i < _listOfPrefabs.Length; i++)
+        {
+            for (int x = 0; x < _listOfUI.Length; x++)
+            {
+                if (_listOfPrefabs[i].name == _listOfUI[x].name)
+                {
+                    _listOfUI[x].SetTextPrice(_listOfPrefabs[i]);
+                }
+            }
+        }
     }
     private void Update()
     {

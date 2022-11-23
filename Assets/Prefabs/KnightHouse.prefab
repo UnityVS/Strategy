@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3722757874163008295}
   - component: {fileID: 2163904309746122376}
   m_Layer: 0
-  m_Name: Home
+  m_Name: KnightHouse
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -48,7 +48,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _selectCirle: {fileID: 8706700442661542756}
-  _price: 50
+  _price: 80
   _xSize: 2
   _zSize: 2
   _renderer: {fileID: 2623471241263863513}
