@@ -18,7 +18,7 @@ public class Mine : Building
     [SerializeField] FarmResource _currentFarm;
     [SerializeField] Coroutine _coroutine;
     Resources _resources;
-    private void Start()
+    override public void Start()
     {
         _resources = FindObjectOfType<Resources>();
     }

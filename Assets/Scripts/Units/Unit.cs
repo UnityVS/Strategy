@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -14,6 +12,11 @@ public class Unit : SelectableObject
         base.WhenClickOnGround(point);
         _navMeshAgent.SetDestination(point);
         _animator.SetBool("Walk", true);
+    }
+    public override void Start()
+    {
+        //base.Start();
+        _selectCirle.SetActive(false);
     }
     private void Update()
     {

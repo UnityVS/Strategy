@@ -4,7 +4,7 @@ public class Environment : Building
 {
     [SerializeField] bool _static;
     Vector2Int _point;
-    private void Start()
+    override public void Start()
     {
         Vector3 point = transform.position / BuildingPlacer.Instance.CellSize;
         int x = Mathf.RoundToInt(point.x);

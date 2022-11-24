@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class SelectableObject : MonoBehaviour
 {
-    [SerializeField] GameObject _selectCirle;
-    private void Start()
+    public GameObject _selectCirle;
+    public virtual void Start()
     {
         _selectCirle.SetActive(true);
     }

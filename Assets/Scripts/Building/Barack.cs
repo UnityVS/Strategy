@@ -15,12 +15,17 @@ public class Barack : Building
     [SerializeField] TextMeshProUGUI _shadowCapacityText;
     [SerializeField] TextMeshProUGUI _textCapacityUI;
     [SerializeField] TextMeshProUGUI _shadowCapacityTextUI;
+    [SerializeField] TextMeshProUGUI _priceUIOriginal;
+    [SerializeField] TextMeshProUGUI _priceUIShadow;
+    [SerializeField] Unit _unitToCreate;
     //[SerializeField] Units _currentTypeUnit;
     Unit _currentUnit;
     [SerializeField] Transform _spawnPoint;
-    private void Start()
+    override public void Start()
     {
         UpdateUI(0);
+        _priceUIOriginal.text = _unitToCreate.CheckPrice().ToString() + "$";
+        _priceUIShadow.text = _unitToCreate.CheckPrice().ToString() + "$";
     }
     public void BuildingSetInScene()
     {
@@ -45,6 +50,7 @@ public class Barack : Building
             {
                 Unit newUnit = Instantiate(unit, _spawnPoint.position, Quaternion.identity);
                 _currentUnit = newUnit;
+                Resources.Instance.UpdateResource(balance - price);
                 UpdateUI(1);
             }
             else

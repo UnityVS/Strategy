@@ -11,7 +11,6 @@ public class BuildingPlacer : MonoBehaviour
     Camera _raycastCamera;
     Plane _plane;
     Building _currentBuilding;
-    Resources _resources;
     Dictionary<Vector2Int, Building> _buildingDictionary = new Dictionary<Vector2Int, Building>();
     [SerializeField] Building[] _listOfPrefabs;
     [SerializeField] UISettingOnPlay[] _listOfUI;
@@ -30,7 +29,6 @@ public class BuildingPlacer : MonoBehaviour
     {
         _plane = new Plane(Vector3.up, Vector3.zero);
         _raycastCamera = FindObjectOfType<Camera>();
-        _resources = FindObjectOfType<Resources>();
         for (int i = 0; i < _listOfPrefabs.Length; i++)
         {
             for (int x = 0; x < _listOfUI.Length; x++)
@@ -124,9 +122,9 @@ public class BuildingPlacer : MonoBehaviour
     }
     public void Buy(Building buildingPrefab)
     {
-        int balance = _resources.CheckBalance();
+        int balance = Resources.Instance.CheckBalance();
         int price = buildingPrefab.CheckPrice();
-        _resources.UpdateResource(balance - price);
+        Resources.Instance.UpdateResource(balance - price);
     }
     public void DeleteBuilding(int xPosition, int zPosition, Building building)
     {

@@ -674,6 +674,10 @@ MonoBehaviour:
   _shadowCapacityText: {fileID: 7426814869490696837}
   _textCapacityUI: {fileID: 4017654011356528340}
   _shadowCapacityTextUI: {fileID: 8149985668859017798}
+  _priceUIOriginal: {fileID: 7566400335739885467}
+  _priceUIShadow: {fileID: 6180144297176235175}
+  _unitToCreate: {fileID: 75884786908453242, guid: 8218b08c9715fc0498b2893b5ed95489,
+    type: 3}
   _spawnPoint: {fileID: 5026792047665843456}
 --- !u!1 &3722757874341717435
 GameObject:
@@ -2618,6 +2622,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SelectableObject: {fileID: 2163904309746122376}
+--- !u!208 &5466814561880406466
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4569057134483076876}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 1.105, y: 1.429, z: 1}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: -0.105000004, y: 0.365, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1001 &7223900720321980382
 PrefabInstance:
   m_ObjectHideFlags: 0
