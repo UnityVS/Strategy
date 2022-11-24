@@ -4,6 +4,8 @@ public class Environment : Building
 {
     [SerializeField] bool _static;
     Vector2Int _point;
+    [SerializeField] Building _prefabOnlyBuild;
+    [SerializeField] bool _onlyCurrentBuild;
     override public void Start()
     {
         Vector3 point = transform.position / BuildingPlacer.Instance.CellSize;

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 [ExecuteAlways]
 public class BuildingPlacer : MonoBehaviour
@@ -53,7 +54,7 @@ public class BuildingPlacer : MonoBehaviour
         if (CheckAllow(x, z, _currentBuilding))
         {
             _currentBuilding.ShowCorrectColorPosition();
-            if (Input.GetMouseButtonDown(0))
+            if (Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject())
             {
                 InstallBuilding(x, z, _currentBuilding);
                 if (_currentBuilding.GetComponent<Mine>() is Mine mine)
@@ -106,8 +107,23 @@ public class BuildingPlacer : MonoBehaviour
             }
         }
     }
+    public void Build(int xPosition, int zPosition, Building building)
+    {
+        Vector2Int size = building.CheckSize();
+        for (int x = 0; x < size.x; x++)
+        {
+            for (int z = 0; z < size.y; z++)
+            {
+                Vector2Int coordinate = new Vector2Int(xPosition + x, zPosition + z);
+                _buildingDictionary.Add(coordinate, building);
+            }
+        }
+    }
+
     public void TryBuy(Building buildingPrefab)
     {
+        if (_currentBuilding)
+            Destroy(_currentBuilding.gameObject);
         int balance = Resources.Instance.CheckBalance();
         int price = buildingPrefab.CheckPrice();
         if (balance >= price)

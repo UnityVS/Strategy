@@ -11,11 +11,10 @@ public class SelectableObject : MonoBehaviour
     }
     public virtual void OnHover()
     {
-        transform.localScale = Vector3.one * 1.1f;
     }
     public virtual void OnUnhover()
     {
-        transform.localScale = Vector3.one;
+
     }
     public virtual void OnSelect()
     {
@@ -23,6 +22,7 @@ public class SelectableObject : MonoBehaviour
     }
     public virtual void OnUnselect()
     {
+        if (!this) return;
         _selectCirle.SetActive(false);
     }
     public virtual void WhenClickOnGround(Vector3 point)

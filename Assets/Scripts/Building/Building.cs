@@ -22,6 +22,7 @@ public class Building : SelectableObject
     }
     public override void OnUnselect()
     {
+        if (!this) return;
         base.OnUnselect();
         _menuObject.SetActive(false);
     }

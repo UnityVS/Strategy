@@ -100,7 +100,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &937211450
 Transform:
   m_ObjectHideFlags: 0
@@ -175,7 +175,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6444019509327481973}
-  - component: {fileID: 75884786908453242}
+  - component: {fileID: 1211304146317693647}
   - component: {fileID: 917068796652805481}
   m_Layer: 0
   m_Name: Citizen
@@ -200,7 +200,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &75884786908453242
+--- !u!114 &1211304146317693647
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -209,13 +209,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 1261121359502877190}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e95c13e52a4d0724aa849a602193e04e, type: 3}
+  m_Script: {fileID: 11500000, guid: d34efef11cffbfc42865ad773a35ac6b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _selectCirle: {fileID: 4042191300321796834}
   _navMeshAgent: {fileID: 917068796652805481}
   _animator: {fileID: 8097103795047013914}
-  _price: 20
+  _price: 35
+  _renderer: {fileID: 7841153274975615117}
+  _originalColor: {r: 0, g: 0, b: 0.003921569, a: 0}
+  _hightLight: {r: 0.08235293, g: 0.4509804, b: 0.10306708, a: 0}
 --- !u!195 &917068796652805481
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -458,6 +461,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 7790616173241646933}
   m_PrefabAsset: {fileID: 0}
+--- !u!137 &7841153274975615117 stripped
+SkinnedMeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -9165797768001435688, guid: f69d63f518b01394d9f35af49a1235b5,
+    type: 3}
+  m_PrefabInstance: {fileID: 7790616173241646933}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &8128892354553877284 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -7146521406498821007, guid: f69d63f518b01394d9f35af49a1235b5,
@@ -490,4 +499,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7739a0fcf8cd3aa468c6fca23e6d06c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SelectableObject: {fileID: 75884786908453242}
+  SelectableObject: {fileID: 1211304146317693647}

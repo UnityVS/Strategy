@@ -31,6 +31,10 @@ public class Barack : Building
     {
         SelectObjectStatus(false);
     }
+    public override void OnHover()
+    {
+        //base.OnHover();
+    }
     void UpdateUI(int valueAdd)
     {
         _availabelCapacity -= valueAdd;
@@ -48,7 +52,7 @@ public class Barack : Building
         {
             if (balance >= price)
             {
-                Unit newUnit = Instantiate(unit, _spawnPoint.position, Quaternion.identity);
+                Unit newUnit = Instantiate(unit, _spawnPoint.position + new Vector3(Random.Range(-2f, 2f), 0, Random.Range(-0.5f, 0.5f)), Quaternion.identity);
                 _currentUnit = newUnit;
                 Resources.Instance.UpdateResource(balance - price);
                 UpdateUI(1);
