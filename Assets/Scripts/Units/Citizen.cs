@@ -4,11 +4,17 @@ using UnityEngine;
 public class Citizen : Unit
 {
     [SerializeField] Renderer _renderer;
+    [SerializeField] Renderer _hat;
     [SerializeField] Color _baseColor = new Color(0, 0, 0, 0);
     Color _lerpColor = new Color(0, 0, 0, 0);
     [SerializeField] Color _hightLight;
     Coroutine _coroutine;
     bool _isHightLight;
+    public override void Start()
+    {
+        _selectCirle.SetActive(false);
+        _hat.material = _renderer.material;
+    }
     public override void OnUnhover()
     {
         StopCoroutine(_coroutine);

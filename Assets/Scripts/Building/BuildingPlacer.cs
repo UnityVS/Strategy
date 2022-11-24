@@ -44,6 +44,10 @@ public class BuildingPlacer : MonoBehaviour
     private void Update()
     {
         if (_currentBuilding == null) return;
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            _currentBuilding.transform.Rotate(0, 90, 0);
+        }
         Ray ray = _raycastCamera.ScreenPointToRay(Input.mousePosition);
         float distance;
         _plane.Raycast(ray, out distance);
@@ -59,11 +63,14 @@ public class BuildingPlacer : MonoBehaviour
                 InstallBuilding(x, z, _currentBuilding);
                 if (_currentBuilding.GetComponent<Mine>() is Mine mine)
                 {
+                    mine.BuildingSetInScene();
                     mine.MineWork();
+                    mine.ObstacleStatus(true);
                 }
                 else if (_currentBuilding.GetComponent<Barack>() is Barack barack)
                 {
                     barack.BuildingSetInScene();
+                    barack.ObstacleStatus(true);
                 }
                 Buy(_currentBuilding);
                 _currentBuilding = null;
@@ -130,6 +137,7 @@ public class BuildingPlacer : MonoBehaviour
         {
             Building newBuilding = Instantiate(buildingPrefab);
             _currentBuilding = newBuilding;
+            _currentBuilding.ObstacleStatus(false);
         }
         else
         {

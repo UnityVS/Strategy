@@ -9,6 +9,10 @@ public enum Units
 
 public class Barack : Building
 {
+    [SerializeField] string _nameOfBarack;
+    [SerializeField] string _nameOfUnits;
+    [SerializeField] TextMeshProUGUI _textNameOfBarack;
+    [SerializeField] TextMeshProUGUI _textNameOfBarackShadow;
     [SerializeField] int _capacity = 2;
     [SerializeField] int _availabelCapacity = 2;
     [SerializeField] TextMeshProUGUI _textCapacity;
@@ -18,12 +22,13 @@ public class Barack : Building
     [SerializeField] TextMeshProUGUI _priceUIOriginal;
     [SerializeField] TextMeshProUGUI _priceUIShadow;
     [SerializeField] Unit _unitToCreate;
-    //[SerializeField] Units _currentTypeUnit;
     Unit _currentUnit;
     [SerializeField] Transform _spawnPoint;
     override public void Start()
     {
         UpdateUI(0);
+        _textNameOfBarack.text = _nameOfBarack;
+        _textNameOfBarackShadow.text = _nameOfBarack;
         _priceUIOriginal.text = _unitToCreate.CheckPrice().ToString() + "$";
         _priceUIShadow.text = _unitToCreate.CheckPrice().ToString() + "$";
     }
@@ -40,7 +45,7 @@ public class Barack : Building
         _availabelCapacity -= valueAdd;
         _textCapacity.text = (_capacity - _availabelCapacity).ToString() + "/" + _capacity.ToString();
         _shadowCapacityText.text = (_capacity - _availabelCapacity).ToString() + "/" + _capacity.ToString();
-        string newText = " Citizen - " + (_capacity - _availabelCapacity).ToString() + "/" + _capacity.ToString();
+        string newText = _nameOfUnits + " - " + (_capacity - _availabelCapacity).ToString() + "/" + _capacity.ToString();
         _textCapacityUI.text = newText;
         _shadowCapacityTextUI.text = newText;
     }
@@ -66,6 +71,5 @@ public class Barack : Building
         {
             GameManager.Instance._showHint.DisplayHint("You can't buy this unit. No more slots");
         }
-
     }
 }

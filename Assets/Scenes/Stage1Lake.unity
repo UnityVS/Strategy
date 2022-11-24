@@ -875,7 +875,7 @@ MonoBehaviour:
         m_MethodName: TryBuy
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 8903758139449510407, guid: adf76b0d3b7e9844f801224d09d53ddd,
+          m_ObjectArgument: {fileID: 8903758139449510407, guid: 2a204e7efcb73b44e96be3ef58aa193f,
             type: 3}
           m_ObjectArgumentAssemblyTypeName: Building, Assembly-CSharp
           m_IntArgument: 0
@@ -963,7 +963,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 50$
+  m_text: 40$
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 340ef54bf0a930747915ab0066f42f1f, type: 2}
   m_sharedMaterial: {fileID: -5122153096115491922, guid: 340ef54bf0a930747915ab0066f42f1f,
@@ -2636,7 +2636,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 80$
+  m_text: 50$
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 340ef54bf0a930747915ab0066f42f1f, type: 2}
   m_sharedMaterial: {fileID: -5122153096115491922, guid: 340ef54bf0a930747915ab0066f42f1f,
@@ -6008,7 +6008,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 50$
+  m_text: 40$
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 340ef54bf0a930747915ab0066f42f1f, type: 2}
   m_sharedMaterial: {fileID: -5122153096115491922, guid: 340ef54bf0a930747915ab0066f42f1f,
@@ -7249,9 +7249,9 @@ GameObject:
   - component: {fileID: 1804221302}
   - component: {fileID: 1804221306}
   - component: {fileID: 1804221305}
-  - component: {fileID: 1804221307}
   - component: {fileID: 1804221304}
   - component: {fileID: 1804221303}
+  - component: {fileID: 1804221307}
   m_Layer: 3
   m_Name: KnightHouse
   m_TagString: Untagged
@@ -7330,7 +7330,7 @@ MonoBehaviour:
         m_MethodName: TryBuy
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 2163904309746122376, guid: 1818789a2700e9640ac804791a9f6082,
+          m_ObjectArgument: {fileID: 2163904309746122376, guid: 3fe10a24d0f35374bad290344e05e08c,
             type: 3}
           m_ObjectArgumentAssemblyTypeName: Building, Assembly-CSharp
           m_IntArgument: 0
@@ -7748,7 +7748,7 @@ MonoBehaviour:
         m_MethodName: TryBuy
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 8903758139449510407, guid: a570c1d8a1b0b754c95f9b1dd1a47b4d,
+          m_ObjectArgument: {fileID: 8903758139449510407, guid: d0ea6d6f906fc314597567887a8560d7,
             type: 3}
           m_ObjectArgumentAssemblyTypeName: Building, Assembly-CSharp
           m_IntArgument: 0
@@ -8106,11 +8106,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CellSize: 1
   _listOfPrefabs:
-  - {fileID: 8903758139449510407, guid: adf76b0d3b7e9844f801224d09d53ddd, type: 3}
-  - {fileID: 8903758139449510407, guid: a570c1d8a1b0b754c95f9b1dd1a47b4d, type: 3}
+  - {fileID: 8903758139449510407, guid: 2a204e7efcb73b44e96be3ef58aa193f, type: 3}
+  - {fileID: 8903758139449510407, guid: d0ea6d6f906fc314597567887a8560d7, type: 3}
   - {fileID: 8903758139449510407, guid: 884bd2f3220b6d4419cc019ef1526e29, type: 3}
   - {fileID: 2163904309746122376, guid: 1818789a2700e9640ac804791a9f6082, type: 3}
-  - {fileID: 2163904309746122376, guid: 879b3cbcd5c86ea4e802c060f05dd0ff, type: 3}
+  - {fileID: 2163904309746122376, guid: 3fe10a24d0f35374bad290344e05e08c, type: 3}
   _listOfUI:
   - {fileID: 224553448}
   - {fileID: 1909108476}
@@ -8190,7 +8190,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 80$
+  m_text: 50$
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 340ef54bf0a930747915ab0066f42f1f, type: 2}
   m_sharedMaterial: {fileID: -5122153096115491922, guid: 340ef54bf0a930747915ab0066f42f1f,

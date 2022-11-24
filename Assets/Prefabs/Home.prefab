@@ -663,11 +663,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _selectCirle: {fileID: 8706700442661542756}
-  _price: 50
+  _price: 40
   _xSize: 2
   _zSize: 2
   _renderer: {fileID: 2623471241263863513}
+  _obstacle: {fileID: 5466814561880406466}
   _menuObject: {fileID: 1583367137942109367}
+  _nameOfBarack: --Home--
+  _nameOfUnits: Citizen
+  _textNameOfBarack: {fileID: 8873511739097341700}
+  _textNameOfBarackShadow: {fileID: 1506658577267296125}
   _capacity: 2
   _availabelCapacity: 2
   _textCapacity: {fileID: 7367332116888971944}
@@ -1054,7 +1059,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 0
+  m_PresetInfoIsWorld: 1
 --- !u!114 &3722757875823798483
 MonoBehaviour:
   m_ObjectHideFlags: 0

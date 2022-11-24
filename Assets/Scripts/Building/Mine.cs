@@ -17,10 +17,37 @@ public class Mine : Building
     [SerializeField] int _generatedCount = 10;
     [SerializeField] FarmResource _currentFarm;
     [SerializeField] Coroutine _coroutine;
-    Resources _resources;
-    override public void Start()
+
+    [SerializeField] int _capacity = 2;
+    [SerializeField] int _availabelCapacity = 2;
+    [SerializeField] string _nameOfBuilding;
+    [SerializeField] string _nameOfBuyingElement;
+    [SerializeField] TextMeshProUGUI _textNameBuilding;
+    [SerializeField] TextMeshProUGUI _textNameBuildingShadow;
+    //[SerializeField] TextMeshProUGUI _textCapacity;
+    //[SerializeField] TextMeshProUGUI _shadowCapacityText;
+    [SerializeField] TextMeshProUGUI _textCapacityUI;
+    [SerializeField] TextMeshProUGUI _shadowCapacityTextUI;
+    [SerializeField] TextMeshProUGUI _priceUIOriginal;
+    [SerializeField] TextMeshProUGUI _priceUIShadow;
+    [SerializeField] int _updatePrice;
+    [SerializeField] int _updatePriceValue;
+    public override void Start()
     {
-        _resources = FindObjectOfType<Resources>();
+        UpdateUI(0);
+        _textNameBuilding.text = _nameOfBuilding;
+        _textNameBuildingShadow.text = _nameOfBuilding;
+        _priceUIOriginal.text = _updatePrice + "$";
+        _priceUIShadow.text = _updatePrice + "$";
+        ShowHideUI(false);
+    }
+    public void ChangeGenerationCount(int value)
+    {
+        _generatedCount += value;
+        _addedValue.SetValueMining(_generatedCount);
+    }
+    public override void OnHover()
+    {
     }
     void Update()
     {
@@ -37,6 +64,11 @@ public class Mine : Building
             _coroutine = StartCoroutine(AddValue());
         }
     }
+
+    public void BuildingSetInScene()
+    {
+        SelectObjectStatus(false);
+    }
     public void MineWork()
     {
         _addedValue.SetValueMining(_generatedCount);
@@ -51,7 +83,37 @@ public class Mine : Building
             yield return new WaitForSeconds(_timeResource);
             _addedValue.AddResource(_timeResource);
             yield return new WaitForSeconds(_timeResource / 2);
-            _resources.AddResources(_currentFarm, _generatedCount);
+            Resources.Instance.AddResources(_currentFarm, _generatedCount);
+        }
+    }
+    void UpdateUI(int valueAdd)
+    {
+        _availabelCapacity -= valueAdd;
+        //_textCapacity.text = (_capacity - _availabelCapacity).ToString() + "/" + _capacity.ToString();
+        //_shadowCapacityText.text = (_capacity - _availabelCapacity).ToString() + "/" + _capacity.ToString();
+        string newText = _nameOfBuyingElement + " - " + (_capacity - _availabelCapacity).ToString() + "/" + _capacity.ToString();
+        _textCapacityUI.text = newText;
+        _shadowCapacityTextUI.text = newText;
+    }
+    public void TryBuyUpdate(int price)
+    {
+        int balance = Resources.Instance.CheckBalance();
+        if (_availabelCapacity > 0)
+        {
+            if (balance >= price)
+            {
+                Resources.Instance.UpdateResource(balance - price);
+                ChangeGenerationCount(_updatePriceValue);
+                UpdateUI(1);
+            }
+            else
+            {
+                GameManager.Instance._showHint.DisplayHint("You can't buy this unit. Need more money");
+            }
+        }
+        else
+        {
+            GameManager.Instance._showHint.DisplayHint("You can't buy this unit. No more slots");
         }
     }
 }

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class Building : SelectableObject
 {
@@ -10,10 +11,20 @@ public class Building : SelectableObject
     [SerializeField] int _zSize = 3;
     Color _startColor;
     [SerializeField] Renderer _renderer;
+    [SerializeField] NavMeshObstacle _obstacle;
     [SerializeField] GameObject _menuObject;
     public override void OnHover()
     {
         //base.OnHover();
+    }
+    public void ObstacleStatus(bool status)
+    {
+        _obstacle.enabled = status;
+    }
+    private void Awake()
+    {
+        _menuObject.SetActive(false);
+        _startColor = _renderer.material.color;
     }
     public override void OnSelect()
     {
@@ -25,11 +36,6 @@ public class Building : SelectableObject
         if (!this) return;
         base.OnUnselect();
         _menuObject.SetActive(false);
-    }
-    private void Awake()
-    {
-        _menuObject.SetActive(false);
-        _startColor = _renderer.material.color;
     }
     private void OnDrawGizmos()
     {
@@ -53,6 +59,10 @@ public class Building : SelectableObject
     public void ShowIncorrectColorPosition()
     {
         _renderer.material.color = Color.red;
+    }
+    public void ShowHideUI(bool status)
+    {
+        _menuObject.SetActive(status);
     }
     public int CheckPrice()
     {
