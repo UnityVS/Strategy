@@ -12,7 +12,6 @@ public class BuildingPlacer : MonoBehaviour
     Plane _plane;
     Building _currentBuilding;
     Resources _resources;
-    ShowHint _showHint;
     Dictionary<Vector2Int, Building> _buildingDictionary = new Dictionary<Vector2Int, Building>();
     [SerializeField] Building[] _listOfPrefabs;
     [SerializeField] UISettingOnPlay[] _listOfUI;
@@ -32,7 +31,6 @@ public class BuildingPlacer : MonoBehaviour
         _plane = new Plane(Vector3.up, Vector3.zero);
         _raycastCamera = FindObjectOfType<Camera>();
         _resources = FindObjectOfType<Resources>();
-        _showHint = FindObjectOfType<ShowHint>();
         for (int i = 0; i < _listOfPrefabs.Length; i++)
         {
             for (int x = 0; x < _listOfUI.Length; x++)
@@ -112,7 +110,7 @@ public class BuildingPlacer : MonoBehaviour
     }
     public void TryBuy(Building buildingPrefab)
     {
-        int balance = _resources.CheckBalance();
+        int balance = Resources.Instance.CheckBalance();
         int price = buildingPrefab.CheckPrice();
         if (balance >= price)
         {
@@ -121,7 +119,7 @@ public class BuildingPlacer : MonoBehaviour
         }
         else
         {
-            _showHint.DisplayHint("You can't buy this building. Need more money");
+            GameManager.Instance._showHint.DisplayHint("You can't buy this building. Need more money");
         }
     }
     public void Buy(Building buildingPrefab)

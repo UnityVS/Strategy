@@ -7,6 +7,7 @@ public class Unit : SelectableObject
 {
     [SerializeField] NavMeshAgent _navMeshAgent;
     [SerializeField] Animator _animator;
+    [SerializeField] int _price;
     public override void WhenClickOnGround(Vector3 point)
     {
         _navMeshAgent.stoppingDistance = 0.65f;
@@ -20,5 +21,9 @@ public class Unit : SelectableObject
         {
             _animator.SetBool("Walk", false);
         }
+    }
+    public int CheckPrice()
+    {
+        return _price;
     }
 }

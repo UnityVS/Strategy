@@ -178,7 +178,7 @@ GameObject:
   - component: {fileID: 75884786908453242}
   - component: {fileID: 917068796652805481}
   m_Layer: 0
-  m_Name: Knight 1
+  m_Name: Citizen
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -215,6 +215,7 @@ MonoBehaviour:
   _selectCirle: {fileID: 4042191300321796834}
   _navMeshAgent: {fileID: 917068796652805481}
   _animator: {fileID: 8097103795047013914}
+  _price: 20
 --- !u!195 &917068796652805481
 NavMeshAgent:
   m_ObjectHideFlags: 0

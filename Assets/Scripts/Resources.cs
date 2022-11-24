@@ -14,8 +14,17 @@ public class Resources : MonoBehaviour
     [SerializeField] int _stone;
     [SerializeField] TextMeshProUGUI _textStone;
     [SerializeField] TextMeshProUGUI _textShadowStone;
+    public static Resources Instance;
     private void Awake()
     {
+        if (!Instance)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
         UpdateUI();
     }
     public void UpdateUI()
