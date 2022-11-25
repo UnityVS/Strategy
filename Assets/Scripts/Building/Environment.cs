@@ -6,8 +6,10 @@ public class Environment : Building
     Vector2Int _point;
     [SerializeField] Building _prefabOnlyBuild;
     [SerializeField] bool _onlyCurrentBuild;
-    override public void Start()
+    public override void Start()
     {
+        //base.Start();
+        _selectCirle.SetActive(false);
         Vector3 point = transform.position / BuildingPlacer.Instance.CellSize;
         int x = Mathf.RoundToInt(point.x);
         int z = Mathf.RoundToInt(point.z);
@@ -23,7 +25,7 @@ public class Environment : Building
         BuildingPlacer.Instance.DeleteBuilding(_point.x, _point.y, this);
     }
     private void Awake() { }
-    public override void OnHover() { }
-    public override void OnSelect() { }
-    public override void OnUnselect() { }
+    //public override void OnHover() { }
+    //public override void OnSelect() { }
+    //public override void OnUnselect() { }
 }

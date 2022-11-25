@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public enum SelectionState
@@ -18,6 +19,19 @@ public class Managment : MonoBehaviour
     Vector2 _frameStart;
     Vector2 _frameEnd;
     SelectionState _currentSelectionState;
+    CollectableObject _currentCollectableObject;
+    public static Managment Instance;
+    private void Awake()
+    {
+        if (!Instance)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
 
     private void Start()
     {
@@ -29,6 +43,10 @@ public class Managment : MonoBehaviour
         CheckSelect();
         FrameSelect();
         _camera.transform.Translate(0f, 0f, Input.mouseScrollDelta.y);
+    }
+    public List<SelectableObject> ListObjects()
+    {
+        return _listOfSelected;
     }
     void FrameSelect()
     {
@@ -112,9 +130,19 @@ public class Managment : MonoBehaviour
         {
             if (_hovered)
             {
-                if (!Input.GetKey(KeyCode.LeftControl))
+                if (_hovered.GetComponent<CollectableObject>() is CollectableObject _currentCollectableObject)
                 {
-                    UnselectAll();
+                    if (!Input.GetKey(KeyCode.LeftControl) && !_currentCollectableObject)
+                    {
+                        UnselectAll();
+                    }
+                }
+                else
+                {
+                    if (!Input.GetKey(KeyCode.LeftControl))
+                    {
+                        UnselectAll();
+                    }
                 }
                 _currentSelectionState = SelectionState.UnitsSelected;
                 Select(_hovered);
@@ -124,7 +152,7 @@ public class Managment : MonoBehaviour
         {
             if (Input.GetMouseButtonUp(0))
             {
-                if (hit.collider.tag == "Ground")
+                if (hit.collider.tag == "Ground" && !EventSystem.current.IsPointerOverGameObject())
                 {
                     for (int i = 0; i < _listOfSelected.Count; i++)
                     {
@@ -140,6 +168,11 @@ public class Managment : MonoBehaviour
     }
     void Select(SelectableObject selectableObject)
     {
+        if (_listOfSelected.Count > 1)
+        {
+            _listOfSelected[1].OnUnselect();
+            _listOfSelected.RemoveAt(1);
+        }
         if (!_listOfSelected.Contains(selectableObject))
         {
             _listOfSelected.Add(selectableObject);
