@@ -43,9 +43,9 @@ public class Barack : Building
     void UpdateUI(int valueAdd)
     {
         _availabelCapacity -= valueAdd;
-        _textCapacity.text = (_capacity - _availabelCapacity).ToString() + "/" + _capacity.ToString();
-        _shadowCapacityText.text = (_capacity - _availabelCapacity).ToString() + "/" + _capacity.ToString();
-        string newText = _nameOfUnits + " - " + (_capacity - _availabelCapacity).ToString() + "/" + _capacity.ToString();
+        _textCapacity.text = (_capacity - _availabelCapacity) + "/" + _capacity;
+        _shadowCapacityText.text = (_capacity - _availabelCapacity) + "/" + _capacity;
+        string newText = _nameOfUnits + " - " + (_capacity - _availabelCapacity) + "/" + _capacity;
         _textCapacityUI.text = newText;
         _shadowCapacityTextUI.text = newText;
     }

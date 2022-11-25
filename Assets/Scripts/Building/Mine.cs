@@ -17,28 +17,28 @@ public class Mine : Building
     [SerializeField] int _generatedCount = 10;
     [SerializeField] FarmResource _currentFarm;
     [SerializeField] Coroutine _coroutine;
-
     [SerializeField] int _capacity = 2;
     [SerializeField] int _availabelCapacity = 2;
     [SerializeField] string _nameOfBuilding;
     [SerializeField] string _nameOfBuyingElement;
     [SerializeField] TextMeshProUGUI _textNameBuilding;
     [SerializeField] TextMeshProUGUI _textNameBuildingShadow;
-    //[SerializeField] TextMeshProUGUI _textCapacity;
-    //[SerializeField] TextMeshProUGUI _shadowCapacityText;
     [SerializeField] TextMeshProUGUI _textCapacityUI;
     [SerializeField] TextMeshProUGUI _shadowCapacityTextUI;
     [SerializeField] TextMeshProUGUI _priceUIOriginal;
     [SerializeField] TextMeshProUGUI _priceUIShadow;
-    [SerializeField] int _updatePrice;
-    [SerializeField] int _updatePriceValue;
+    [SerializeField] int[] _updatePrice;
+    [SerializeField] int[] _updateValue;
+    [SerializeField] TextMeshProUGUI _textDescription;
+    [SerializeField] TextMeshProUGUI _textDescriptionShadow;
     public override void Start()
     {
         UpdateUI(0);
+        _textDescription.text = "You'll get " + _updateValue[_capacity - _availabelCapacity] + "+ materials";
         _textNameBuilding.text = _nameOfBuilding;
         _textNameBuildingShadow.text = _nameOfBuilding;
-        _priceUIOriginal.text = _updatePrice + "$";
-        _priceUIShadow.text = _updatePrice + "$";
+        _priceUIOriginal.text = _updatePrice[_capacity - _availabelCapacity] + "$";
+        _priceUIShadow.text = _updatePrice[_capacity - _availabelCapacity] + "$";
         ShowHideUI(false);
     }
     public void ChangeGenerationCount(int value)
@@ -89,21 +89,25 @@ public class Mine : Building
     void UpdateUI(int valueAdd)
     {
         _availabelCapacity -= valueAdd;
-        //_textCapacity.text = (_capacity - _availabelCapacity).ToString() + "/" + _capacity.ToString();
-        //_shadowCapacityText.text = (_capacity - _availabelCapacity).ToString() + "/" + _capacity.ToString();
+        if (_availabelCapacity != 0)
+        {
+            _textDescription.text = "You'll get " + _updateValue[_capacity - _availabelCapacity] + "+ materials";
+            _priceUIOriginal.text = _updatePrice[_capacity - _availabelCapacity] + "$";
+            _priceUIShadow.text = _updatePrice[_capacity - _availabelCapacity] + "$";
+        }
         string newText = _nameOfBuyingElement + " - " + (_capacity - _availabelCapacity).ToString() + "/" + _capacity.ToString();
         _textCapacityUI.text = newText;
         _shadowCapacityTextUI.text = newText;
     }
-    public void TryBuyUpdate(int price)
+    public void TryBuyUpdate()
     {
         int balance = Resources.Instance.CheckBalance();
         if (_availabelCapacity > 0)
         {
-            if (balance >= price)
+            if (balance >= (int)(_updatePrice[_capacity - _availabelCapacity]))
             {
-                Resources.Instance.UpdateResource(balance - price);
-                ChangeGenerationCount(_updatePriceValue);
+                Resources.Instance.UpdateResource(balance - (int)(_updatePrice[_capacity - _availabelCapacity]));
+                ChangeGenerationCount(_updateValue[_capacity - _availabelCapacity]);
                 UpdateUI(1);
             }
             else
