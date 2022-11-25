@@ -361,6 +361,7 @@ MonoBehaviour:
   _textCapacityShadow: {fileID: 1757378035964287173}
   _currentFarm: 1
   _collectableBuilding: {fileID: 1812195718}
+  _canvasInformation: {fileID: 7138822609280123003}
 --- !u!1 &2622315372429170408
 GameObject:
   m_ObjectHideFlags: 0

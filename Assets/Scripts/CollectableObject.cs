@@ -43,6 +43,16 @@ public class CollectableObject : MonoBehaviour
     }
     public void TrySetToWork()
     {
+        if (Managment.Instance.ListObjects().Count <= 1)
+        {
+            GameManager.Instance._showHint.DisplayHint("At first pick civilian to set on work");
+            return;
+        }
+        if (FindNearBuilding() == null)
+        {
+            GameManager.Instance._showHint.DisplayHint("You need to create building for work");
+            return;
+        }
         for (int i = 0; i < Managment.Instance.ListObjects().Count; i++)
         {
             if (_currentWorkUnit = Managment.Instance.ListObjects()[i].GetComponent<Unit>())
@@ -63,16 +73,16 @@ public class CollectableObject : MonoBehaviour
                 if (_nearTargetMinePosition == null)
                 {
                     _currentMine = _mineTarget;
-                    return _nearTargetMinePosition = _mineTarget.gameObject.transform;
+                    _nearTargetMinePosition = _mineTarget.gameObject.transform;
                 }
-                else if (Vector3.Distance(_mineTarget.transform.position, _nearTargetMinePosition.position) < Vector3.Distance(transform.position, _nearTargetMinePosition.position))
+                else if (Vector3.Distance(transform.position, _mineTarget.transform.position) < Vector3.Distance(transform.position, _nearTargetMinePosition.position))
                 {
                     _currentMine = _mineTarget;
                     return _nearTargetMinePosition = _mineTarget.gameObject.transform;
                 }
             }
         }
-        return _currentWorkUnit.transform;
+        return _nearTargetMinePosition;
     }
     IEnumerator CollectMaterials(Vector3 startPosition, Vector3 endPosition, Unit currentUnit)
     {
@@ -102,7 +112,8 @@ public class CollectableObject : MonoBehaviour
                 _nextPosition = false;
                 if (_currentCapacity == 0)
                 {
-                    Destroy(gameObject);
+                    Destroy(gameObject, 3f);
+                    currentUnit.WhenClickOnGround(currentUnit.transform.position + Vector3.forward * Random.Range(-1.5f, 1.5f));
                     StopAllCoroutines();
                 }
             }
