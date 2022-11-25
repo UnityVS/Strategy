@@ -136,7 +136,7 @@ public class Managment : MonoBehaviour
                     {
                         UnselectAll();
                     }
-                    else if (_listOfSelected.Count > 0 && _listOfSelected[0].GetComponent<Barack>())
+                    else if (_listOfSelected.Count > 0 && _listOfSelected[0].GetComponent<Barack>() || _listOfSelected.Count > 0 && _listOfSelected[0].GetComponent<Mine>())
                     {
                         UnselectAll();
                     }

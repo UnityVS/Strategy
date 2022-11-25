@@ -68,4 +68,8 @@ public class Building : SelectableObject
     {
         return _price;
     }
+    public void RendererStatus(bool status)
+    {
+        _renderer.gameObject.SetActive(status);
+    }
 }

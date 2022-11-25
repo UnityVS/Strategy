@@ -14,6 +14,8 @@ public class CollectableObject : MonoBehaviour
     Mine _currentMine;
     bool _unitIsMoving = false;
     bool _nextPosition = false;
+    [SerializeField] Building _collectableBuilding;
+    [SerializeField] GameObject _canvasInformation;
     private void Start()
     {
         _currentCapacity = _collectableCapacity;
@@ -28,8 +30,10 @@ public class CollectableObject : MonoBehaviour
         }
         else
         {
-            StopAllCoroutines();
-            Destroy(gameObject);
+            _currentCapacity -= 1;
+            _collectableBuilding.RendererStatus(false);
+            _collectableBuilding.SelectObjectStatus(false);
+            _canvasInformation.SetActive(false);
         }
     }
     void UpdateUI()
@@ -96,6 +100,11 @@ public class CollectableObject : MonoBehaviour
                 _currentMine.FromUnitAddValue();
                 _unitIsMoving = false;
                 _nextPosition = false;
+                if (_currentCapacity == 0)
+                {
+                    Destroy(gameObject);
+                    StopAllCoroutines();
+                }
             }
             yield return new WaitForSeconds(1f);
             yield return null;
