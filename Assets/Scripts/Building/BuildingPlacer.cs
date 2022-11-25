@@ -15,6 +15,7 @@ public class BuildingPlacer : MonoBehaviour
     Dictionary<Vector2Int, Building> _buildingDictionary = new Dictionary<Vector2Int, Building>();
     [SerializeField] Building[] _listOfPrefabs;
     [SerializeField] UISettingOnPlay[] _listOfUI;
+    public List<Building> _allBuildingInScene;
     private void Awake()
     {
         if (!Instance)
@@ -40,6 +41,7 @@ public class BuildingPlacer : MonoBehaviour
                 }
             }
         }
+        _allBuildingInScene.Clear();
     }
     private void Update()
     {
@@ -111,18 +113,7 @@ public class BuildingPlacer : MonoBehaviour
             {
                 Vector2Int coordinate = new Vector2Int(xPosition + x, zPosition + z);
                 _buildingDictionary.Add(coordinate, building);
-            }
-        }
-    }
-    public void Build(int xPosition, int zPosition, Building building)
-    {
-        Vector2Int size = building.CheckSize();
-        for (int x = 0; x < size.x; x++)
-        {
-            for (int z = 0; z < size.y; z++)
-            {
-                Vector2Int coordinate = new Vector2Int(xPosition + x, zPosition + z);
-                _buildingDictionary.Add(coordinate, building);
+                _allBuildingInScene.Add(building);
             }
         }
     }

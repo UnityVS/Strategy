@@ -15,7 +15,7 @@ public class Mine : Building
     [SerializeField] AddedValue _addedValue;
     [SerializeField] float _timeResource = 1.5f;
     [SerializeField] int _generatedCount = 10;
-    [SerializeField] FarmResource _currentFarm;
+    public FarmResource _currentFarm;
     [SerializeField] Coroutine _coroutine;
     [SerializeField] int _capacity = 2;
     [SerializeField] int _availabelCapacity = 2;
@@ -31,6 +31,7 @@ public class Mine : Building
     [SerializeField] int[] _updateValue;
     [SerializeField] TextMeshProUGUI _textDescription;
     [SerializeField] TextMeshProUGUI _textDescriptionShadow;
+    [SerializeField] bool _workWithUnit;
     public override void Start()
     {
         UpdateUI(0);
@@ -51,6 +52,7 @@ public class Mine : Building
     }
     void Update()
     {
+        if (_workWithUnit) return;
         if (_isActive == false)
         {
             if (_coroutine != null)
@@ -64,7 +66,11 @@ public class Mine : Building
             _coroutine = StartCoroutine(AddValue());
         }
     }
-
+    public void FromUnitAddValue()
+    {
+        _addedValue.AddResource(_timeResource);
+        Resources.Instance.AddResources(_currentFarm, _generatedCount);
+    }
     public void BuildingSetInScene()
     {
         SelectObjectStatus(false);

@@ -1814,6 +1814,7 @@ MonoBehaviour:
   _updateValue: 080000000a0000000f0000001e000000
   _textDescription: {fileID: 5163854931498203840}
   _textDescriptionShadow: {fileID: 6881571532306188236}
+  _workWithUnit: 1
 --- !u!1 &8903758139463571250
 GameObject:
   m_ObjectHideFlags: 0
