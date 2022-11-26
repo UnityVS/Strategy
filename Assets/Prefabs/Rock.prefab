@@ -337,7 +337,7 @@ MonoBehaviour:
   _selectCirle: {fileID: 5084482684486762685}
   _price: 100
   _xSize: 2
-  _zSize: 2
+  _zSize: 1
   _renderer: {fileID: 6693953610423860496}
   _obstacle: {fileID: 0}
   _menuObject: {fileID: 1588793050670997537}
@@ -1689,6 +1689,7 @@ GameObject:
   - component: {fileID: 6240335308532233686}
   - component: {fileID: 7079833800678640768}
   - component: {fileID: 4621360077411518934}
+  - component: {fileID: 6141807000411397070}
   m_Layer: 0
   m_Name: CanvasWorld
   m_TagString: Untagged
@@ -1704,7 +1705,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7138822609280123003}
   m_LocalRotation: {x: 0.4980974, y: 0.07547912, z: -0.043577895, w: 0.8627299}
-  m_LocalPosition: {x: 0, y: 0, z: -0.13100004}
+  m_LocalPosition: {x: 0, y: 0, z: -0.051}
   m_LocalScale: {x: 0.003999999, y: 0.0039999997, z: 0.0039999997}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1782,6 +1783,18 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &6141807000411397070
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7138822609280123003}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 090f842375378c64e92a491a84274dd2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7639892168343204467
 GameObject:
   m_ObjectHideFlags: 0
