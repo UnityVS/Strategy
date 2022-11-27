@@ -6,6 +6,6 @@ public class CanvasInfo : MonoBehaviour
     private void Start()
     {
         _transform = GetComponent<Transform>();
-        _transform.rotation = Quaternion.Euler(Vector3.forward * 10f + Vector3.right * 60f);
+        _transform.rotation = Quaternion.Euler(Vector3.forward * 5f + Vector3.right * 60f);
     }
 }

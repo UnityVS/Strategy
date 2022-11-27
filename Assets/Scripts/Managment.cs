@@ -128,22 +128,34 @@ public class Managment : MonoBehaviour
         }
         if (Input.GetMouseButtonUp(0))
         {
-            if (_hovered)
+            if (_hovered && !EventSystem.current.IsPointerOverGameObject())
             {
-                if (_hovered.GetComponent<CollectableObject>() is CollectableObject _currentCollectableObject)
+                if (_hovered.GetComponent<CollectableObject>())
                 {
-                    if (!Input.GetKey(KeyCode.LeftControl) && !_currentCollectableObject)
+                    if (_listOfSelected.Count > 0 && _listOfSelected[0].GetComponent<Building>())
                     {
                         UnselectAll();
                     }
-                    else if (_listOfSelected.Count > 0 && _listOfSelected[0].GetComponent<Barack>() || _listOfSelected.Count > 0 && _listOfSelected[0].GetComponent<Mine>())
+                    else if (_listOfSelected.Count > 0 && _listOfSelected[0].GetComponent<CollectableObject>())
                     {
                         UnselectAll();
                     }
                 }
                 else
                 {
-                    if (!Input.GetKey(KeyCode.LeftControl))
+                    if (_listOfSelected.Count > 0 && _listOfSelected[0].GetComponent<CollectableObject>() && !_hovered.GetComponent<Unit>())
+                    {
+                        UnselectAll();
+                    }
+                    else if (_listOfSelected.Count > 0 && _listOfSelected[0].GetComponent<Building>() && !_listOfSelected[0].GetComponent<CollectableObject>() && _hovered.GetComponent<Building>())
+                    {
+                        UnselectAll();
+                    }
+                    else if (_listOfSelected.Count > 0 && _listOfSelected[0].GetComponent<Building>() && !_listOfSelected[0].GetComponent<CollectableObject>() && _hovered.GetComponent<Unit>())
+                    {
+                        UnselectAll();
+                    }
+                    else if (!Input.GetKey(KeyCode.LeftControl) && _listOfSelected.Count > 0 && _listOfSelected[0].GetComponent<Unit>() && _hovered.GetComponent<Unit>())
                     {
                         UnselectAll();
                     }
@@ -183,7 +195,7 @@ public class Managment : MonoBehaviour
             selectableObject.OnSelect();
         }
     }
-    void UnselectAll()
+    public void UnselectAll()
     {
         for (int i = 0; i < _listOfSelected.Count; i++)
         {

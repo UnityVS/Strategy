@@ -13,6 +13,7 @@ public class Building : SelectableObject
     [SerializeField] Renderer _renderer;
     [SerializeField] NavMeshObstacle _obstacle;
     [SerializeField] GameObject _menuObject;
+    Collider _colliderStatus;
     public override void OnHover()
     {
         //base.OnHover();
@@ -20,9 +21,11 @@ public class Building : SelectableObject
     public void ObstacleStatus(bool status)
     {
         _obstacle.enabled = status;
+        _colliderStatus.enabled = status;
     }
     private void Awake()
     {
+        _colliderStatus = _renderer.GetComponent<Collider>();
         _menuObject.SetActive(false);
         _startColor = _renderer.material.color;
     }

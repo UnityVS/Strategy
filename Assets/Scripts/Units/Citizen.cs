@@ -10,10 +10,22 @@ public class Citizen : Unit
     [SerializeField] Color _hightLight;
     Coroutine _coroutine;
     bool _isHightLight;
+    [SerializeField] GameObject _menu;
     public override void Start()
     {
+        _menu.SetActive(false);
         _selectCirle.SetActive(false);
         _hat.material = _renderer.material;
+    }
+    public override void OnSelect()
+    {
+        base.OnSelect();
+        _menu.SetActive(true);
+    }
+    public override void OnUnselect()
+    {
+        base.OnUnselect();
+        _menu.SetActive(false);
     }
     public override void OnUnhover()
     {

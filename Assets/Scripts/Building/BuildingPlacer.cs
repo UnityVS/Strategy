@@ -120,6 +120,7 @@ public class BuildingPlacer : MonoBehaviour
 
     public void TryBuy(Building buildingPrefab)
     {
+        Managment.Instance.UnselectAll();
         if (_currentBuilding)
             Destroy(_currentBuilding.gameObject);
         int balance = Resources.Instance.CheckBalance();

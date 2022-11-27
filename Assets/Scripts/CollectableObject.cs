@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
@@ -16,6 +17,7 @@ public class CollectableObject : MonoBehaviour
     bool _nextPosition = false;
     [SerializeField] Building _collectableBuilding;
     [SerializeField] GameObject _canvasInformation;
+    Coroutine _coroutine = null;
     private void Start()
     {
         _currentCapacity = _collectableCapacity;
@@ -34,6 +36,7 @@ public class CollectableObject : MonoBehaviour
             _collectableBuilding.RendererStatus(false);
             _collectableBuilding.SelectObjectStatus(false);
             _canvasInformation.SetActive(false);
+            _collectableBuilding.ShowHideUI(false);
         }
     }
     void UpdateUI()
@@ -57,10 +60,22 @@ public class CollectableObject : MonoBehaviour
         {
             if (_currentWorkUnit = Managment.Instance.ListObjects()[i].GetComponent<Unit>())
             {
-                Vector3 firstPosition = transform.position + Vector3.right * 2f;
-                Vector3 secondPosition = FindNearBuilding().position;
-                secondPosition = secondPosition + Vector3.right * 2f;
-                StartCoroutine(CollectMaterials(firstPosition, secondPosition, _currentWorkUnit));
+                if (!_currentWorkUnit.GetComponent<Citizen>())
+                {
+                    GameManager.Instance._showHint.DisplayHint("You need to pick civilian unit to set on work");
+                    return;
+                }
+                if (_currentWorkUnit.CheckWorkStatus() == false)
+                {
+                    Vector3 firstPosition = transform.position + Vector3.right * 2f;
+                    Vector3 secondPosition = FindNearBuilding().position;
+                    secondPosition = secondPosition + Vector3.right * 2f;
+                    _coroutine = StartCoroutine(CollectMaterials(firstPosition, secondPosition, _currentWorkUnit));
+                }
+                else
+                {
+                    return;
+                }
             }
         }
     }
@@ -86,14 +101,25 @@ public class CollectableObject : MonoBehaviour
     }
     IEnumerator CollectMaterials(Vector3 startPosition, Vector3 endPosition, Unit currentUnit)
     {
+        currentUnit.UnitWorkStatus(true);
         while (true)
         {
+            if (currentUnit.CheckWorkStatus() == false)
+            {
+                if (_coroutine != null)
+                {
+                    StopCoroutine(_coroutine);
+                }
+                _unitIsMoving = false;
+                _nextPosition = false;
+                yield return null;
+            }
             if (!_unitIsMoving)
             {
                 _unitIsMoving = true;
-                currentUnit.WhenClickOnGround(startPosition);
+                currentUnit.WhenInWork(startPosition);
             }
-            if (!currentUnit.CheckStop() && !_nextPosition)
+            if (currentUnit.CheckStop() && !_nextPosition)
             {
                 ChangeCapacity();
                 UpdateUI();
@@ -101,24 +127,36 @@ public class CollectableObject : MonoBehaviour
             }
             if (_nextPosition)
             {
-                currentUnit.WhenClickOnGround(endPosition);
+                currentUnit.WhenInWork(endPosition);
                 yield return new WaitForSeconds(1f);
                 //StopAllCoroutines();
             }
-            if (!currentUnit.CheckStop() && _nextPosition)
+            if (currentUnit.CheckStop() && _nextPosition)
             {
                 _currentMine.FromUnitAddValue();
                 _unitIsMoving = false;
                 _nextPosition = false;
                 if (_currentCapacity == 0)
                 {
-                    Destroy(gameObject, 3f);
-                    currentUnit.WhenClickOnGround(currentUnit.transform.position + Vector3.forward * Random.Range(-1.5f, 1.5f));
+                    currentUnit.WhenInWork(currentUnit.transform.position + Vector3.right * GetRandomDirection(Random.Range(1, 2)));
+                    currentUnit.UnitWorkStatus(false);
+                    Destroy(gameObject, 0.5f);
                     StopAllCoroutines();
                 }
             }
             yield return new WaitForSeconds(1f);
             yield return null;
+        }
+    }
+    float GetRandomDirection(int value)
+    {
+        if (value > 1)
+        {
+            return Random.Range(1f, 2.5f);
+        }
+        else
+        {
+            return Random.Range(-2.5f, -1f);
         }
     }
 }
