@@ -27,6 +27,10 @@ public class Unit : SelectableObject
     {
         _unitInWork = status;
     }
+    public void SetPreventivDistination(Vector3 point)
+    {
+        _navMeshAgent.SetDestination(point);
+    }
     public bool CheckWorkStatus()
     {
         return _unitInWork;

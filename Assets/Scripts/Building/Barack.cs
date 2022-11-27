@@ -7,7 +7,7 @@ public enum Units
     Knight
 }
 
-public class Barack : Building
+public class Barack : PlayerBuildings
 {
     [SerializeField] string _nameOfBarack;
     [SerializeField] string _nameOfUnits;

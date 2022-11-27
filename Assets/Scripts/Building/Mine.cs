@@ -9,7 +9,7 @@ public enum FarmResource
     Wood
 }
 
-public class Mine : Building
+public class Mine : PlayerBuildings
 {
     bool _isActive = false;
     [SerializeField] AddedValue _addedValue;
