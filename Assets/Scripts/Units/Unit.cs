@@ -9,7 +9,7 @@ public class Unit : SelectableObject
     bool _unitInWork = false;
     public override void WhenClickOnGround(Vector3 point)
     {
-        if (_animator.GetBool("Walk") == true) return;
+        //if (_animator.GetBool("Walk") == true) return;
         if (_unitInWork) return;
         _navMeshAgent.stoppingDistance = 0.4f;
         base.WhenClickOnGround(point);
