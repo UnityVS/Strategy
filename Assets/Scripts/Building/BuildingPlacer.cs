@@ -106,6 +106,10 @@ public class BuildingPlacer : MonoBehaviour
     }
     public void InstallBuilding(int xPosition, int zPosition, Building building)
     {
+        if (building.GetComponent<PlayerBuildings>() is PlayerBuildings turnOnPlayerBuildingComponent)
+        {
+            turnOnPlayerBuildingComponent.enabled = true;
+        }
         Vector2Int size = building.CheckSize();
         for (int x = 0; x < size.x; x++)
         {

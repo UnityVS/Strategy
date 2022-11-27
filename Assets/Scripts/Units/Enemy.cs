@@ -24,10 +24,14 @@ public class Enemy : MonoBehaviour
     [SerializeField] Animator _animator;
     [SerializeField] TextMeshProUGUI _textHealth;
     [SerializeField] TextMeshProUGUI _textHealthShadow;
+    Vector3 _startPosition;
     float _timer = 3;
     float _maxTimer;
+    int _timerCicleCounter;
+    int _ciclesForBackwardMove = 3;
     void Start()
     {
+        _startPosition = transform.position;
         _maxTimer = _timer;
         _currentHealthValue = _maxHealth;
         UpdateUI();
@@ -112,8 +116,18 @@ public class Enemy : MonoBehaviour
                     _currentEnemyState = EnemyStates.WalkToUnit;
                     return;
                 }
-                _navMeshAgent.SetDestination(transform.position);
                 _timer = _maxTimer;
+                if (_startPosition != _navMeshAgent.destination)
+                {
+                    _timerCicleCounter += 1;
+                    if (_timerCicleCounter == _ciclesForBackwardMove)
+                    {
+                        _navMeshAgent.SetDestination(_startPosition);
+                        _timerCicleCounter = 0;
+                        return;
+                    }
+                }
+                _navMeshAgent.SetDestination(transform.position);
             }
         }
         else if (_currentEnemyState == EnemyStates.WalkToBuilding)
@@ -193,14 +207,16 @@ public class Enemy : MonoBehaviour
         float minDistance = Mathf.Infinity;
         for (int i = 0; i < allBuildings.Length; i++)
         {
-
-            float distance = Vector3.Distance(transform.position, allBuildings[i].transform.position);
-            if (distance < minDistance)
+            if (allBuildings[i].enabled)
             {
-                minDistance = distance;
-                if (minDistance < _distanceToFollow)
+                float distance = Vector3.Distance(transform.position, allBuildings[i].transform.position);
+                if (distance < minDistance)
                 {
-                    return allBuildings[i];
+                    minDistance = distance;
+                    if (minDistance < _distanceToFollow)
+                    {
+                        return allBuildings[i];
+                    }
                 }
             }
         }

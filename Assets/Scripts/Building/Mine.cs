@@ -41,6 +41,7 @@ public class Mine : PlayerBuildings
         _priceUIOriginal.text = _updatePrice[_capacity - _availabelCapacity] + "$";
         _priceUIShadow.text = _updatePrice[_capacity - _availabelCapacity] + "$";
         ShowHideUI(false);
+        base.Start();
     }
     public void ChangeGenerationCount(int value)
     {
