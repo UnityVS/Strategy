@@ -37,6 +37,7 @@ public class Unit : SelectableObject
     }
     public bool CheckStop()
     {
+        if (!_navMeshAgent) return false;
         if (Vector3.Distance(_navMeshAgent.destination, transform.position) < _navMeshAgent.stoppingDistance)
         {
             return true;
@@ -58,8 +59,13 @@ public class Unit : SelectableObject
             _animator.SetBool("Walk", false);
         }
     }
+
     public int CheckPrice()
     {
         return _price;
+    }
+    private void OnDestroy()
+    {
+        Managment.Instance.UnselectIfSelect(this);
     }
 }

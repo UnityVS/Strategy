@@ -3,7 +3,7 @@ using UnityEngine;
 public class CanvasInfo : MonoBehaviour
 {
     Transform _transform;
-    bool _enemy = false;
+    bool _rotationUpdated = false;
     float _timer;
     float _maxTimer = 5f;
     Quaternion _rotateAngle;
@@ -14,11 +14,12 @@ public class CanvasInfo : MonoBehaviour
         _timer = _maxTimer;
         _transform = GetComponent<Transform>();
         _transform.rotation = _rotateAngle;
-        if (transform.GetComponentInParent<Enemy>()) _enemy = true;
+        if (transform.GetComponentInParent<Enemy>()) { _rotationUpdated = true; return; }
+        if (transform.GetComponentInParent<Unit>()) _rotationUpdated = true;
     }
     private void Update()
     {
-        if (!_enemy) return;
+        if (!_rotationUpdated) return;
         _timer -= Time.deltaTime;
         if (_timer < 0)
         {

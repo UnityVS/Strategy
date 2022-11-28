@@ -204,6 +204,18 @@ public class Managment : MonoBehaviour
         _currentSelectionState = SelectionState.Other;
         _listOfSelected.Clear();
     }
+    public void UnselectIfSelect(Unit unit)
+    {
+        for (int i = 0; i < _listOfSelected.Count; i++)
+        {
+            if (unit == _listOfSelected[i])
+            {
+                _listOfSelected[i].OnUnselect();
+                _listOfSelected.RemoveAt(i);
+            }
+        }
+
+    }
     void UnhoverCurrent()
     {
         if (_hovered)

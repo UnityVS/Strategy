@@ -117,8 +117,8 @@ public class BuildingPlacer : MonoBehaviour
             {
                 Vector2Int coordinate = new Vector2Int(xPosition + x, zPosition + z);
                 _buildingDictionary.Add(coordinate, building);
-                _allBuildingInScene.Add(building);
             }
+            _allBuildingInScene.Add(building);
         }
     }
 
@@ -148,7 +148,15 @@ public class BuildingPlacer : MonoBehaviour
     }
     public void DeleteBuilding(int xPosition, int zPosition, Building building)
     {
-        Vector2Int coordinate = new Vector2Int(xPosition, zPosition);
-        _buildingDictionary.Remove(coordinate, out building);
+        if (_allBuildingInScene.Remove(building)) { };
+        Vector2Int size = building.CheckSize();
+        for (int x = 0; x < size.x; x++)
+        {
+            for (int z = 0; z < size.y; z++)
+            {
+                Vector2Int coordinate = new Vector2Int(xPosition + x, zPosition + z);
+                _buildingDictionary.Remove(coordinate);
+            }
+        }
     }
 }

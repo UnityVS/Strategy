@@ -73,4 +73,11 @@ public class Barack : PlayerBuildings
             GameManager.Instance._showHint.DisplayHint("You can't buy this unit. No more slots");
         }
     }
+    private void OnDestroy()
+    {
+        Vector3 point = transform.position / BuildingPlacer.Instance.CellSize;
+        int x = Mathf.RoundToInt(point.x);
+        int z = Mathf.RoundToInt(point.z);
+        BuildingPlacer.Instance.DeleteBuilding(x, z, this);
+    }
 }
