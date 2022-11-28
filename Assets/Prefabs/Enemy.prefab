@@ -125,6 +125,7 @@ GameObject:
   - component: {fileID: 2687351519972178283}
   - component: {fileID: 2687351519972178282}
   - component: {fileID: 2687351519972178281}
+  - component: {fileID: 9080648610521751347}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -161,16 +162,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2ebb05aa247c594aa6a733bea7732ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxHealth: 10
   _navMeshAgent: {fileID: 2687351519972178281}
-  _healthBar: {fileID: 0}
   _distanceToFollow: 7
   _distanceToAttack: 1
   _targetBuilding: {fileID: 0}
   _targetUnit: {fileID: 0}
   _animator: {fileID: 0}
-  _textHealth: {fileID: 2687351520576496594}
-  _textHealthShadow: {fileID: 2687351520907803980}
 --- !u!195 &2687351519972178281
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -193,6 +190,22 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &9080648610521751347
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2687351519972178280}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 898f58d8fd94fff40975f216be46a0db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _maxHealth: 5
+  _healthBar: {fileID: 2687351519824403138}
+  _textHealth: {fileID: 2687351520576496594}
+  _textHealthShadow: {fileID: 2687351520907803980}
 --- !u!1 &2687351520006004187
 GameObject:
   m_ObjectHideFlags: 0

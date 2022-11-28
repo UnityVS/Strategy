@@ -1,8 +1,6 @@
 using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
 using UnityEngine.AI;
-using UnityEngine.UI;
 
 public enum EnemyStates
 {
@@ -14,11 +12,6 @@ public enum EnemyStates
 public class Enemy : MonoBehaviour
 {
     EnemyStates _currentEnemyState;
-    int _currentHealthValue;
-    [SerializeField] int _maxHealth;
-    [SerializeField] Image _healthBar;
-    [SerializeField] TextMeshProUGUI _textHealth;
-    [SerializeField] TextMeshProUGUI _textHealthShadow;
     [SerializeField] NavMeshAgent _navMeshAgent;
     [SerializeField] float _distanceToFollow;
     [SerializeField] float _distanceToAttack;
@@ -26,16 +19,14 @@ public class Enemy : MonoBehaviour
     [SerializeField] Unit _targetUnit;
     [SerializeField] Animator _animator;
     Vector3 _startPosition;
-    float _timer = 1;
-    float _maxTimer;
+    float _timer;
+    float _maxTimer = 2;
     int _timerCicleCounter;
     int _ciclesForBackwardMove = 3;
     void Start()
     {
         _startPosition = transform.position;
-        _maxTimer = _timer;
-        _currentHealthValue = _maxHealth;
-        UpdateUI();
+        _timer = _maxTimer;
         SetEnemyState(EnemyStates.WalkToBuilding);
     }
     void Update()
@@ -255,11 +246,6 @@ public class Enemy : MonoBehaviour
             return _unitsToFollow[0];
         }
         return null;
-    }
-    void UpdateUI()
-    {
-        _textHealth.text = _currentHealthValue + "/" + _maxHealth;
-        _textHealthShadow.text = _currentHealthValue + "/" + _maxHealth;
     }
     PlayerBuildings FindClosestBuilding()
     {

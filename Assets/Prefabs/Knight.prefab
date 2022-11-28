@@ -215,6 +215,8 @@ MonoBehaviour:
   _hat: {fileID: 5758983808858762716}
   _baseColor: {r: 0, g: 0, b: 0, a: 0}
   _hightLight: {r: 0.08235294, g: 0.4509804, b: 0.101960786, a: 0}
+  _distanceToFollow: 7
+  _distanceToAttack: 1.5
 --- !u!114 &7633893992979701744
 MonoBehaviour:
   m_ObjectHideFlags: 0

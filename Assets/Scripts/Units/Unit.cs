@@ -3,8 +3,8 @@ using UnityEngine.AI;
 
 public class Unit : SelectableObject
 {
-    [SerializeField] NavMeshAgent _navMeshAgent;
-    [SerializeField] Animator _animator;
+    public NavMeshAgent _navMeshAgent;
+    public Animator _animator;
     [SerializeField] int _price;
     bool _unitInWork = false;
     public override void WhenClickOnGround(Vector3 point)
