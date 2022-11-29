@@ -20,16 +20,17 @@ public class CanvasInfo : MonoBehaviour
     private void Update()
     {
         if (!_rotationUpdated) return;
-        _timer -= Time.deltaTime;
-        if (_timer < 0)
-        {
-            if (_transform.rotation != _rotateAngle)
-            {
-                RotateUI();
-                return;
-            }
-            _timer = _maxTimer;
-        }
+        _transform.rotation = _rotateAngle;
+        //_timer -= Time.deltaTime;
+        //if (_timer < 0)
+        //{
+        //    if (_transform.rotation != _rotateAngle)
+        //    {
+        //        RotateUI();
+        //        return;
+        //    }
+        //    _timer = _maxTimer;
+        //}
     }
     void RotateUI()
     {
