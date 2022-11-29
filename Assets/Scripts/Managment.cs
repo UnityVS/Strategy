@@ -42,7 +42,14 @@ public class Managment : MonoBehaviour
     {
         CheckSelect();
         FrameSelect();
-        _camera.transform.Translate(0f, 0f, Input.mouseScrollDelta.y);
+        if (Input.mouseScrollDelta.y != 0)
+        {
+            _camera.transform.Translate(0f, 0f, Input.mouseScrollDelta.y);
+            float _yPosition = Mathf.Clamp(_camera.transform.position.y, 5f, 10f);
+            Vector3 _newPosition = new Vector3(_camera.transform.position.x, _yPosition, _camera.transform.position.z);
+            _camera.transform.position = _newPosition;
+        }
+
     }
     public List<SelectableObject> ListObjects()
     {
