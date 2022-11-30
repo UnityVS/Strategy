@@ -22,7 +22,10 @@ public class Environment : Building
     }
     private void OnDestroy()
     {
-        BuildingPlacer.Instance.DeleteBuilding(_point.x, _point.y, this);
+        if (!_static)
+        {
+            BuildingPlacer.Instance.DeleteBuilding(_point.x, _point.y, this);
+        }
     }
     private void Awake() { }
     //public override void OnHover() { }

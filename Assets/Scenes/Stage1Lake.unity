@@ -2545,6 +2545,11 @@ PrefabInstance:
       propertyPath: _zSize
       value: 13
       objectReference: {fileID: 0}
+    - target: {fileID: 384756866909885801, guid: 89bf07561d80e7d4786adda5de3c5988,
+        type: 3}
+      propertyPath: _static
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 384756866909885802, guid: 89bf07561d80e7d4786adda5de3c5988,
         type: 3}
       propertyPath: m_RootOrder
@@ -2604,6 +2609,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: BlockingZone
+      objectReference: {fileID: 0}
+    - target: {fileID: 384756866909885807, guid: 89bf07561d80e7d4786adda5de3c5988,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 89bf07561d80e7d4786adda5de3c5988, type: 3}
@@ -8438,6 +8448,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e806315212f73994aa5441633dfb455e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _cameraMoveController: {fileID: 605101153}
+  _cameraMoveSpeed: 15
   _frameSelect: {fileID: 356321450}
 --- !u!1 &1804221301
 GameObject:

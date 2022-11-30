@@ -18,18 +18,17 @@ public class Knight : Unit
     [SerializeField] Color _hightLight;
     Coroutine _coroutine;
     bool _isHightLight;
-
-    //[SerializeField] NavMeshAgent _navMeshAgent;
     [SerializeField] float _distanceToFollow;
     [SerializeField] float _distanceToAttack;
     Vector3 _pointToChillWalk;
-    //[SerializeField] Animator _animator;
     Enemy _targetEnemy;
     float _timer;
     [SerializeField] float _maxTimer = 1.5f;
+    AttackingUnits _currentState;
+    //[SerializeField] Animator _animator;
     //int _timerCicleCounter;
     //int _ciclesForBackwardMove = 3;
-    AttackingUnits _currentState;
+    //[SerializeField] NavMeshAgent _navMeshAgent;
     //bool _chillWalk = false;
     public override void Start()
     {

@@ -13,6 +13,8 @@ public enum SelectionState
 public class Managment : MonoBehaviour
 {
     Camera _camera;
+    [SerializeField] Transform _cameraMoveController;
+    [SerializeField] float _cameraMoveSpeed;
     SelectableObject _hovered;
     List<SelectableObject> _listOfSelected = new List<SelectableObject>();
     [SerializeField] Image _frameSelect;
@@ -45,11 +47,35 @@ public class Managment : MonoBehaviour
         if (Input.mouseScrollDelta.y != 0)
         {
             _camera.transform.Translate(0f, 0f, Input.mouseScrollDelta.y);
-            float _yPosition = Mathf.Clamp(_camera.transform.position.y, 5f, 10f);
-            Vector3 _newPosition = new Vector3(_camera.transform.position.x, _yPosition, _camera.transform.position.z);
-            _camera.transform.position = _newPosition;
         }
-
+        if (Input.GetKey(KeyCode.W))
+        {
+            _cameraMoveController.Translate(0f, 0f, _cameraMoveSpeed * Time.deltaTime);
+            CameraMovementByKeyboardInputs();
+        }
+        if (Input.GetKey(KeyCode.S))
+        {
+            _cameraMoveController.Translate(0f, 0f, -_cameraMoveSpeed * Time.deltaTime);
+            CameraMovementByKeyboardInputs();
+        }
+        if (Input.GetKey(KeyCode.D))
+        {
+            _cameraMoveController.Translate(_cameraMoveSpeed * Time.deltaTime, 0f, 0f);
+            CameraMovementByKeyboardInputs();
+        }
+        if (Input.GetKey(KeyCode.A))
+        {
+            _cameraMoveController.Translate(-_cameraMoveSpeed * Time.deltaTime, 0f, 0f);
+            CameraMovementByKeyboardInputs();
+        }
+    }
+    void CameraMovementByKeyboardInputs()
+    {
+        float _yPosition = Mathf.Clamp(_camera.transform.position.y, 5f, 10f);
+        float _xPosition = Mathf.Clamp(_camera.transform.position.x, -15f, 15f);
+        float _zPosition = Mathf.Clamp(_camera.transform.position.z, -15f, 15f);
+        Vector3 _newPosition = new Vector3(_xPosition, _yPosition, _zPosition);
+        _camera.transform.position = _newPosition;
     }
     public List<SelectableObject> ListObjects()
     {
