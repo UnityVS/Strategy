@@ -138,7 +138,7 @@ public class CollectableObject : MonoBehaviour
                 _nextPosition = false;
                 if (_currentCapacity == 0)
                 {
-                    currentUnit.WhenInWork(currentUnit.transform.position + Vector3.right * GetRandomDirection(Random.Range(1, 2)));
+                    currentUnit.WhenInWork(currentUnit.transform.position + Vector3.back * GetRandomDirection(Random.Range(1, 2)));
                     currentUnit.UnitWorkStatus(false);
                     Destroy(gameObject, 0.5f);
                     StopAllCoroutines();

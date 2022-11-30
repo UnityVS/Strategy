@@ -1334,8 +1334,8 @@ MonoBehaviour:
   _nameOfUnits: Knight
   _textNameOfBarack: {fileID: 8873511739097341700}
   _textNameOfBarackShadow: {fileID: 1506658577267296125}
-  _capacity: 2
-  _availabelCapacity: 2
+  _capacity: 7
+  _availabelCapacity: 7
   _textCapacity: {fileID: 6258816511870970650}
   _shadowCapacityText: {fileID: 7821531551204813983}
   _textCapacityUI: {fileID: 4017654011356528340}

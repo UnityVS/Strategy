@@ -23,6 +23,10 @@ public class Unit : SelectableObject
         _navMeshAgent.SetDestination(point);
         _animator.SetBool("Walk", true);
     }
+    public virtual void EnemyClear()
+    {
+    }
+
     public void UnitWorkStatus(bool status)
     {
         _unitInWork = status;

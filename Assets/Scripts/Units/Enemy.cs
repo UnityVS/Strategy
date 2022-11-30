@@ -23,11 +23,28 @@ public class Enemy : MonoBehaviour
     float _maxTimer = 2;
     int _timerCicleCounter;
     int _ciclesForBackwardMove = 3;
+    List<Unit> _subscribersAttackers = new List<Unit>();
     void Start()
     {
         _startPosition = transform.position;
         _timer = _maxTimer;
         SetEnemyState(EnemyStates.WalkToBuilding);
+    }
+    public void SubscribeToAttack(Unit unit)
+    {
+        _subscribersAttackers.Add(unit);
+    }
+    public void UnSubscribeToAttack(Unit unit)
+    {
+        _subscribersAttackers.Remove(unit);
+    }
+    private void OnDestroy()
+    {
+        for (int i = 0; i < _subscribersAttackers.Count; i++)
+        {
+            _subscribersAttackers[i].EnemyClear();
+        }
+        _subscribersAttackers.Clear();
     }
     void Update()
     {

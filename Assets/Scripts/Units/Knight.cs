@@ -96,6 +96,7 @@ public class Knight : Unit
             }
             if (Vector3.Distance(_targetEnemy.transform.position, transform.position) > _distanceToFollow && _targetEnemy != null)
             {
+                _targetEnemy.UnSubscribeToAttack(this);
                 _currentState = AttackingUnits.Idle;
             }
             if (Vector3.Distance(_targetEnemy.transform.position, _navMeshAgent.destination) > 1.5f && _targetEnemy != null)
@@ -169,12 +170,23 @@ public class Knight : Unit
             {
                 if (_targetEnemy = FindClosestUnit())
                 {
-                    _currentState = AttackingUnits.WalkToEnemy;
+                    if (_targetEnemy.GetComponent<Enemy>())
+                    {
+                        _currentState = AttackingUnits.WalkToEnemy;
+                    }
+                    else
+                    {
+                        _currentState = AttackingUnits.Idle;
+                        _targetEnemy = null;
+                        return;
+                    }
+
                 }
             }
             if (_targetEnemy == null)
             {
                 _currentState = AttackingUnits.Idle;
+                _targetEnemy = null;
                 return;
             }
             _timer = _maxTimer;
@@ -207,8 +219,15 @@ public class Knight : Unit
         }
         if (_enemyToFollow.Count > 0)
         {
+            _enemyToFollow[0].SubscribeToAttack(this);
             return _enemyToFollow[0];
         }
         return null;
+    }
+    public override void EnemyClear()
+    {
+        //base.EnemyClear;
+        _targetEnemy = null;
+        _currentState = AttackingUnits.Idle;
     }
 }
