@@ -75,6 +75,10 @@ public class Knight : Unit
     }
     void Update()
     {
+        if (Vector3.Distance(_navMeshAgent.gameObject.transform.position, _navMeshAgent.destination) < 0.41f)
+        {
+            _animator.SetBool("Walk", false);
+        }
         _timer -= Time.deltaTime;
         if (_currentState == AttackingUnits.Idle)
         {
@@ -188,6 +192,10 @@ public class Knight : Unit
             if (distance < minDistance)
             {
                 minDistance = distance;
+                if (_targetEnemy != null)
+                {
+                    return _targetEnemy;
+                }
                 if (minDistance < _distanceToFollow)
                 {
                     _enemyToFollow.Add(allUnits[i]);
