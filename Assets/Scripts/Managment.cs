@@ -47,6 +47,7 @@ public class Managment : MonoBehaviour
         if (Input.mouseScrollDelta.y != 0)
         {
             _camera.transform.Translate(0f, 0f, Input.mouseScrollDelta.y);
+            CameraMovementByKeyboardInputs();
         }
         if (Input.GetKey(KeyCode.W))
         {
