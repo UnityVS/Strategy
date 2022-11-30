@@ -224,10 +224,18 @@ public class Knight : Unit
         }
         return null;
     }
+    private void OnDestroy()
+    {
+        if (_targetEnemy != null)
+        {
+            _targetEnemy.UnSubscribeToAttack(this);
+        }
+    }
     public override void EnemyClear()
     {
         //base.EnemyClear;
         _targetEnemy = null;
+        WhenClickOnGround(transform.position);
         _currentState = AttackingUnits.Idle;
     }
 }
