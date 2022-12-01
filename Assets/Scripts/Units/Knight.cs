@@ -107,8 +107,9 @@ public class Knight : Unit
             {
                 WhenClickOnGround(_targetEnemy.transform.position);
             }
-            if (Vector3.Distance(transform.position, _targetEnemy.transform.position) < 1.5f)
+            if (Vector3.Distance(transform.position, _targetEnemy.transform.position) < 2f)
             {
+                WhenClickOnGround(transform.position);
                 _currentState = AttackingUnits.Attack;
                 return;
             }
@@ -123,6 +124,7 @@ public class Knight : Unit
             {
                 if (_targetEnemy != null)
                 {
+                    _animator.SetTrigger("Attack");
                     _targetEnemy.GetComponent<Health>().ChangeHealthSubtract(1);
                     SetEnemyState(AttackingUnits.Attack);
                     _timer = _maxTimer;

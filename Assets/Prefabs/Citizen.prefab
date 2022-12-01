@@ -664,6 +664,7 @@ GameObject:
   - component: {fileID: 1211304146317693647}
   - component: {fileID: 6246861122699052249}
   - component: {fileID: 917068796652805481}
+  - component: {fileID: 4011808777469520238}
   m_Layer: 0
   m_Name: Citizen
   m_TagString: Untagged
@@ -748,6 +749,22 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!54 &4011808777469520238
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1261121359502877190}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &2374689926314432588
 GameObject:
   m_ObjectHideFlags: 0

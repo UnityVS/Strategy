@@ -72,8 +72,9 @@ public class Enemy : MonoBehaviour
             {
                 _navMeshAgent.SetDestination(_targetBuilding.transform.position);
             }
-            if (Vector3.Distance(transform.position, _targetBuilding.transform.position) < 1.5f)
+            if (Vector3.Distance(transform.position, _targetBuilding.transform.position) < 2f)
             {
+                _navMeshAgent.SetDestination(transform.position);
                 _currentEnemyState = EnemyStates.Attack;
                 return;
             }

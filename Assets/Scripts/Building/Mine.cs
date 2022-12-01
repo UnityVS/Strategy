@@ -67,6 +67,22 @@ public class Mine : PlayerBuildings
             _coroutine = StartCoroutine(AddValue());
         }
     }
+    public void MiningStatus(bool status)
+    {
+        if (status == false)
+        {
+            if (_coroutine != null)
+            {
+                StopCoroutine(_coroutine);
+                _coroutine = null;
+            }
+            return;
+        }
+        if (_coroutine == null)
+        {
+            _coroutine = StartCoroutine(AddValue());
+        }
+    }
     public void FromUnitAddValue()
     {
         _addedValue.AddResource(_timeResource);

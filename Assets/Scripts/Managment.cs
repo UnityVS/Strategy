@@ -23,6 +23,7 @@ public class Managment : MonoBehaviour
     SelectionState _currentSelectionState;
     CollectableObject _currentCollectableObject;
     public static Managment Instance;
+    [SerializeField] LayerMask _layerMask;
     private void Awake()
     {
         if (!Instance)
@@ -132,7 +133,7 @@ public class Managment : MonoBehaviour
     {
         Ray ray = _camera.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
-        if (Physics.Raycast(ray, out hit))
+        if (Physics.Raycast(ray, out hit, 50, _layerMask, QueryTriggerInteraction.Ignore))
         {
             if (hit.collider.GetComponent<SelectableCollider>() is SelectableCollider selectableCollider)
             {
