@@ -41,7 +41,7 @@ public class UnitHouse : MonoBehaviour
             _mine.MiningStatus(false);
         }
     }
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerStay(Collider other)
     {
         if (!other.attachedRigidbody.gameObject.activeSelf) return;
         if (_targetUnit = other.attachedRigidbody.GetComponent<Citizen>())
@@ -59,7 +59,6 @@ public class UnitHouse : MonoBehaviour
         if (!other.attachedRigidbody.gameObject.activeSelf) return;
         if (_targetUnit == other.attachedRigidbody.GetComponent<Citizen>())
         {
-            //_buttonUnit.DOFade(0.15f, 0);
             if (!_currentUnit)
             {
                 _buttonUnit.GetComponent<Button>().enabled = false;
