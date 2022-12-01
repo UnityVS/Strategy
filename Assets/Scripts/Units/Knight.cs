@@ -74,6 +74,10 @@ public class Knight : Unit
     }
     void Update()
     {
+        if (_targetEnemy != null)
+        {
+            transform.rotation = Quaternion.LookRotation(_targetEnemy.transform.position - transform.position, Vector3.up);
+        }
         if (Vector3.Distance(_navMeshAgent.gameObject.transform.position, _navMeshAgent.destination) < 0.41f)
         {
             _animator.SetBool("Walk", false);
@@ -226,6 +230,7 @@ public class Knight : Unit
     }
     private void OnDestroy()
     {
+        Managment.Instance.UnselectIfSelect(this);
         if (_targetEnemy != null)
         {
             _targetEnemy.UnSubscribeToAttack(this);

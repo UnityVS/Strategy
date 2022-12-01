@@ -40,7 +40,7 @@ public class Managment : MonoBehaviour
         _camera = FindObjectOfType<Camera>();
         _frameSelect.enabled = false;
     }
-    private void Update()
+    private void LateUpdate()
     {
         CheckSelect();
         FrameSelect();
