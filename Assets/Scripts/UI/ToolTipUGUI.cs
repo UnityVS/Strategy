@@ -18,7 +18,7 @@ public class ToolTipUGUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
         _toolTip.DOFade(0f, 0);
         _toolTip.gameObject.SetActive(false);
     }
-    public async void OnPointerEnter(PointerEventData eventData)
+    public void OnPointerEnter(PointerEventData eventData)
     {
         StartCoroutine(WaitingShowText());
         //if (_myTweenUnFade != null) return;
