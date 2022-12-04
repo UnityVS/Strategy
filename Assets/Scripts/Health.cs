@@ -6,11 +6,18 @@ public class Health : MonoBehaviour
 {
     int _currentHealthValue;
     [SerializeField] int _maxHealth = 10;
+    [SerializeField] int _randomMinHP;
+    [SerializeField] int _randomMaxHP;
+    [SerializeField] bool _building;
     [SerializeField] Image _healthBar;
     [SerializeField] TextMeshProUGUI _textHealth;
     [SerializeField] TextMeshProUGUI _textHealthShadow;
     private void Start()
     {
+        if (!_building)
+        {
+            _maxHealth = Random.Range(_randomMinHP, _randomMaxHP);
+        }
         _currentHealthValue = _maxHealth;
         UpdateUI();
     }

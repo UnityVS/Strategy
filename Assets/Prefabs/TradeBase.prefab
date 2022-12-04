@@ -3134,7 +3134,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 898f58d8fd94fff40975f216be46a0db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxHealth: 10
+  _maxHealth: 15
+  _randomMinHP: 0
+  _randomMaxHP: 0
+  _building: 1
   _healthBar: {fileID: 8903758140878429912}
   _textHealth: {fileID: 1152729234216969635}
   _textHealthShadow: {fileID: 206624226308029395}

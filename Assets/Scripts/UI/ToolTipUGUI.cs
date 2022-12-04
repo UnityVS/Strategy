@@ -25,13 +25,23 @@ public class ToolTipUGUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
         //_toolTip.gameObject.SetActive(true);
         //await ShowText();
     }
-    public async void OnPointerExit(PointerEventData eventData)
+    //public async void OnPointerExit(PointerEventData eventData)
+    //{
+    //    await HideText(_fadeOutTime);
+    //}
+    public void OnPointerExit(PointerEventData eventData)
     {
-        await HideText(_fadeOutTime);
+        HideText(_fadeOutTime);
     }
-    async Task HideText(float fadeOutTime)
+    //async Task HideText(float fadeOutTime)
+    //{
+    //    if (_myTweenUnFade != null) { await _myTweenUnFade.AsyncWaitForCompletion(); }
+    //    _myTweenUnFade = _toolTip.DOFade(0f, fadeOutTime);
+    //    Invoke(nameof(NullingFade), fadeOutTime);
+    //}
+    void HideText(float fadeOutTime)
     {
-        if (_myTweenUnFade != null) { await _myTweenUnFade.AsyncWaitForCompletion(); }
+        //if (_myTweenUnFade != null) { await _myTweenUnFade.AsyncWaitForCompletion(); }
         _myTweenUnFade = _toolTip.DOFade(0f, fadeOutTime);
         Invoke(nameof(NullingFade), fadeOutTime);
     }

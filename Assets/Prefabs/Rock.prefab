@@ -357,6 +357,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _collectableCapacity: 3
+  _randomMinCapacity: 3
+  _randomMaxCapacity: 10
+  _maxGenerationCapacity: 0
   _textCapacity: {fileID: 8920704920521749699}
   _textCapacityShadow: {fileID: 1757378035964287173}
   _currentFarm: 1

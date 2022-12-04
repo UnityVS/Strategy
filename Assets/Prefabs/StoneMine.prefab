@@ -2719,6 +2719,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _maxHealth: 15
+  _randomMinHP: 0
+  _randomMaxHP: 0
+  _building: 1
   _healthBar: {fileID: 5580925589474155645}
   _textHealth: {fileID: 924333198431608590}
   _textHealthShadow: {fileID: 2336492724667497041}

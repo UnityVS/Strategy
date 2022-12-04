@@ -6,6 +6,9 @@ using UnityEngine;
 public class CollectableObject : MonoBehaviour
 {
     [SerializeField] int _collectableCapacity = 100;
+    [SerializeField] int _randomMinCapacity;
+    [SerializeField] int _randomMaxCapacity;
+    [SerializeField] int _maxGenerationCapacity;
     int _currentCapacity;
     [SerializeField] TextMeshProUGUI _textCapacity;
     [SerializeField] TextMeshProUGUI _textCapacityShadow;
@@ -20,6 +23,7 @@ public class CollectableObject : MonoBehaviour
     Coroutine _coroutine = null;
     private void Start()
     {
+        _collectableCapacity = Random.Range(_randomMinCapacity, _randomMaxCapacity);
         _currentCapacity = _collectableCapacity;
         UpdateUI();
     }
