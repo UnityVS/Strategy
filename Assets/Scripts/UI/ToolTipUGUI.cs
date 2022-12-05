@@ -1,6 +1,5 @@
 using DG.Tweening;
 using System.Collections;
-using System.Threading.Tasks;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -8,66 +7,63 @@ using UnityEngine.EventSystems;
 public class ToolTipUGUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     [SerializeField] TextMeshProUGUI _toolTip;
-    [SerializeField] float _fadeOutTime = 0.8f;
-    [SerializeField] float _fadeInTime = 1.5f;
     [SerializeField] float _opacityText = 0.5f;
-    Tween _myTweenUnFade = null;
-    Coroutine _coroutine;
+    [SerializeField] bool _gameObject = true;
+    [SerializeField] bool _longHover = true;
+    [SerializeField] GameObject _objectToActivate;
+    IEnumerator _coroutine;
+    float _timer = 0.7f;
+    float _maxTime = 0.7f;
     private void Awake()
     {
+        if (_gameObject)
+        {
+            _objectToActivate.SetActive(false);
+            return;
+        }
         _toolTip.DOFade(0f, 0);
-        _toolTip.gameObject.SetActive(false);
     }
     public void OnPointerEnter(PointerEventData eventData)
     {
-        StartCoroutine(WaitingShowText());
-        //if (_myTweenUnFade != null) return;
-        //_toolTip.gameObject.SetActive(true);
-        //await ShowText();
+        if (_gameObject)
+        {
+            if (_longHover)
+            {
+                _coroutine = ShowBlockAfterSomeTime();
+                StartCoroutine(_coroutine);
+                return;
+            }
+            _objectToActivate.SetActive(true);
+            return;
+        }
+        _toolTip.DOFade(_opacityText, 0);
     }
-    //public async void OnPointerExit(PointerEventData eventData)
-    //{
-    //    await HideText(_fadeOutTime);
-    //}
     public void OnPointerExit(PointerEventData eventData)
     {
-        HideText(_fadeOutTime);
+        if (_gameObject)
+        {
+            _coroutine = null;
+            _timer = _maxTime;
+            _objectToActivate.SetActive(false);
+            return;
+        }
+        _toolTip.DOFade(0f, 0);
     }
-    //async Task HideText(float fadeOutTime)
-    //{
-    //    if (_myTweenUnFade != null) { await _myTweenUnFade.AsyncWaitForCompletion(); }
-    //    _myTweenUnFade = _toolTip.DOFade(0f, fadeOutTime);
-    //    Invoke(nameof(NullingFade), fadeOutTime);
-    //}
-    void HideText(float fadeOutTime)
-    {
-        //if (_myTweenUnFade != null) { await _myTweenUnFade.AsyncWaitForCompletion(); }
-        _myTweenUnFade = _toolTip.DOFade(0f, fadeOutTime);
-        Invoke(nameof(NullingFade), fadeOutTime);
-    }
-    void ShowText()
-    {
-        //if (_myTweenUnFade != null) { await _myTweenUnFade.AsyncWaitForCompletion(); }
-        _myTweenUnFade = _toolTip.DOFade(_opacityText, _fadeInTime);
-    }
-    IEnumerator WaitingShowText()
+    IEnumerator ShowBlockAfterSomeTime()
     {
         while (true)
         {
-            if (_myTweenUnFade == null)
+            if (_objectToActivate.activeSelf)
             {
-                _toolTip.gameObject.SetActive(true);
-                ShowText();
-                StopAllCoroutines();
+                break;
+            }
+            _timer -= Time.deltaTime;
+            if (_timer < 0)
+            {
+                _objectToActivate.SetActive(true);
+                break;
             }
             yield return null;
-        }
-    }
-    void NullingFade()
-    {
-        if (_myTweenUnFade != null)
-        {
-            _myTweenUnFade = null;
         }
     }
 }
