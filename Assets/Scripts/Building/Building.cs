@@ -55,6 +55,9 @@ public class Building : SelectableObject
     {
         return new Vector2Int(_xSize, _zSize);
     }
+    public virtual void ReturnUnit()
+    {
+    }
     public void ShowCorrectColorPosition()
     {
         _renderer.material.color = _startColor;

@@ -62,4 +62,13 @@ public class Citizen : Unit
             yield return null;
         }
     }
+    public override void OnDestroy()
+    {
+        base.OnDestroy();
+        if (_livingBuilding != null)
+        {
+            Debug.Log("1");
+            _livingBuilding.ReturnUnit();
+        }
+    }
 }

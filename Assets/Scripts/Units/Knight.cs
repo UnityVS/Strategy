@@ -230,19 +230,20 @@ public class Knight : Unit
         }
         return null;
     }
-    private void OnDestroy()
-    {
-        Managment.Instance.UnselectIfSelect(this);
-        if (_targetEnemy != null)
-        {
-            _targetEnemy.UnSubscribeToAttack(this);
-        }
-    }
     public override void EnemyClear()
     {
         //base.EnemyClear;
         _targetEnemy = null;
         WhenClickOnGround(transform.position);
         _currentState = AttackingUnits.Idle;
+    }
+    public override void OnDestroy()
+    {
+        base.OnDestroy();
+        if (_livingBuilding != null)
+        {
+            Debug.Log("1");
+            _livingBuilding.ReturnUnit();
+        }
     }
 }

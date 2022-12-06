@@ -45,6 +45,15 @@ public class Managment : MonoBehaviour
     {
         CheckSelect();
         FrameSelect();
+        float decreasteSpeed;
+        if (Input.GetKey(KeyCode.LeftShift))
+        {
+            decreasteSpeed = 0.5f;
+        }
+        else
+        {
+            decreasteSpeed = 1f;
+        }
         if (Input.mouseScrollDelta.y != 0)
         {
             _camera.transform.Translate(0f, 0f, Input.mouseScrollDelta.y);
@@ -52,24 +61,25 @@ public class Managment : MonoBehaviour
         }
         if (Input.GetKey(KeyCode.W))
         {
-            _cameraMoveController.Translate(0f, 0f, _cameraMoveSpeed * Time.deltaTime);
-            CameraMovementByKeyboardInputs();
+            CameraDirectionMove(new Vector3(0f, 0f, _cameraMoveSpeed * Time.deltaTime), decreasteSpeed);
         }
         if (Input.GetKey(KeyCode.S))
         {
-            _cameraMoveController.Translate(0f, 0f, -_cameraMoveSpeed * Time.deltaTime);
-            CameraMovementByKeyboardInputs();
+            CameraDirectionMove(new Vector3(0f, 0f, -_cameraMoveSpeed * Time.deltaTime), decreasteSpeed);
         }
         if (Input.GetKey(KeyCode.D))
         {
-            _cameraMoveController.Translate(_cameraMoveSpeed * Time.deltaTime, 0f, 0f);
-            CameraMovementByKeyboardInputs();
+            CameraDirectionMove(new Vector3(_cameraMoveSpeed * Time.deltaTime, 0f, 0f), decreasteSpeed);
         }
         if (Input.GetKey(KeyCode.A))
         {
-            _cameraMoveController.Translate(-_cameraMoveSpeed * Time.deltaTime, 0f, 0f);
-            CameraMovementByKeyboardInputs();
+            CameraDirectionMove(new Vector3(-_cameraMoveSpeed * Time.deltaTime, 0f, 0f), decreasteSpeed);
         }
+    }
+    void CameraDirectionMove(Vector3 direction, float decreasteSpeed)
+    {
+        _cameraMoveController.Translate(direction * decreasteSpeed);
+        CameraMovementByKeyboardInputs();
     }
     void CameraMovementByKeyboardInputs()
     {

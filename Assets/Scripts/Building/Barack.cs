@@ -44,11 +44,20 @@ public class Barack : PlayerBuildings
     void UpdateUI(int valueAdd)
     {
         _availabelCapacity -= valueAdd;
+        RegualUpdateUI();
+    }
+    void RegualUpdateUI()
+    {
         _textCapacity.text = (_capacity - _availabelCapacity) + "/" + _capacity;
         _shadowCapacityText.text = (_capacity - _availabelCapacity) + "/" + _capacity;
         string newText = _nameOfUnits + " - " + (_capacity - _availabelCapacity) + "/" + _capacity;
         _textCapacityUI.text = newText;
         _shadowCapacityTextUI.text = newText;
+    }
+    public override void ReturnUnit()
+    {
+        _availabelCapacity += 1;
+        RegualUpdateUI();
     }
     public void TryBuyUnit(Unit unit)
     {
@@ -62,6 +71,7 @@ public class Barack : PlayerBuildings
                 _currentUnit = newUnit;
                 Resources.Instance.UpdateResource(balance - price);
                 UpdateUI(1);
+                newUnit.SetLivingBuilding(this);
             }
             else
             {

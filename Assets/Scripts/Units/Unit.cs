@@ -7,6 +7,7 @@ public class Unit : SelectableObject
     public Animator _animator;
     [SerializeField] int _price;
     bool _unitInWork = false;
+    protected Building _livingBuilding;
     public override void WhenClickOnGround(Vector3 point)
     {
         //if (_animator.GetBool("Walk") == true) return;
@@ -22,6 +23,10 @@ public class Unit : SelectableObject
         base.WhenClickOnGround(point);
         _navMeshAgent.SetDestination(point);
         _animator.SetBool("Walk", true);
+    }
+    public void SetLivingBuilding(Building building)
+    {
+        _livingBuilding = building;
     }
     public virtual void EnemyClear()
     {
@@ -68,7 +73,7 @@ public class Unit : SelectableObject
     {
         return _price;
     }
-    private void OnDestroy()
+    public virtual void OnDestroy()
     {
         Managment.Instance.UnselectIfSelect(this);
     }
