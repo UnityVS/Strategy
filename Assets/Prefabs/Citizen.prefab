@@ -705,7 +705,7 @@ MonoBehaviour:
   _selectCirle: {fileID: 4042191300321796834}
   _navMeshAgent: {fileID: 917068796652805481}
   _animator: {fileID: 8097103795047013914}
-  _price: 35
+  _price: 5
   _renderer: {fileID: 7841153274975615117}
   _hat: {fileID: 937211451}
   _baseColor: {r: 0, g: 0, b: 0, a: 0}

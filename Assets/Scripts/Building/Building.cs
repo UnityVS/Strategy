@@ -6,7 +6,9 @@ using UnityEngine.AI;
 
 public class Building : SelectableObject
 {
-    [SerializeField] int _price = 10;
+    [SerializeField] int _goldPrice = 10;
+    [SerializeField] int _woodPrice = 0;
+    [SerializeField] int _stonePrice = 0;
     [SerializeField] int _xSize = 3;
     [SerializeField] int _zSize = 3;
     Color _startColor;
@@ -28,6 +30,7 @@ public class Building : SelectableObject
         _colliderStatus = _renderer.GetComponent<Collider>();
         _menuObject.SetActive(false);
         _startColor = _renderer.material.color;
+
     }
     public override void OnSelect()
     {
@@ -42,12 +45,21 @@ public class Building : SelectableObject
     }
     private void OnDrawGizmos()
     {
-        if (BuildingPlacer.Instance == null) return;
-        for (int x = 0; x < _xSize; x++)
+        //if (BuildingPlacer.Instance == null) return;
+        //for (int x = 0; x < _xSize; x++)
+        //{
+        //    for (int z = 0; z < _zSize; z++)
+        //    {
+        //        Gizmos.DrawWireCube(transform.position + new Vector3(x, 0, z) * BuildingPlacer.Instance.CellSize, new Vector3(1f, 0, 1f) * BuildingPlacer.Instance.CellSize);
+        //    }
+        //}
+        float cellSize = 0.5f;
+        Vector2 offset = new Vector2((_xSize - 1f) * 0.5f, (_zSize - 1f) * 0.5f);
+        for (int i = 0; i < _xSize; i++)
         {
-            for (int z = 0; z < _zSize; z++)
+            for (int j = 0; j < _zSize; j++)
             {
-                Gizmos.DrawWireCube(transform.position + new Vector3(x, 0, z) * BuildingPlacer.Instance.CellSize, new Vector3(1f, 0, 1f) * BuildingPlacer.Instance.CellSize);
+                Gizmos.DrawWireCube(transform.position + new Vector3(i - offset.x, 0f, j - offset.y) * cellSize, new Vector3(1f, 0f, 1f) * cellSize);
             }
         }
     }
@@ -70,9 +82,21 @@ public class Building : SelectableObject
     {
         _menuObject.SetActive(status);
     }
-    public int CheckPrice()
+    public int CheckPrice(string resource)
     {
-        return _price;
+        if (resource == "wood")
+        {
+            return _woodPrice;
+        }
+        if (resource == "stone")
+        {
+            return _stonePrice;
+        }
+        if (resource == "gold")
+        {
+            return _goldPrice;
+        }
+        return _goldPrice;
     }
     public void RendererStatus(bool status)
     {

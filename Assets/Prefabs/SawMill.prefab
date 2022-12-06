@@ -3285,7 +3285,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8903758139449510425}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.34, y: 0, z: -2.9}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -3309,7 +3309,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _selectCirle: {fileID: 8990591705580481064}
-  _price: 15
+  _goldPrice: 10
+  _woodPrice: 0
+  _stonePrice: 0
   _xSize: 2
   _zSize: 1
   _renderer: {fileID: 7805043247675443005}

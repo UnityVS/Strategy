@@ -8,7 +8,7 @@ public class UISettingOnPlay : MonoBehaviour
 
     public void SetTextPrice(Building _building)
     {
-        _text.text = _building.CheckPrice().ToString() + "$";
-        _textShadow.text = _building.CheckPrice().ToString() + "$";
+        _text.text = _building.CheckPrice("gold").ToString() + "$";
+        _textShadow.text = _building.CheckPrice("gold").ToString() + "$";
     }
 }

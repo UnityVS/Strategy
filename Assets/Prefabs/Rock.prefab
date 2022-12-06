@@ -175,15 +175,15 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1570954029177359304}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.005, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.36339125, y: -0.49, z: 0.007304217}
+  m_LocalScale: {x: 0.68493146, y: 2, z: 1.3888887}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7899855746130512550}
   - {fileID: 2841783593567832998}
   - {fileID: 9050184325940039536}
-  m_Father: {fileID: 2374730372761947287}
+  m_Father: {fileID: 5369764659694049746}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1588793050670997537
@@ -317,7 +317,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 6371290970835046045}
   - {fileID: 5369764659694049746}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -335,9 +334,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _selectCirle: {fileID: 5084482684486762685}
-  _price: 100
-  _xSize: 2
-  _zSize: 1
+  _goldPrice: 10
+  _woodPrice: 0
+  _stonePrice: 0
+  _xSize: 4
+  _zSize: 2
   _renderer: {fileID: 6693953610423860496}
   _obstacle: {fileID: 0}
   _menuObject: {fileID: 1588793050670997537}
@@ -2209,12 +2210,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9098940688304867949}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.53055125, y: 0.25, z: -0.005259037}
+  m_LocalPosition: {x: 0, y: 0.25, z: -0.0005259037}
   m_LocalScale: {x: 1.46, y: 0.5, z: 0.72}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 6371290970835046045}
   m_Father: {fileID: 2374730372761947287}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &3306934317856846094
 MeshFilter:

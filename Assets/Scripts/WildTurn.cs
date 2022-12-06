@@ -28,7 +28,6 @@ public class WildTurn : MonoBehaviour
         if (_timer < 0)
         {
             Vector3 newPosition = _boxGenerationArea.TransformPoint(Random.Range(-0.5f, 0.5f), 0, Random.Range(-0.5f, 0.5f));
-            //Vector3 newPositionOfEnemyes = new Vector3(Random.Range(-10f, 10f), 0f, Random.Range(-10f, 10f));
             _currentEnemyCount = _listOfEnemyCount[_currentTurn];
             for (int i = 0; i < _currentEnemyCount; i++)
             {

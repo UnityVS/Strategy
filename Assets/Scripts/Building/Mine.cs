@@ -129,7 +129,7 @@ public class Mine : PlayerBuildings
         {
             if (balance >= (int)(_updatePrice[_capacity - _availabelCapacity]))
             {
-                Resources.Instance.UpdateResource(balance - (int)(_updatePrice[_capacity - _availabelCapacity]));
+                Resources.Instance.UpdateResource("gold", balance - (int)(_updatePrice[_capacity - _availabelCapacity]));
                 ChangeGenerationCount(_updateValue[_capacity - _availabelCapacity]);
                 UpdateUI(1);
             }

@@ -69,7 +69,7 @@ public class Barack : PlayerBuildings
             {
                 Unit newUnit = Instantiate(unit, _spawnPoint.position + new Vector3(Random.Range(-2f, 2f), 0, Random.Range(-0.5f, 0.5f)), Quaternion.identity);
                 _currentUnit = newUnit;
-                Resources.Instance.UpdateResource(balance - price);
+                Resources.Instance.UpdateResource("gold", balance - price);
                 UpdateUI(1);
                 newUnit.SetLivingBuilding(this);
             }

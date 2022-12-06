@@ -46,7 +46,10 @@ public class Enemy : MonoBehaviour
     {
         for (int i = 0; i < _subscribersAttackers.Count; i++)
         {
-            _subscribersAttackers[i].EnemyClear();
+            if (_subscribersAttackers[i] != null)
+            {
+                _subscribersAttackers[i].EnemyClear();
+            }
         }
         _subscribersAttackers.Clear();
     }

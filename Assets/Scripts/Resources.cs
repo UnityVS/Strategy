@@ -58,9 +58,20 @@ public class Resources : MonoBehaviour
             UpdateUI();
         }
     }
-    public void UpdateResource(int resource)
+    public void UpdateResource(string typeOfResource, int resource)
     {
-        _money = resource;
+        if (typeOfResource == "wood")
+        {
+            _wood = resource;
+        }
+        if (typeOfResource == "gold")
+        {
+            _money = resource;
+        }
+        if (typeOfResource == "wood")
+        {
+            _stone = resource;
+        }
         UpdateUI();
     }
 }

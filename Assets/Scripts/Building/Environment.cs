@@ -11,8 +11,11 @@ public class Environment : Building
         //base.Start();
         _selectCirle.SetActive(false);
         Vector3 point = transform.position / BuildingPlacer.Instance.CellSize;
-        int x = Mathf.RoundToInt(point.x);
-        int z = Mathf.RoundToInt(point.z);
+        //Привет Илья, тут есть магия. Не понятно, зачем мы тут сделали -2, но это работает. Загадка от Жака Фреско:)
+        int x = Mathf.RoundToInt(point.x) - (CheckSize().x / 2 - 2);
+        int z = Mathf.RoundToInt(point.z) - (CheckSize().y / 2 - 2);
+        //int x = Mathf.RoundToInt(point.x);
+        //int z = Mathf.RoundToInt(point.z);
         _point = new Vector2Int(x, z);
         BuildingPlacer.Instance.InstallBuilding(x, z, this);
         if (_static)

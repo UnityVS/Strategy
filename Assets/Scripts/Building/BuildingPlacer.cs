@@ -1,6 +1,4 @@
-using System.Collections;
 using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -54,8 +52,9 @@ public class BuildingPlacer : MonoBehaviour
         float distance;
         _plane.Raycast(ray, out distance);
         Vector3 point = ray.GetPoint(distance) / CellSize;
-        int x = Mathf.RoundToInt(point.x);
-        int z = Mathf.RoundToInt(point.z);
+        point += new Vector3(_currentBuilding.CheckSize().x / 2f, 0, _currentBuilding.CheckSize().y / 2f);
+        int x = Mathf.RoundToInt(point.x) - (_currentBuilding.CheckSize().x / 2);
+        int z = Mathf.RoundToInt(point.z) - (_currentBuilding.CheckSize().y / 2);
         _currentBuilding.transform.position = new Vector3(x, 0, z) * CellSize;
         if (CheckAllow(x, z, _currentBuilding))
         {
@@ -127,9 +126,13 @@ public class BuildingPlacer : MonoBehaviour
         Managment.Instance.UnselectAll();
         if (_currentBuilding)
             Destroy(_currentBuilding.gameObject);
-        int balance = Resources.Instance.CheckBalance();
-        int price = buildingPrefab.CheckPrice();
-        if (balance >= price)
+        int goldBalance = Resources.Instance.CheckBalance();
+        int stoneBalance = Resources.Instance.CheckBalance();
+        int woodBalance = Resources.Instance.CheckBalance();
+        int woodPrice = buildingPrefab.CheckPrice("wood");
+        int goldPrice = buildingPrefab.CheckPrice("gold");
+        int stonePrice = buildingPrefab.CheckPrice("stone");
+        if (goldBalance >= goldPrice && stoneBalance >= stonePrice && woodBalance >= woodPrice)
         {
             Building newBuilding = Instantiate(buildingPrefab);
             _currentBuilding = newBuilding;
@@ -142,9 +145,15 @@ public class BuildingPlacer : MonoBehaviour
     }
     public void Buy(Building buildingPrefab)
     {
-        int balance = Resources.Instance.CheckBalance();
-        int price = buildingPrefab.CheckPrice();
-        Resources.Instance.UpdateResource(balance - price);
+        int goldBalance = Resources.Instance.CheckBalance();
+        int stoneBalance = Resources.Instance.CheckBalance();
+        int woodBalance = Resources.Instance.CheckBalance();
+        int woodPrice = buildingPrefab.CheckPrice("wood");
+        int goldPrice = buildingPrefab.CheckPrice("gold");
+        int stonePrice = buildingPrefab.CheckPrice("stone");
+        Resources.Instance.UpdateResource("gold", goldBalance - goldPrice);
+        Resources.Instance.UpdateResource("stone", stoneBalance - stonePrice);
+        Resources.Instance.UpdateResource("wood", woodBalance - woodPrice);
     }
     public void DeleteBuilding(int xPosition, int zPosition, Building building)
     {
