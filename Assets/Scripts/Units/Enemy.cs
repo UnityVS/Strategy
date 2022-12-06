@@ -34,6 +34,10 @@ public class Enemy : MonoBehaviour
     {
         _subscribersAttackers.Add(unit);
     }
+    public void ChangeDistanceToFollow()
+    {
+        _distanceToFollow = 1000;
+    }
     public void UnSubscribeToAttack(Unit unit)
     {
         _subscribersAttackers.Remove(unit);

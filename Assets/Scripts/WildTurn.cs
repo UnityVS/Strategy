@@ -13,6 +13,7 @@ public class WildTurn : MonoBehaviour
     [SerializeField] Enemy _enemyPrefab;
     [SerializeField] int _currentEnemyCount;
     [SerializeField] List<int> _listOfEnemyCount;
+    [SerializeField] Transform _boxGenerationArea;
     private void Awake()
     {
         _maxTimer = _timers[_currentTurn];
@@ -26,11 +27,13 @@ public class WildTurn : MonoBehaviour
         UpdateTurnTime();
         if (_timer < 0)
         {
-            Vector3 newPositionOfEnemyes = new Vector3(Random.Range(-10f, 10f), 0f, Random.Range(-10f, 10f));
+            Vector3 newPosition = _boxGenerationArea.TransformPoint(Random.Range(-0.5f, 0.5f), 0, Random.Range(-0.5f, 0.5f));
+            //Vector3 newPositionOfEnemyes = new Vector3(Random.Range(-10f, 10f), 0f, Random.Range(-10f, 10f));
             _currentEnemyCount = _listOfEnemyCount[_currentTurn];
             for (int i = 0; i < _currentEnemyCount; i++)
             {
-                Instantiate(_enemyPrefab, newPositionOfEnemyes + Vector3.back * Random.Range(-2f, 2f), Quaternion.identity);
+                Enemy newEnemy = Instantiate(_enemyPrefab, newPosition + Vector3.back * Random.Range(-2f, 2f), Quaternion.identity);
+                newEnemy.ChangeDistanceToFollow();
             }
             AddTurn();
             UpdateTurnCount();
