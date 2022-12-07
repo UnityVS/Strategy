@@ -36,8 +36,24 @@ public class Resources : MonoBehaviour
         _textStone.text = _stone.ToString();
         _textShadowStone.text = _stone.ToString();
     }
-    public int CheckBalance()
+    //public int CheckBalance()
+    //{
+    //    return _money;
+    //}
+    public int CheckBalance(string typeOfResource)
     {
+        if (typeOfResource == "wood")
+        {
+            return _wood;
+        }
+        if (typeOfResource == "gold")
+        {
+            return _money;
+        }
+        if (typeOfResource == "stone")
+        {
+            return _stone;
+        }
         return _money;
     }
     public void AddResources(FarmResource _farmResource, int resources)
@@ -68,7 +84,7 @@ public class Resources : MonoBehaviour
         {
             _money = resource;
         }
-        if (typeOfResource == "wood")
+        if (typeOfResource == "stone")
         {
             _stone = resource;
         }

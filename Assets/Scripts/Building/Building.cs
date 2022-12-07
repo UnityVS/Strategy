@@ -96,7 +96,7 @@ public class Building : SelectableObject
         {
             return _goldPrice;
         }
-        return _goldPrice;
+        return 0;
     }
     public void RendererStatus(bool status)
     {

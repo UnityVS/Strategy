@@ -740,8 +740,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _selectCirle: {fileID: 8706700442661542756}
-  _goldPrice: 20
-  _woodPrice: 0
+  _goldPrice: 30
+  _woodPrice: 30
   _stonePrice: 0
   _xSize: 2
   _zSize: 2

@@ -126,9 +126,9 @@ public class BuildingPlacer : MonoBehaviour
         Managment.Instance.UnselectAll();
         if (_currentBuilding)
             Destroy(_currentBuilding.gameObject);
-        int goldBalance = Resources.Instance.CheckBalance();
-        int stoneBalance = Resources.Instance.CheckBalance();
-        int woodBalance = Resources.Instance.CheckBalance();
+        int goldBalance = Resources.Instance.CheckBalance("gold");
+        int stoneBalance = Resources.Instance.CheckBalance("stone");
+        int woodBalance = Resources.Instance.CheckBalance("wood");
         int woodPrice = buildingPrefab.CheckPrice("wood");
         int goldPrice = buildingPrefab.CheckPrice("gold");
         int stonePrice = buildingPrefab.CheckPrice("stone");
@@ -145,9 +145,9 @@ public class BuildingPlacer : MonoBehaviour
     }
     public void Buy(Building buildingPrefab)
     {
-        int goldBalance = Resources.Instance.CheckBalance();
-        int stoneBalance = Resources.Instance.CheckBalance();
-        int woodBalance = Resources.Instance.CheckBalance();
+        int goldBalance = Resources.Instance.CheckBalance("gold");
+        int stoneBalance = Resources.Instance.CheckBalance("stone");
+        int woodBalance = Resources.Instance.CheckBalance("wood");
         int woodPrice = buildingPrefab.CheckPrice("wood");
         int goldPrice = buildingPrefab.CheckPrice("gold");
         int stonePrice = buildingPrefab.CheckPrice("stone");

@@ -61,7 +61,7 @@ public class Barack : PlayerBuildings
     }
     public void TryBuyUnit(Unit unit)
     {
-        int balance = Resources.Instance.CheckBalance();
+        int balance = Resources.Instance.CheckBalance("gold");
         int price = unit.CheckPrice();
         if (_availabelCapacity > 0)
         {

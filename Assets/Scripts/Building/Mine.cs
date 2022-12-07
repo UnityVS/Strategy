@@ -124,7 +124,7 @@ public class Mine : PlayerBuildings
     }
     public void TryBuyUpdate()
     {
-        int balance = Resources.Instance.CheckBalance();
+        int balance = Resources.Instance.CheckBalance("gold");
         if (_availabelCapacity > 0)
         {
             if (balance >= (int)(_updatePrice[_capacity - _availabelCapacity]))
