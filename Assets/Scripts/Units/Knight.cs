@@ -21,6 +21,7 @@ public class Knight : Unit
     [SerializeField] float _distanceToFollow;
     [SerializeField] float _distanceToAttack;
     Vector3 _pointToChillWalk;
+    int _attackPower;
     Enemy _targetEnemy;
     float _timer;
     [SerializeField] float _maxTimer = 1.5f;
@@ -51,6 +52,10 @@ public class Knight : Unit
             _isHightLight = true;
             _coroutine = StartCoroutine(HightLightColor(true));
         }
+    }
+    public void ChangeAttackPower(int volume)
+    {
+        _attackPower += volume;
     }
     IEnumerator HightLightColor(bool stutus)
     {
@@ -125,7 +130,7 @@ public class Knight : Unit
                 if (_targetEnemy != null)
                 {
                     _animator.SetTrigger("Attack");
-                    _targetEnemy.GetComponent<Health>().ChangeHealthSubtract(1);
+                    _targetEnemy.GetComponent<Health>().ChangeHealthSubtract(_attackPower);
                     SetEnemyState(AttackingUnits.Attack);
                     _timer = _maxTimer;
                     return;
@@ -186,7 +191,6 @@ public class Knight : Unit
                         _targetEnemy = null;
                         return;
                     }
-
                 }
             }
             if (_targetEnemy == null)

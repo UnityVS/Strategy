@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
@@ -24,6 +25,10 @@ public class Barack : PlayerBuildings
     [SerializeField] Unit _unitToCreate;
     Unit _currentUnit;
     [SerializeField] Transform _spawnPoint;
+    [SerializeField] TextMeshProUGUI _upgradeStonePrice;
+    [SerializeField] TextMeshProUGUI _upgradeCount;
+    [SerializeField] List<int> _updatePrice;
+    [SerializeField] int _currentUpdate = 0;
     override public void Start()
     {
         UpdateUI(0);
@@ -31,6 +36,7 @@ public class Barack : PlayerBuildings
         _textNameOfBarackShadow.text = _nameOfBarack;
         _priceUIOriginal.text = _unitToCreate.CheckPrice().ToString() + "$";
         _priceUIShadow.text = _unitToCreate.CheckPrice().ToString() + "$";
+        UpdateUpgradeUI();
         base.Start();
     }
     public void BuildingSetInScene()
@@ -54,10 +60,41 @@ public class Barack : PlayerBuildings
         _textCapacityUI.text = newText;
         _shadowCapacityTextUI.text = newText;
     }
+    void UpdateUpgradeUI()
+    {
+        _upgradeCount.text = "Update attack " + _currentUpdate + "/" + _updatePrice.Count;
+        _upgradeStonePrice.text = _updatePrice[_currentUpdate].ToString();
+    }
     public override void ReturnUnit()
     {
         _availabelCapacity += 1;
         RegualUpdateUI();
+    }
+    public void TryUpgradeAllKnightUnits()
+    {
+        int stoneBalance = Resources.Instance.CheckBalance("stone");
+        if (_currentUpdate < _updatePrice.Count + 1)
+        {
+            if (stoneBalance >= _updatePrice[_currentUpdate])
+            {
+                Resources.Instance.UpdateResource("stone", stoneBalance - _updatePrice[_currentUpdate]);
+                _currentUpdate += 1;
+                Knight[] allKnights = FindObjectsOfType<Knight>();
+                for (int i = 0; i < allKnights.Length; i++)
+                {
+                    allKnights[i].ChangeAttackPower(1);
+                }
+                UpdateUpgradeUI();
+            }
+            else
+            {
+                GameManager.Instance._showHint.DisplayHint("You can't buy this upgrade. Need more stone");
+            }
+        }
+        else
+        {
+            GameManager.Instance._showHint.DisplayHint("You can't buy this unit. No more slots");
+        }
     }
     public void TryBuyUnit(Unit unit)
     {
