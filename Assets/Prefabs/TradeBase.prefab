@@ -695,7 +695,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1805868108621360054}
   m_LocalRotation: {x: -0, y: -1, z: -0, w: 0}
-  m_LocalPosition: {x: 0.22857143, y: -1.7023809, z: 0}
+  m_LocalPosition: {x: 0.23809524, y: -1.7023809, z: 0}
   m_LocalScale: {x: 2.3809524, y: 2.3809524, z: 2.3809524}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -704,7 +704,7 @@ Transform:
   - {fileID: 2943353509832047813}
   - {fileID: 5166310445143773459}
   m_Father: {fileID: 8942523402579508306}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1920096460207717130
 GameObject:
@@ -3078,8 +3078,8 @@ MonoBehaviour:
   _goldPrice: 10
   _woodPrice: 0
   _stonePrice: 0
-  _xSize: 4
-  _zSize: 2
+  _xSize: 2
+  _zSize: 1
   _renderer: {fileID: 7805043247675443005}
   _obstacle: {fileID: 1409584168295949286}
   _menuObject: {fileID: 6309571183740606162}
@@ -4133,7 +4133,7 @@ PrefabInstance:
     - target: {fileID: 1391106159496581739, guid: 6e0199cea18673f4daf20549b696e50e,
         type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1391106159496581739, guid: 6e0199cea18673f4daf20549b696e50e,
         type: 3}
@@ -4237,7 +4237,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 019a0f3b24249d84995de0f9e3b38924,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.43
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 019a0f3b24249d84995de0f9e3b38924,
         type: 3}

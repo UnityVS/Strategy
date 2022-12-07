@@ -53,8 +53,8 @@ public class BuildingPlacer : MonoBehaviour
         _plane.Raycast(ray, out distance);
         Vector3 point = ray.GetPoint(distance) / CellSize;
         point += new Vector3(_currentBuilding.CheckSize().x / 2f, 0, _currentBuilding.CheckSize().y / 2f);
-        int x = Mathf.RoundToInt(point.x) - (_currentBuilding.CheckSize().x / 2);
-        int z = Mathf.RoundToInt(point.z) - (_currentBuilding.CheckSize().y / 2);
+        int x = Mathf.RoundToInt(point.x) - 1;
+        int z = Mathf.RoundToInt(point.z) - 1;
         _currentBuilding.transform.position = new Vector3(x, 0, z) * CellSize;
         if (CheckAllow(x, z, _currentBuilding))
         {

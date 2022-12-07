@@ -1325,8 +1325,8 @@ MonoBehaviour:
   _goldPrice: 50
   _woodPrice: 0
   _stonePrice: 10
-  _xSize: 4
-  _zSize: 4
+  _xSize: 2
+  _zSize: 2
   _renderer: {fileID: 2623471241263863513}
   _obstacle: {fileID: 5466814561880406466}
   _menuObject: {fileID: 1583367137942109367}
@@ -2905,7 +2905,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 563c26c827eb3584caf81c26d9bdada8,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 563c26c827eb3584caf81c26d9bdada8,
         type: 3}
@@ -2915,7 +2915,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 563c26c827eb3584caf81c26d9bdada8,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 0.6
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 563c26c827eb3584caf81c26d9bdada8,
         type: 3}

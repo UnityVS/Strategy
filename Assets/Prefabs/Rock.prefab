@@ -176,7 +176,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1570954029177359304}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.36339125, y: -0.49, z: 0.007304217}
+  m_LocalPosition: {x: -0.36339125, y: -0.49, z: 0.007304216}
   m_LocalScale: {x: 0.68493146, y: 2, z: 1.3888887}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -337,8 +337,8 @@ MonoBehaviour:
   _goldPrice: 10
   _woodPrice: 0
   _stonePrice: 0
-  _xSize: 4
-  _zSize: 2
+  _xSize: 2
+  _zSize: 1
   _renderer: {fileID: 6693953610423860496}
   _obstacle: {fileID: 0}
   _menuObject: {fileID: 1588793050670997537}
@@ -2210,7 +2210,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9098940688304867949}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.25, z: -0.0005259037}
+  m_LocalPosition: {x: 0.47, y: 0.25, z: -0.0005259037}
   m_LocalScale: {x: 1.46, y: 0.5, z: 0.72}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2546,7 +2546,7 @@ PrefabInstance:
     - target: {fileID: 9037501303054972833, guid: 8a50e5fbe77be5a41a902884a99e780d,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 0.066
       objectReference: {fileID: 0}
     - target: {fileID: 9037501303054972833, guid: 8a50e5fbe77be5a41a902884a99e780d,
         type: 3}
