@@ -1,18 +1,26 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class UnitsManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    int _currentAttackPowerKnight = 1;
+    public static UnitsManager Instance;
+    private void Awake()
     {
-        
+        if (!Instance)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
-
-    // Update is called once per frame
-    void Update()
+    public void SetAttackPowerKnight(int value)
     {
-        
+        _currentAttackPowerKnight = value;
+    }
+    public int GetAttackPowerKnight()
+    {
+        return _currentAttackPowerKnight;
     }
 }

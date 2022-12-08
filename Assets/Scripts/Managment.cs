@@ -188,7 +188,7 @@ public class Managment : MonoBehaviour
                 }
                 else
                 {
-                    if (_listOfSelected.Count > 0 && _listOfSelected[0].GetComponent<CollectableObject>() && !_hovered.GetComponent<Unit>())
+                    if (_listOfSelected.Count > 0 && _listOfSelected[0].GetComponent<CollectableObject>() && !_hovered.GetComponent<Unit>() && _hovered != null)
                     {
                         UnselectAll();
                     }
@@ -203,6 +203,9 @@ public class Managment : MonoBehaviour
                     else if (!Input.GetKey(KeyCode.LeftControl) && _listOfSelected.Count > 0 && _listOfSelected[0].GetComponent<Unit>() && _hovered.GetComponent<Unit>())
                     {
                         UnselectAll();
+                    }else if (_listOfSelected.Count > 1 && _listOfSelected[1].GetComponent<Building>() && !_hovered.GetComponent<Building>())
+                    {
+                        UnselectAll();
                     }
                 }
                 _currentSelectionState = SelectionState.UnitsSelected;
@@ -215,9 +218,13 @@ public class Managment : MonoBehaviour
             {
                 if (hit.collider.tag == "Ground" && !EventSystem.current.IsPointerOverGameObject())
                 {
+                    int rowNumber = Mathf.CeilToInt(Mathf.Sqrt(_listOfSelected.Count));
                     for (int i = 0; i < _listOfSelected.Count; i++)
                     {
-                        _listOfSelected[i].WhenClickOnGround(hit.point);
+                        int row = i / rowNumber;
+                        int column = i % rowNumber;
+                        Vector3 point = hit.point + new Vector3(row, 0f, column);
+                        _listOfSelected[i].WhenClickOnGround(point);
                     }
                 }
             }
@@ -229,11 +236,11 @@ public class Managment : MonoBehaviour
     }
     void Select(SelectableObject selectableObject)
     {
-        if (_listOfSelected.Count > 1)
-        {
-            _listOfSelected[1].OnUnselect();
-            _listOfSelected.RemoveAt(1);
-        }
+        //if (_listOfSelected.Count > 1)
+        //{
+        //    _listOfSelected[1].OnUnselect();
+        //    _listOfSelected.RemoveAt(1);
+        //}
         if (!_listOfSelected.Contains(selectableObject))
         {
             _listOfSelected.Add(selectableObject);

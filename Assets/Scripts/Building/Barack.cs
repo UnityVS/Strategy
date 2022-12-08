@@ -65,7 +65,13 @@ public class Barack : PlayerBuildings
     }
     void UpdateUpgradeUI()
     {
+        //if (_currentUpdate - 1 == _updatePrice.Count) return;
         _upgradeCount.text = "Update attack " + _currentUpdate + "/" + _updatePrice.Count;
+        if (_currentUpdate == _updatePrice.Count)
+        {
+            _upgradeStonePrice.text = _updatePrice[_currentUpdate - 1].ToString();
+            return;
+        }
         _upgradeStonePrice.text = _updatePrice[_currentUpdate].ToString();
     }
     public override void ReturnUnit()
@@ -76,7 +82,7 @@ public class Barack : PlayerBuildings
     public void TryUpgradeAllKnightUnits()
     {
         int stoneBalance = Resources.Instance.CheckBalance("stone");
-        if (_currentUpdate < _updatePrice.Count + 1)
+        if (_currentUpdate - 1 < _updatePrice.Count)
         {
             if (stoneBalance >= _updatePrice[_currentUpdate])
             {
@@ -88,6 +94,7 @@ public class Barack : PlayerBuildings
                     allKnights[i].ChangeAttackPower(1);
                 }
                 UpdateUpgradeUI();
+                UnitsManager.Instance.SetAttackPowerKnight(UnitsManager.Instance.GetAttackPowerKnight() + 1);
             }
             else
             {

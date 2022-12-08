@@ -21,7 +21,7 @@ public class Knight : Unit
     [SerializeField] float _distanceToFollow;
     [SerializeField] float _distanceToAttack;
     Vector3 _pointToChillWalk;
-    int _attackPower;
+    int _attackPower = 1;
     Enemy _targetEnemy;
     float _timer;
     [SerializeField] float _maxTimer = 1.5f;
@@ -31,6 +31,10 @@ public class Knight : Unit
     //int _ciclesForBackwardMove = 3;
     //[SerializeField] NavMeshAgent _navMeshAgent;
     //bool _chillWalk = false;
+    private void Awake()
+    {
+        _attackPower = UnitsManager.Instance.GetAttackPowerKnight();
+    }
     public override void Start()
     {
         _selectCirle.SetActive(false);
@@ -56,6 +60,10 @@ public class Knight : Unit
     public void ChangeAttackPower(int volume)
     {
         _attackPower += volume;
+    }
+    public void SetAttackPower(int volume)
+    {
+        _attackPower = volume;
     }
     IEnumerator HightLightColor(bool stutus)
     {
