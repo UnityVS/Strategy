@@ -36,7 +36,10 @@ public class Barack : PlayerBuildings
         _textNameOfBarackShadow.text = _nameOfBarack;
         _priceUIOriginal.text = _unitToCreate.CheckPrice().ToString() + "$";
         _priceUIShadow.text = _unitToCreate.CheckPrice().ToString() + "$";
-        UpdateUpgradeUI();
+        if (_updatePrice.Capacity != 0)
+        {
+            UpdateUpgradeUI();
+        }
         base.Start();
     }
     public void BuildingSetInScene()
