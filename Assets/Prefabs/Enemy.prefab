@@ -162,8 +162,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2ebb05aa247c594aa6a733bea7732ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _effectAddValuePrefab: {fileID: 4421392886699959773, guid: be422584248ca6a43ac638af37bcec7d,
-    type: 3}
   _navMeshAgent: {fileID: 2687351519972178281}
   _distanceToFollow: 7
   _distanceToAttack: 1
@@ -211,6 +209,10 @@ MonoBehaviour:
   _healthBar: {fileID: 2687351519824403138}
   _textHealth: {fileID: 2687351520576496594}
   _textHealthShadow: {fileID: 2687351520907803980}
+  _effectAddValuePrefab: {fileID: 4421392886699959773, guid: be422584248ca6a43ac638af37bcec7d,
+    type: 3}
+  _randomValueRangeMin: 7
+  _randomValueRangeMax: 15
 --- !u!1 &2687351520006004187
 GameObject:
   m_ObjectHideFlags: 0

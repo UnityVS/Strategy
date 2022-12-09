@@ -12,6 +12,10 @@ public class Health : MonoBehaviour
     [SerializeField] Image _healthBar;
     [SerializeField] TextMeshProUGUI _textHealth;
     [SerializeField] TextMeshProUGUI _textHealthShadow;
+    [SerializeField] ValueAddEffect _effectAddValuePrefab;
+    [SerializeField] int _randomValueRangeMin;
+    [SerializeField] int _randomValueRangeMax;
+
     private void Start()
     {
         if (!_building)
@@ -33,8 +37,20 @@ public class Health : MonoBehaviour
         UpdateUI();
         if (_currentHealthValue < 1)
         {
+            if (gameObject.GetComponent<Enemy>())
+            {
+                Die();
+            }
             Destroy(gameObject);
         }
+    }
+    private void Die()
+    {
+        int addValue = Random.Range(_randomValueRangeMin, _randomValueRangeMax);
+        Resources.Instance.AddResources(FarmResource.Gold, addValue);
+        ValueAddEffect effect = Instantiate(_effectAddValuePrefab, transform.position, Quaternion.Euler(60, -11, 0));
+        effect.SetValueMining(addValue);
+        effect.AddResource(1.5f);
     }
     void UpdateUI()
     {

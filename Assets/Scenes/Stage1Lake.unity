@@ -12676,10 +12676,11 @@ MonoBehaviour:
   - 50
   - 30
   - 15
+  - 10
   _enemyPrefab: {fileID: 2687351519972178282, guid: d1a44fdaed823364aae677634a4549af,
     type: 3}
   _currentEnemyCount: 0
-  _listOfEnemyCount: 05000000080000000a0000000c000000
+  _listOfEnemyCount: 05000000080000000a0000000c00000014000000
   _boxGenerationArea: {fileID: 281136929}
 --- !u!1001 &1866825282
 PrefabInstance:

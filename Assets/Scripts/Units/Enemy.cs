@@ -11,7 +11,7 @@ public enum EnemyStates
 }
 public class Enemy : MonoBehaviour
 {
-    [SerializeField] ValueAddEffect _effectAddValuePrefab;
+
     EnemyStates _currentEnemyState;
     [SerializeField] NavMeshAgent _navMeshAgent;
     [SerializeField] float _distanceToFollow;
@@ -25,6 +25,7 @@ public class Enemy : MonoBehaviour
     int _timerCicleCounter;
     int _ciclesForBackwardMove = 3;
     List<Unit> _subscribersAttackers = new List<Unit>();
+
     void Start()
     {
         _startPosition = transform.position;
@@ -53,11 +54,6 @@ public class Enemy : MonoBehaviour
             }
         }
         _subscribersAttackers.Clear();
-        int addValue = Random.Range(1, 5);
-        Resources.Instance.AddResources(FarmResource.Gold, addValue);
-        ValueAddEffect effect = Instantiate(_effectAddValuePrefab, transform.position, Quaternion.Euler(60, -11, 0));
-        effect.SetValueMining(addValue);
-        effect.AddResource(1.5f);
     }
     void Update()
     {
