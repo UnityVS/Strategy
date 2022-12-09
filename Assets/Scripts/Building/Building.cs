@@ -30,7 +30,6 @@ public class Building : SelectableObject
         _colliderStatus = _renderer.GetComponent<Collider>();
         _menuObject.SetActive(false);
         _startColor = _renderer.material.color;
-
     }
     public override void OnSelect()
     {
@@ -53,15 +52,6 @@ public class Building : SelectableObject
                 Gizmos.DrawWireCube(transform.position + new Vector3(x, 0, z) * BuildingPlacer.Instance.CellSize, new Vector3(1f, 0, 1f) * BuildingPlacer.Instance.CellSize);
             }
         }
-        //float cellSize = 0.5f;
-        //Vector2 offset = new Vector2((_xSize - 1f) * 0.5f, (_zSize - 1f) * 0.5f);
-        //for (int i = 0; i < _xSize; i++)
-        //{
-        //    for (int j = 0; j < _zSize; j++)
-        //    {
-        //        Gizmos.DrawWireCube(transform.position + new Vector3(i - offset.x, 0f, j - offset.y) * cellSize, new Vector3(1f, 0f, 1f) * cellSize);
-        //    }
-        //}
     }
     public Vector2Int CheckSize()
     {

@@ -202,6 +202,10 @@ public class Managment : MonoBehaviour
                         {
                             UnselectAll();
                         }
+                        else if (Input.GetMouseButtonUp(0))
+                        {
+                            UnselectAll();
+                        }
                     }
                 }
                 else
@@ -261,7 +265,7 @@ public class Managment : MonoBehaviour
         }
         if (_currentSelectionState == SelectionState.UnitsSelected)
         {
-            if (Input.GetMouseButtonUp(0))
+            if (Input.GetMouseButtonUp(1))
             {
                 if (hit.collider.tag == "Ground" && !EventSystem.current.IsPointerOverGameObject())
                 {
@@ -275,10 +279,6 @@ public class Managment : MonoBehaviour
                     }
                 }
             }
-        }
-        if (Input.GetMouseButtonUp(1))
-        {
-            UnselectAll();
         }
     }
     void Select(SelectableObject selectableObject)

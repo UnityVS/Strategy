@@ -1,8 +1,8 @@
 using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
+//[DefaultExecutionOrder(1)]
 public class CollectableObject : MonoBehaviour
 {
     [SerializeField] int _collectableCapacity = 100;
