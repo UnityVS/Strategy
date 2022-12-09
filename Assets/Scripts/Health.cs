@@ -15,9 +15,10 @@ public class Health : MonoBehaviour
     [SerializeField] ValueAddEffect _effectAddValuePrefab;
     [SerializeField] int _randomValueRangeMin;
     [SerializeField] int _randomValueRangeMax;
-
+    WildTurn _wildTurn;
     private void Start()
     {
+        _wildTurn = FindObjectOfType<WildTurn>();
         if (!_building)
         {
             _maxHealth = Random.Range(_randomMinHP, _randomMaxHP);
@@ -51,6 +52,14 @@ public class Health : MonoBehaviour
         ValueAddEffect effect = Instantiate(_effectAddValuePrefab, transform.position, Quaternion.Euler(60, -11, 0));
         effect.SetValueMining(addValue);
         effect.AddResource(1.5f);
+        for (int i = 0; i < _wildTurn._enemysList.Count; i++)
+        {
+            if (_wildTurn._enemysList[i] == gameObject.GetComponent<Enemy>())
+            {
+                _wildTurn._enemysList.RemoveAt(i);
+                break;
+            }
+        }
     }
     void UpdateUI()
     {

@@ -17,6 +17,10 @@ public class ShowHint : MonoBehaviour
         _image.DOFade(0, 0);
         _image.gameObject.SetActive(false);
     }
+    public float CheckHintDuration()
+    {
+        return _hintDuration;
+    }
     public void DisplayHint(string updateText)
     {
         if (_tween != null) return;
