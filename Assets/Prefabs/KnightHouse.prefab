@@ -935,10 +935,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 1920, y: 1080}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
@@ -1948,8 +1948,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _selectCirle: {fileID: 8706700442661542756}
-  _goldPrice: 50
-  _woodPrice: 40
+  _goldPrice: 60
+  _woodPrice: 50
   _stonePrice: 0
   _xSize: 2
   _zSize: 2
@@ -1973,7 +1973,7 @@ MonoBehaviour:
   _spawnPoint: {fileID: 5026792047665843456}
   _upgradeStonePrice: {fileID: 676693567742659699}
   _upgradeCount: {fileID: 6399720461920351051}
-  _updatePrice: 0f000000190000001e000000
+  _updatePrice: 3200000078000000b4000000
   _currentUpdate: 0
 --- !u!114 &2612126414457539087
 MonoBehaviour:
@@ -1994,6 +1994,9 @@ MonoBehaviour:
   _healthBar: {fileID: 3668728594368693857}
   _textHealth: {fileID: 5813205763176140483}
   _textHealthShadow: {fileID: 3008413236334181549}
+  _effectAddValuePrefab: {fileID: 0}
+  _randomValueRangeMin: 0
+  _randomValueRangeMax: 0
 --- !u!1 &4002309114488475746
 GameObject:
   m_ObjectHideFlags: 0

@@ -203,8 +203,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _maxHealth: 5
-  _randomMinHP: 3
-  _randomMaxHP: 8
+  _randomMinHP: 4
+  _randomMaxHP: 13
   _building: 0
   _healthBar: {fileID: 2687351519824403138}
   _textHealth: {fileID: 2687351520576496594}
@@ -212,7 +212,7 @@ MonoBehaviour:
   _effectAddValuePrefab: {fileID: 4421392886699959773, guid: be422584248ca6a43ac638af37bcec7d,
     type: 3}
   _randomValueRangeMin: 7
-  _randomValueRangeMax: 15
+  _randomValueRangeMax: 35
 --- !u!1 &2687351520006004187
 GameObject:
   m_ObjectHideFlags: 0

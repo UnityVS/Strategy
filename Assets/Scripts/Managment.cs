@@ -198,6 +198,10 @@ public class Managment : MonoBehaviour
                             _listOfSelected[1].OnUnselect();
                             _listOfSelected.RemoveAt(1);
                         }
+                        else if (_listOfSelected[0].GetComponent<Unit>() && _listOfSelected[1].GetComponent<Unit>())
+                        {
+                            UnselectAll();
+                        }
                     }
                 }
                 else
@@ -241,6 +245,14 @@ public class Managment : MonoBehaviour
                     {
                         _listOfSelected[1].OnUnselect();
                         _listOfSelected.RemoveAt(1);
+                    }
+                    else if (_listOfSelected.Count > 1 && _listOfSelected[0].GetComponent<Unit>() && _listOfSelected[1].GetComponent<Unit>() && _hovered.GetComponent<Building>())
+                    {
+                        UnselectAll();
+                    }
+                    else if (_listOfSelected.Count > 1 && _listOfSelected[0].GetComponent<Unit>() && _listOfSelected[1].GetComponent<Unit>() && _hovered.GetComponent<CollectableObject>())
+                    {
+                        UnselectAll();
                     }
                 }
                 _currentSelectionState = SelectionState.UnitsSelected;

@@ -82,17 +82,17 @@ public class Building : SelectableObject
     {
         _menuObject.SetActive(status);
     }
-    public int CheckPrice(string resource)
+    public int CheckPrice(FarmResource farmResource)
     {
-        if (resource == "wood")
+        if (farmResource == FarmResource.Wood)
         {
             return _woodPrice;
         }
-        if (resource == "stone")
+        if (farmResource == FarmResource.Stone)
         {
             return _stonePrice;
         }
-        if (resource == "gold")
+        if (farmResource == FarmResource.Gold)
         {
             return _goldPrice;
         }

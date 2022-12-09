@@ -40,17 +40,17 @@ public class Resources : MonoBehaviour
     //{
     //    return _money;
     //}
-    public int CheckBalance(string typeOfResource)
+    public int CheckBalance(FarmResource farmResource)
     {
-        if (typeOfResource == "wood")
+        if (farmResource == FarmResource.Wood)
         {
             return _wood;
         }
-        if (typeOfResource == "gold")
+        if (farmResource == FarmResource.Gold)
         {
             return _money;
         }
-        if (typeOfResource == "stone")
+        if (farmResource == FarmResource.Stone)
         {
             return _stone;
         }
@@ -74,17 +74,17 @@ public class Resources : MonoBehaviour
             UpdateUI();
         }
     }
-    public void UpdateResource(string typeOfResource, int resource)
+    public void UpdateResource(FarmResource farmResource, int resource)
     {
-        if (typeOfResource == "wood")
+        if (farmResource == FarmResource.Wood)
         {
             _wood = resource;
         }
-        if (typeOfResource == "gold")
+        if (farmResource == FarmResource.Gold)
         {
             _money = resource;
         }
-        if (typeOfResource == "stone")
+        if (farmResource == FarmResource.Stone)
         {
             _stone = resource;
         }

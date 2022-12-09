@@ -210,7 +210,7 @@ MonoBehaviour:
   _selectCirle: {fileID: 4042191300321796834}
   _navMeshAgent: {fileID: 917068796652805481}
   _animator: {fileID: 8097103795047013914}
-  _price: 10
+  _price: 25
   _renderer: {fileID: 7841153274975615117}
   _hat: {fileID: 5758983808858762716}
   _baseColor: {r: 0, g: 0, b: 0, a: 0}
@@ -237,6 +237,9 @@ MonoBehaviour:
   _healthBar: {fileID: 3797367082560558467}
   _textHealth: {fileID: 8975885348434916922}
   _textHealthShadow: {fileID: 4590749860254211680}
+  _effectAddValuePrefab: {fileID: 0}
+  _randomValueRangeMin: 0
+  _randomValueRangeMax: 0
 --- !u!195 &917068796652805481
 NavMeshAgent:
   m_ObjectHideFlags: 0

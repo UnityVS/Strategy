@@ -126,12 +126,12 @@ public class BuildingPlacer : MonoBehaviour
         Managment.Instance.UnselectAll();
         if (_currentBuilding)
             Destroy(_currentBuilding.gameObject);
-        int goldBalance = Resources.Instance.CheckBalance("gold");
-        int stoneBalance = Resources.Instance.CheckBalance("stone");
-        int woodBalance = Resources.Instance.CheckBalance("wood");
-        int woodPrice = buildingPrefab.CheckPrice("wood");
-        int goldPrice = buildingPrefab.CheckPrice("gold");
-        int stonePrice = buildingPrefab.CheckPrice("stone");
+        int goldBalance = Resources.Instance.CheckBalance(FarmResource.Gold);
+        int stoneBalance = Resources.Instance.CheckBalance(FarmResource.Stone);
+        int woodBalance = Resources.Instance.CheckBalance(FarmResource.Wood);
+        int woodPrice = buildingPrefab.CheckPrice(FarmResource.Wood);
+        int goldPrice = buildingPrefab.CheckPrice(FarmResource.Gold);
+        int stonePrice = buildingPrefab.CheckPrice(FarmResource.Stone);
         if (goldBalance >= goldPrice && stoneBalance >= stonePrice && woodBalance >= woodPrice)
         {
             Building newBuilding = Instantiate(buildingPrefab);
@@ -145,15 +145,15 @@ public class BuildingPlacer : MonoBehaviour
     }
     public void Buy(Building buildingPrefab)
     {
-        int goldBalance = Resources.Instance.CheckBalance("gold");
-        int stoneBalance = Resources.Instance.CheckBalance("stone");
-        int woodBalance = Resources.Instance.CheckBalance("wood");
-        int woodPrice = buildingPrefab.CheckPrice("wood");
-        int goldPrice = buildingPrefab.CheckPrice("gold");
-        int stonePrice = buildingPrefab.CheckPrice("stone");
-        Resources.Instance.UpdateResource("gold", goldBalance - goldPrice);
-        Resources.Instance.UpdateResource("stone", stoneBalance - stonePrice);
-        Resources.Instance.UpdateResource("wood", woodBalance - woodPrice);
+        int goldBalance = Resources.Instance.CheckBalance(FarmResource.Gold);
+        int stoneBalance = Resources.Instance.CheckBalance(FarmResource.Stone);
+        int woodBalance = Resources.Instance.CheckBalance(FarmResource.Wood);
+        int woodPrice = buildingPrefab.CheckPrice(FarmResource.Wood);
+        int goldPrice = buildingPrefab.CheckPrice(FarmResource.Gold);
+        int stonePrice = buildingPrefab.CheckPrice(FarmResource.Stone);
+        Resources.Instance.UpdateResource(FarmResource.Gold, goldBalance - goldPrice);
+        Resources.Instance.UpdateResource(FarmResource.Stone, stoneBalance - stonePrice);
+        Resources.Instance.UpdateResource(FarmResource.Wood, woodBalance - woodPrice);
     }
     public void DeleteBuilding(int xPosition, int zPosition, Building building)
     {

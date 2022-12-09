@@ -81,24 +81,31 @@ public class Barack : PlayerBuildings
     }
     public void TryUpgradeAllKnightUnits()
     {
-        int stoneBalance = Resources.Instance.CheckBalance("stone");
+        int stoneBalance = Resources.Instance.CheckBalance(FarmResource.Stone);
         if (_currentUpdate - 1 < _updatePrice.Count)
         {
-            if (stoneBalance >= _updatePrice[_currentUpdate])
+            if (_updatePrice.Count != _currentUpdate)
             {
-                Resources.Instance.UpdateResource("stone", stoneBalance - _updatePrice[_currentUpdate]);
-                _currentUpdate += 1;
-                Knight[] allKnights = FindObjectsOfType<Knight>();
-                for (int i = 0; i < allKnights.Length; i++)
+                if (stoneBalance >= _updatePrice[_currentUpdate])
                 {
-                    allKnights[i].ChangeAttackPower(1);
+                    Resources.Instance.UpdateResource(FarmResource.Stone, stoneBalance - _updatePrice[_currentUpdate]);
+                    _currentUpdate += 1;
+                    Knight[] allKnights = FindObjectsOfType<Knight>();
+                    for (int i = 0; i < allKnights.Length; i++)
+                    {
+                        allKnights[i].ChangeAttackPower(1);
+                    }
+                    UpdateUpgradeUI();
+                    UnitsManager.Instance.SetAttackPowerKnight(UnitsManager.Instance.GetAttackPowerKnight() + 1);
                 }
-                UpdateUpgradeUI();
-                UnitsManager.Instance.SetAttackPowerKnight(UnitsManager.Instance.GetAttackPowerKnight() + 1);
+                else
+                {
+                    GameManager.Instance._showHint.DisplayHint("You can't buy this upgrade. Need more stone");
+                }
             }
             else
             {
-                GameManager.Instance._showHint.DisplayHint("You can't buy this upgrade. Need more stone");
+                GameManager.Instance._showHint.DisplayHint("No more updates");
             }
         }
         else
@@ -108,7 +115,7 @@ public class Barack : PlayerBuildings
     }
     public void TryBuyUnit(Unit unit)
     {
-        int balance = Resources.Instance.CheckBalance("gold");
+        int balance = Resources.Instance.CheckBalance(FarmResource.Gold);
         int price = unit.CheckPrice();
         if (_availabelCapacity > 0)
         {
@@ -116,7 +123,7 @@ public class Barack : PlayerBuildings
             {
                 Unit newUnit = Instantiate(unit, _spawnPoint.position + new Vector3(Random.Range(-2f, 2f), 0, Random.Range(-0.5f, 0.5f)), Quaternion.identity);
                 _currentUnit = newUnit;
-                Resources.Instance.UpdateResource("gold", balance - price);
+                Resources.Instance.UpdateResource(FarmResource.Gold, balance - price);
                 UpdateUI(1);
                 newUnit.SetLivingBuilding(this);
             }

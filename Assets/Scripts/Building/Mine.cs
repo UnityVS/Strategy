@@ -124,12 +124,12 @@ public class Mine : PlayerBuildings
     }
     public void TryBuyUpdate()
     {
-        int balance = Resources.Instance.CheckBalance("gold");
+        int balance = Resources.Instance.CheckBalance(FarmResource.Gold);
         if (_availabelCapacity > 0)
         {
             if (balance >= (int)(_updatePrice[_capacity - _availabelCapacity]))
             {
-                Resources.Instance.UpdateResource("gold", balance - (int)(_updatePrice[_capacity - _availabelCapacity]));
+                Resources.Instance.UpdateResource(FarmResource.Gold, balance - (int)(_updatePrice[_capacity - _availabelCapacity]));
                 ChangeGenerationCount(_updateValue[_capacity - _availabelCapacity]);
                 UpdateUI(1);
             }
