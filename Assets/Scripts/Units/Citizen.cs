@@ -67,7 +67,6 @@ public class Citizen : Unit
         base.OnDestroy();
         if (_livingBuilding != null)
         {
-            Debug.Log("1");
             _livingBuilding.ReturnUnit();
         }
     }

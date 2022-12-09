@@ -175,15 +175,29 @@ public class Managment : MonoBehaviour
         {
             if (_hovered && !EventSystem.current.IsPointerOverGameObject())
             {
-                if (_hovered.GetComponent<CollectableObject>())
+                if (_listOfSelected.Count > 0 && _hovered.GetComponent<CollectableObject>())
                 {
-                    if (_listOfSelected.Count > 0 && _listOfSelected[0].GetComponent<Building>())
+                    if (_listOfSelected[0].GetComponent<Building>())
                     {
                         UnselectAll();
                     }
-                    else if (_listOfSelected.Count > 0 && _listOfSelected[0].GetComponent<CollectableObject>())
+                    else if (_listOfSelected[0].GetComponent<CollectableObject>())
                     {
                         UnselectAll();
+                    }
+                    if (_listOfSelected.Count > 1)
+                    {
+                        if (_listOfSelected[0].GetComponent<Unit>() && _listOfSelected[1].GetComponent<CollectableObject>())
+                        {
+                            _listOfSelected[1].OnUnselect();
+                            _listOfSelected.RemoveAt(1);
+
+                        }
+                        else if (_listOfSelected[0].GetComponent<Unit>() && _listOfSelected[1].GetComponent<Building>())
+                        {
+                            _listOfSelected[1].OnUnselect();
+                            _listOfSelected.RemoveAt(1);
+                        }
                     }
                 }
                 else
@@ -203,9 +217,30 @@ public class Managment : MonoBehaviour
                     else if (!Input.GetKey(KeyCode.LeftControl) && _listOfSelected.Count > 0 && _listOfSelected[0].GetComponent<Unit>() && _hovered.GetComponent<Unit>())
                     {
                         UnselectAll();
-                    }else if (_listOfSelected.Count > 1 && _listOfSelected[1].GetComponent<Building>() && !_hovered.GetComponent<Building>())
+                    }
+                    else if (_listOfSelected.Count > 1 && _listOfSelected[1].GetComponent<Building>() && !_hovered.GetComponent<Building>())
                     {
                         UnselectAll();
+                    }
+                    else if (_listOfSelected.Count > 1 && _listOfSelected[0].GetComponent<Unit>() && _listOfSelected[1].GetComponent<Building>() && _hovered.GetComponent<Building>())
+                    {
+                        _listOfSelected[1].OnUnselect();
+                        _listOfSelected.RemoveAt(1);
+                    }
+                    else if (_listOfSelected.Count > 1 && _listOfSelected[0].GetComponent<Unit>() && _listOfSelected[1].GetComponent<Building>() && _hovered.GetComponent<CollectableObject>())
+                    {
+                        _listOfSelected[1].OnUnselect();
+                        _listOfSelected.RemoveAt(1);
+                    }
+                    else if (_listOfSelected.Count > 1 && _listOfSelected[0].GetComponent<Unit>() && _listOfSelected[1].GetComponent<CollectableObject>() && _hovered.GetComponent<CollectableObject>())
+                    {
+                        _listOfSelected[1].OnUnselect();
+                        _listOfSelected.RemoveAt(1);
+                    }
+                    else if (_listOfSelected.Count > 1 && _listOfSelected[0].GetComponent<Unit>() && _listOfSelected[1].GetComponent<CollectableObject>() && _hovered.GetComponent<Building>())
+                    {
+                        _listOfSelected[1].OnUnselect();
+                        _listOfSelected.RemoveAt(1);
                     }
                 }
                 _currentSelectionState = SelectionState.UnitsSelected;

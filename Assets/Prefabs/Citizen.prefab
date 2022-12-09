@@ -232,7 +232,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Civil
+  m_text: Citizen
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 340ef54bf0a930747915ab0066f42f1f, type: 2}
   m_sharedMaterial: {fileID: -5122153096115491922, guid: 340ef54bf0a930747915ab0066f42f1f,
@@ -2327,7 +2327,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Civil
+  m_text: Citizen
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 340ef54bf0a930747915ab0066f42f1f, type: 2}
   m_sharedMaterial: {fileID: -5122153096115491922, guid: 340ef54bf0a930747915ab0066f42f1f,

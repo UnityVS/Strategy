@@ -55,7 +55,7 @@ public class Enemy : MonoBehaviour
         _subscribersAttackers.Clear();
         int addValue = Random.Range(1, 5);
         Resources.Instance.AddResources(FarmResource.Gold, addValue);
-        ValueAddEffect effect = Instantiate(_effectAddValuePrefab, transform.position, Quaternion.Euler(60,-11,0));
+        ValueAddEffect effect = Instantiate(_effectAddValuePrefab, transform.position, Quaternion.Euler(60, -11, 0));
         effect.SetValueMining(addValue);
         effect.AddResource(1.5f);
     }
