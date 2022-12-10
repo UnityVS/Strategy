@@ -57,6 +57,7 @@ public class Health : MonoBehaviour
             if (_wildTurn._enemysList[i] == gameObject.GetComponent<Enemy>())
             {
                 _wildTurn._enemysList.RemoveAt(i);
+                _wildTurn.Win();
                 break;
             }
         }

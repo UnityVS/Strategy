@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-[ExecuteAlways]
+
 public class BuildingPlacer : MonoBehaviour
 {
     public float CellSize = 1f;
@@ -13,7 +13,7 @@ public class BuildingPlacer : MonoBehaviour
     Dictionary<Vector2Int, Building> _buildingDictionary = new Dictionary<Vector2Int, Building>();
     [SerializeField] Building[] _listOfPrefabs;
     [SerializeField] UISettingOnPlay[] _listOfUI;
-    public List<Building> _allBuildingInScene;
+    public List<Building> AllBuildingInScene;
     private void Awake()
     {
         if (!Instance)
@@ -39,7 +39,7 @@ public class BuildingPlacer : MonoBehaviour
                 }
             }
         }
-        _allBuildingInScene.Clear();
+        AllBuildingInScene.Clear();
     }
     private void Update()
     {
@@ -117,8 +117,12 @@ public class BuildingPlacer : MonoBehaviour
                 Vector2Int coordinate = new Vector2Int(xPosition + x, zPosition + z);
                 _buildingDictionary.Add(coordinate, building);
             }
-            _allBuildingInScene.Add(building);
         }
+        if (!building.CheckStatic())
+        {
+            AllBuildingInScene.Add(building);
+        }
+
     }
 
     public void TryBuy(Building buildingPrefab)
@@ -157,7 +161,7 @@ public class BuildingPlacer : MonoBehaviour
     }
     public void DeleteBuilding(int xPosition, int zPosition, Building building)
     {
-        if (_allBuildingInScene.Remove(building)) { };
+        if (AllBuildingInScene.Remove(building)) { };
         Vector2Int size = building.CheckSize();
         for (int x = 0; x < size.x; x++)
         {

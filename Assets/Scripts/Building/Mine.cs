@@ -32,6 +32,7 @@ public class Mine : PlayerBuildings
     [SerializeField] TextMeshProUGUI _textDescription;
     [SerializeField] TextMeshProUGUI _textDescriptionShadow;
     [SerializeField] bool _workWithUnit;
+    [SerializeField] BuildingMineTypes _currentMineType;
     public override void Start()
     {
         UpdateUI(0);
@@ -50,6 +51,10 @@ public class Mine : PlayerBuildings
     }
     public override void OnHover()
     {
+    }
+    public BuildingMineTypes GetMineTypeCurrentBuilding()
+    {
+        return _currentMineType;
     }
     void Update()
     {

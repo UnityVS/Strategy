@@ -16,9 +16,14 @@ public class Building : SelectableObject
     [SerializeField] NavMeshObstacle _obstacle;
     [SerializeField] GameObject _menuObject;
     Collider _colliderStatus;
+    [SerializeField] protected bool _static = false;
     public override void OnHover()
     {
         //base.OnHover();
+    }
+    public virtual bool CheckStatic()
+    {
+        return _static;
     }
     public void ObstacleStatus(bool status)
     {

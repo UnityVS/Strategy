@@ -2,6 +2,17 @@ using System.Collections;
 using TMPro;
 using UnityEngine;
 
+public enum BuildingType
+{
+    Mine,
+    Barack
+}
+public enum BuildingMineTypes
+{
+    StoneMine,
+    GoldMine,
+    WoodMine
+}
 //[DefaultExecutionOrder(1)]
 public class CollectableObject : MonoBehaviour
 {
@@ -14,8 +25,8 @@ public class CollectableObject : MonoBehaviour
     [SerializeField] TextMeshProUGUI _textCapacityShadow;
     Unit _currentWorkUnit;
     [SerializeField] FarmResource _currentFarm;
-    Transform _nearTargetMinePosition;
-    Mine _currentMine;
+    //Transform _nearTargetMinePosition;
+    public Mine _currentMine;
     bool _unitIsMoving = false;
     bool _nextPosition = false;
     [SerializeField] Building _collectableBuilding;
@@ -23,6 +34,7 @@ public class CollectableObject : MonoBehaviour
     Coroutine _coroutine = null;
     private void Start()
     {
+        _currentMine = null;
         _collectableCapacity = Random.Range(_randomMinCapacity, _randomMaxCapacity);
         _currentCapacity = _collectableCapacity;
         UpdateUI();
@@ -55,7 +67,12 @@ public class CollectableObject : MonoBehaviour
             GameManager.Instance._showHint.DisplayHint("At first pick civilian to set on work");
             return;
         }
-        if (FindNearBuilding() == null)
+        FindNearBuilding();
+    }
+    void AfterSearchingNearBuilding(Mine currentMine)
+    {
+        _currentMine = currentMine;
+        if (currentMine == null)
         {
             GameManager.Instance._showHint.DisplayHint("You need to create building for work");
             return;
@@ -72,36 +89,36 @@ public class CollectableObject : MonoBehaviour
                 if (_currentWorkUnit.CheckWorkStatus() == false)
                 {
                     Vector3 firstPosition = transform.position + Vector3.right * 2f;
-                    Vector3 secondPosition = FindNearBuilding().position;
+                    Vector3 secondPosition = currentMine.transform.position;
                     secondPosition = secondPosition + Vector3.right * 2f;
                     _coroutine = StartCoroutine(CollectMaterials(firstPosition, secondPosition, _currentWorkUnit));
-                }
-                else
-                {
-                    return;
                 }
             }
         }
     }
-    Transform FindNearBuilding()
+    void FindNearBuilding()
     {
-        for (int i = 0; i < BuildingPlacer.Instance._allBuildingInScene.Count; i++)
+        for (int i = 0; i < BuildingPlacer.Instance.AllBuildingInScene.Count; i++)
         {
-            if (BuildingPlacer.Instance._allBuildingInScene[i].GetComponent<Mine>() is Mine _mineTarget && _mineTarget._currentFarm == _currentFarm)
+            Mine mineTarget = BuildingPlacer.Instance.AllBuildingInScene[i].GetComponent<Mine>();
+            if (mineTarget != null)
             {
-                if (_nearTargetMinePosition == null)
+                if (mineTarget._currentFarm == _currentFarm)
                 {
-                    _currentMine = _mineTarget;
-                    _nearTargetMinePosition = _mineTarget.gameObject.transform;
-                }
-                else if (Vector3.Distance(transform.position, _mineTarget.transform.position) < Vector3.Distance(transform.position, _nearTargetMinePosition.position))
-                {
-                    _currentMine = _mineTarget;
-                    return _nearTargetMinePosition = _mineTarget.gameObject.transform;
+                    if (_currentMine == null)
+                    {
+                        AfterSearchingNearBuilding(mineTarget);
+                        return;
+                    }
+                    else if (Vector3.Distance(transform.position, mineTarget.transform.position) < Vector3.Distance(transform.position, _currentMine.transform.position))
+                    {
+                        AfterSearchingNearBuilding(mineTarget);
+                        return;
+                    }
                 }
             }
         }
-        return _nearTargetMinePosition;
+        AfterSearchingNearBuilding(null);
     }
     IEnumerator CollectMaterials(Vector3 startPosition, Vector3 endPosition, Unit currentUnit)
     {

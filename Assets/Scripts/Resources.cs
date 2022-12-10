@@ -36,57 +36,53 @@ public class Resources : MonoBehaviour
         _textStone.text = _stone.ToString();
         _textShadowStone.text = _stone.ToString();
     }
-    //public int CheckBalance()
-    //{
-    //    return _money;
-    //}
     public int CheckBalance(FarmResource farmResource)
     {
-        if (farmResource == FarmResource.Wood)
+        switch (farmResource)
         {
-            return _wood;
+            case FarmResource.Gold:
+                return _money;
+            case FarmResource.Stone:
+                return _stone;
+            case FarmResource.Wood:
+                return _wood;
+            default:
+                return _money;
         }
-        if (farmResource == FarmResource.Gold)
-        {
-            return _money;
-        }
-        if (farmResource == FarmResource.Stone)
-        {
-            return _stone;
-        }
-        return _money;
     }
-    public void AddResources(FarmResource _farmResource, int resources)
+    public void AddResources(FarmResource farmResource, int resource)
     {
-        if (_farmResource == FarmResource.Gold)
+        switch (farmResource)
         {
-            _money += resources;
-            UpdateUI();
+            case FarmResource.Gold:
+                _money += resource;
+                break;
+            case FarmResource.Stone:
+                _stone += resource;
+                break;
+            case FarmResource.Wood:
+                _wood += resource;
+                break;
+            default:
+                break;
         }
-        else if (_farmResource == FarmResource.Wood)
-        {
-            _wood += resources;
-            UpdateUI();
-        }
-        else if (_farmResource == FarmResource.Stone)
-        {
-            _stone += resources;
-            UpdateUI();
-        }
+        UpdateUI();
     }
     public void UpdateResource(FarmResource farmResource, int resource)
     {
-        if (farmResource == FarmResource.Wood)
+        switch (farmResource)
         {
-            _wood = resource;
-        }
-        if (farmResource == FarmResource.Gold)
-        {
-            _money = resource;
-        }
-        if (farmResource == FarmResource.Stone)
-        {
-            _stone = resource;
+            case FarmResource.Gold:
+                _money = resource;
+                break;
+            case FarmResource.Stone:
+                _stone = resource;
+                break;
+            case FarmResource.Wood:
+                _wood = resource;
+                break;
+            default:
+                break;
         }
         UpdateUI();
     }

@@ -279,15 +279,26 @@ public class Managment : MonoBehaviour
                     }
                 }
             }
+            else if (Input.GetMouseButtonUp(0) && hit.collider.tag == "Ground" && !EventSystem.current.IsPointerOverGameObject())
+            {
+                UnselectAll();
+            }
+
+        }
+    }
+    void GoToPoint(RaycastHit hit)
+    {
+        int rowNumber = Mathf.CeilToInt(Mathf.Sqrt(_listOfSelected.Count));
+        for (int i = 0; i < _listOfSelected.Count; i++)
+        {
+            int row = i / rowNumber;
+            int column = i % rowNumber;
+            Vector3 point = hit.point + new Vector3(row, 0f, column);
+            _listOfSelected[i].WhenClickOnGround(point);
         }
     }
     void Select(SelectableObject selectableObject)
     {
-        //if (_listOfSelected.Count > 1)
-        //{
-        //    _listOfSelected[1].OnUnselect();
-        //    _listOfSelected.RemoveAt(1);
-        //}
         if (!_listOfSelected.Contains(selectableObject))
         {
             _listOfSelected.Add(selectableObject);

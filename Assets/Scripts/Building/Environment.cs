@@ -1,8 +1,8 @@
 using UnityEngine;
-//[DefaultExecutionOrder(1)]
+[DefaultExecutionOrder(1)]
 public class Environment : Building
 {
-    [SerializeField] bool _static;
+    //[SerializeField] bool _static;
     Vector2Int _point;
     [SerializeField] Building _prefabOnlyBuild;
     [SerializeField] bool _onlyCurrentBuild;
@@ -20,6 +20,10 @@ public class Environment : Building
         {
             Destroy(gameObject);
         }
+    }
+    public override bool CheckStatic()
+    {
+        return _static;
     }
     private void OnDestroy()
     {

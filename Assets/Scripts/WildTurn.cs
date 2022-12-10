@@ -24,29 +24,30 @@ public class WildTurn : MonoBehaviour
     }
     private void Update()
     {
-        if (_currentTurn == _timers.Count && _enemysList.Count == 0)
-        {
-            _win.SetActive(true);
-        }
         if (_currentTurn == _timers.Count) return;
         _timer -= Time.deltaTime;
         UpdateTurnTime();
-        if (_timer < 0)
+        if (_timer < 0) GenerationEnemy();
+    }
+    public void Win()
+    {
+        if (_currentTurn == _timers.Count && _enemysList.Count == 0) _win.SetActive(true);
+    }
+    void GenerationEnemy()
+    {
+        Vector3 newPosition = _boxGenerationArea.TransformPoint(Random.Range(-0.5f, 0.5f), 0, Random.Range(-0.5f, 0.5f));
+        _currentEnemyCount = _listOfEnemyCount[_currentTurn];
+        for (int i = 0; i < _currentEnemyCount; i++)
         {
-            Vector3 newPosition = _boxGenerationArea.TransformPoint(Random.Range(-0.5f, 0.5f), 0, Random.Range(-0.5f, 0.5f));
-            _currentEnemyCount = _listOfEnemyCount[_currentTurn];
-            for (int i = 0; i < _currentEnemyCount; i++)
-            {
-                Enemy newEnemy = Instantiate(_enemyPrefab, newPosition + Vector3.back * Random.Range(-2f, 2f), Quaternion.identity);
-                newEnemy.ChangeDistanceToFollow();
-                _enemysList.Add(newEnemy);
-            }
-            AddTurn();
-            UpdateTurnCount();
-            if (_currentTurn == _timers.Count) return;
-            _maxTimer = _timers[_currentTurn];
-            _timer = _maxTimer;
+            Enemy newEnemy = Instantiate(_enemyPrefab, newPosition + Vector3.back * Random.Range(-2f, 2f), Quaternion.identity);
+            newEnemy.ChangeDistanceToFollow();
+            _enemysList.Add(newEnemy);
         }
+        AddTurn();
+        UpdateTurnCount();
+        if (_currentTurn == _timers.Count) return;
+        _maxTimer = _timers[_currentTurn];
+        _timer = _maxTimer;
     }
     void UpdateTurnCount()
     {
@@ -54,7 +55,7 @@ public class WildTurn : MonoBehaviour
     }
     void AddTurn()
     {
-        _currentTurn += 1;
+        _currentTurn++;
     }
     void UpdateTurnTime()
     {

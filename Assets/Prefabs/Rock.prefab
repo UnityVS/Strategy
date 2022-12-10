@@ -340,7 +340,7 @@ MonoBehaviour:
   _xSize: 2
   _zSize: 1
   _renderer: {fileID: 6693953610423860496}
-  _obstacle: {fileID: 0}
+  _obstacle: {fileID: 784685399296997}
   _menuObject: {fileID: 1588793050670997537}
   _static: 0
   _prefabOnlyBuild: {fileID: 0}
@@ -364,6 +364,7 @@ MonoBehaviour:
   _textCapacity: {fileID: 8920704920521749699}
   _textCapacityShadow: {fileID: 1757378035964287173}
   _currentFarm: 1
+  _currentMine: {fileID: 0}
   _collectableBuilding: {fileID: 1812195718}
   _canvasInformation: {fileID: 7138822609280123003}
 --- !u!1 &2622315372429170408

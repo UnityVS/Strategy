@@ -23,7 +23,7 @@ PrefabInstance:
     - target: {fileID: 2374730372761947284, guid: d82aa5022ceb9b847ac02d193cdc5bf4,
         type: 3}
       propertyPath: m_Name
-      value: Rock (5) Variant
+      value: RockVariant
       objectReference: {fileID: 0}
     - target: {fileID: 2374730372761947287, guid: d82aa5022ceb9b847ac02d193cdc5bf4,
         type: 3}
@@ -84,6 +84,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_UiScaleMode
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5349119465853003944, guid: d82aa5022ceb9b847ac02d193cdc5bf4,
+        type: 3}
+      propertyPath: m_MatchWidthOrHeight
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 5349119465853003944, guid: d82aa5022ceb9b847ac02d193cdc5bf4,
         type: 3}
