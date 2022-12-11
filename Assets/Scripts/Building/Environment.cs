@@ -2,7 +2,6 @@ using UnityEngine;
 [DefaultExecutionOrder(1)]
 public class Environment : Building
 {
-    //[SerializeField] bool _static;
     Vector2Int _point;
     [SerializeField] Building _prefabOnlyBuild;
     [SerializeField] bool _onlyCurrentBuild;
@@ -33,7 +32,4 @@ public class Environment : Building
         }
     }
     private void Awake() { }
-    //public override void OnHover() { }
-    //public override void OnSelect() { }
-    //public override void OnUnselect() { }
 }

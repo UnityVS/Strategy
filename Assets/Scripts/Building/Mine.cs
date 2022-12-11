@@ -33,10 +33,11 @@ public class Mine : PlayerBuildings
     [SerializeField] TextMeshProUGUI _textDescriptionShadow;
     [SerializeField] bool _workWithUnit;
     [SerializeField] BuildingMineTypes _currentMineType;
+    [SerializeField] GameObject _priceToHide;
     public override void Start()
     {
         UpdateUI(0);
-        _textDescription.text = "You'll get " + _updateValue[_capacity - _availabelCapacity] + "+ materials";
+        _textDescription.text = "Вы получите " + _updateValue[_capacity - _availabelCapacity] + "+ к добыче";
         _textNameBuilding.text = _nameOfBuilding;
         _textNameBuildingShadow.text = _nameOfBuilding;
         _priceUIOriginal.text = _updatePrice[_capacity - _availabelCapacity] + "$";
@@ -119,9 +120,13 @@ public class Mine : PlayerBuildings
         _availabelCapacity -= valueAdd;
         if (_availabelCapacity != 0)
         {
-            _textDescription.text = "You'll get " + _updateValue[_capacity - _availabelCapacity] + "+ materials";
+            _textDescription.text = "Вы получите " + _updateValue[_capacity - _availabelCapacity] + "+ к добыче";
             _priceUIOriginal.text = _updatePrice[_capacity - _availabelCapacity] + "$";
             _priceUIShadow.text = _updatePrice[_capacity - _availabelCapacity] + "$";
+        }
+        else
+        {
+            _priceToHide.SetActive(false);
         }
         string newText = _nameOfBuyingElement + " - " + (_capacity - _availabelCapacity).ToString() + "/" + _capacity.ToString();
         _textCapacityUI.text = newText;
@@ -140,12 +145,12 @@ public class Mine : PlayerBuildings
             }
             else
             {
-                GameManager.Instance._showHint.DisplayHint("You can't buy this unit. Need more money");
+                GameManager.Instance._showHint.DisplayHint("Вы не можете купить юнита. Нужно больше денег");
             }
         }
         else
         {
-            GameManager.Instance._showHint.DisplayHint("You can't buy this unit. No more slots");
+            GameManager.Instance._showHint.DisplayHint("Вы не можете купить юнита. Нет больше свободных мест");
         }
     }
     private void OnDestroy()

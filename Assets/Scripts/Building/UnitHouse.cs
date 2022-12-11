@@ -16,8 +16,8 @@ public class UnitHouse : MonoBehaviour
     [SerializeField] Mine _mine;
     private void Start()
     {
-        _countField.text = "Citizen - 0/1";
-        _countFieldShadow.text = "Citizen - 0/1";
+        _countField.text = "Жителей - 0/1";
+        _countFieldShadow.text = "Жителей - 0/1";
         _buttonKickUnit.gameObject.SetActive(false);
         _buttonUnit.sprite = _imageQuestion;
         _buttonUnit.color = Color.yellow;
@@ -76,8 +76,8 @@ public class UnitHouse : MonoBehaviour
         _currentUnit = _targetUnit;
         _targetUnit = null;
         _buttonKickUnit.gameObject.SetActive(true);
-        _countField.text = "Citizen - 1/1";
-        _countFieldShadow.text = "Citizen - 1/1";
+        _countField.text = "Жителей - 1/1";
+        _countFieldShadow.text = "Жителей - 1/1";
         _currentUnit.gameObject.SetActive(false);
     }
     public void KickUnitFrmoBuilding()
@@ -86,8 +86,8 @@ public class UnitHouse : MonoBehaviour
         _buttonUnit.gameObject.SetActive(true);
         _buttonUnit.sprite = _imageQuestion;
         _buttonUnit.color = Color.yellow;
-        _countField.text = "Citizen - 0/1";
-        _countFieldShadow.text = "Citizen - 0/1";
+        _countField.text = "Жителей - 0/1";
+        _countFieldShadow.text = "Жителей - 0/1";
         _currentUnit.gameObject.SetActive(true);
         _currentUnit = null;
     }
