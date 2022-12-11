@@ -376,10 +376,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Rat
+  m_text: "\u041A\u0440\u044B\u0441\u0430"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 340ef54bf0a930747915ab0066f42f1f, type: 2}
-  m_sharedMaterial: {fileID: -5122153096115491922, guid: 340ef54bf0a930747915ab0066f42f1f,
+  m_fontAsset: {fileID: 11400000, guid: 30fcbcdfd69ff55408322d88028b058b, type: 2}
+  m_sharedMaterial: {fileID: 449283363625919560, guid: 30fcbcdfd69ff55408322d88028b058b,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -512,10 +512,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Rat
+  m_text: "\u041A\u0440\u044B\u0441\u0430"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 340ef54bf0a930747915ab0066f42f1f, type: 2}
-  m_sharedMaterial: {fileID: -5122153096115491922, guid: 340ef54bf0a930747915ab0066f42f1f,
+  m_fontAsset: {fileID: 11400000, guid: 30fcbcdfd69ff55408322d88028b058b, type: 2}
+  m_sharedMaterial: {fileID: 449283363625919560, guid: 30fcbcdfd69ff55408322d88028b058b,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}

@@ -49,12 +49,13 @@ public class Building : SelectableObject
     }
     private void OnDrawGizmos()
     {
-        if (BuildingPlacer.Instance == null) return;
+        //if (BuildingPlacer.Instance == null) return;
         for (int x = 0; x < _xSize; x++)
         {
             for (int z = 0; z < _zSize; z++)
             {
-                Gizmos.DrawWireCube(transform.position + new Vector3(x, 0, z) * BuildingPlacer.Instance.CellSize, new Vector3(1f, 0, 1f) * BuildingPlacer.Instance.CellSize);
+                // хардкод *1 - это из building placer - который синглтон, значения должны браться
+                Gizmos.DrawWireCube(transform.position + new Vector3(x, 0, z) * 1, new Vector3(1f, 0, 1f) * 1);
             }
         }
     }

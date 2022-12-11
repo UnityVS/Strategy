@@ -20,6 +20,28 @@ PrefabInstance:
       propertyPath: _collectableCapacity
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 1337679101036613980, guid: d82aa5022ceb9b847ac02d193cdc5bf4,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1743517650363451310, guid: d82aa5022ceb9b847ac02d193cdc5bf4,
+        type: 3}
+      propertyPath: m_text
+      value: "\u041A\u0430\u043C\u0435\u043D\u044C"
+      objectReference: {fileID: 0}
+    - target: {fileID: 1743517650363451310, guid: d82aa5022ceb9b847ac02d193cdc5bf4,
+        type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 30fcbcdfd69ff55408322d88028b058b,
+        type: 2}
+    - target: {fileID: 1743517650363451310, guid: d82aa5022ceb9b847ac02d193cdc5bf4,
+        type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 449283363625919560, guid: 30fcbcdfd69ff55408322d88028b058b,
+        type: 2}
     - target: {fileID: 2374730372761947284, guid: d82aa5022ceb9b847ac02d193cdc5bf4,
         type: 3}
       propertyPath: m_Name
@@ -80,6 +102,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5165217757607151494, guid: d82aa5022ceb9b847ac02d193cdc5bf4,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 5349119465853003944, guid: d82aa5022ceb9b847ac02d193cdc5bf4,
         type: 3}
       propertyPath: m_UiScaleMode
@@ -100,5 +127,22 @@ PrefabInstance:
       propertyPath: m_ReferenceResolution.y
       value: 1080
       objectReference: {fileID: 0}
+    - target: {fileID: 7574138106792940506, guid: d82aa5022ceb9b847ac02d193cdc5bf4,
+        type: 3}
+      propertyPath: m_text
+      value: "\u041A\u0430\u043C\u0435\u043D\u044C"
+      objectReference: {fileID: 0}
+    - target: {fileID: 7574138106792940506, guid: d82aa5022ceb9b847ac02d193cdc5bf4,
+        type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 30fcbcdfd69ff55408322d88028b058b,
+        type: 2}
+    - target: {fileID: 7574138106792940506, guid: d82aa5022ceb9b847ac02d193cdc5bf4,
+        type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 449283363625919560, guid: 30fcbcdfd69ff55408322d88028b058b,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d82aa5022ceb9b847ac02d193cdc5bf4, type: 3}

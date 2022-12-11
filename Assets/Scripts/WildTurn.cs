@@ -51,7 +51,7 @@ public class WildTurn : MonoBehaviour
     }
     void UpdateTurnCount()
     {
-        _textTurnCount.text = "<color=#adadad>Current turn: </color>" + _currentTurn + "/" + _timers.Count;
+        _textTurnCount.text = "<color=#adadad>Текущая волна: </color>" + _currentTurn + "/" + _timers.Count;
     }
     void AddTurn()
     {
@@ -59,6 +59,6 @@ public class WildTurn : MonoBehaviour
     }
     void UpdateTurnTime()
     {
-        _textTimeToTurn.text = "<color=#adadad>Next Wild Turn: </color>" + _timer.ToString("0") + " sec";
+        _textTimeToTurn.text = "<color=#adadad>Следующая дикая волна: </color>" + _timer.ToString("0") + " сек";
     }
 }

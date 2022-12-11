@@ -28,6 +28,12 @@ public class GameManager : MonoBehaviour
         {
             Restart();
         }
+        if (Input.GetKeyDown(KeyCode.F2))
+        {
+            Resources.Instance.AddResources(FarmResource.Gold,500);
+            Resources.Instance.AddResources(FarmResource.Wood, 500);
+            Resources.Instance.AddResources(FarmResource.Stone, 500);
+        }
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             Application.Quit();
@@ -42,10 +48,10 @@ public class GameManager : MonoBehaviour
     {
         _showHint.DisplayHint("Задача, продержаться несколько волн врагов");
         yield return new WaitForSeconds(timeDuration);
-        _showHint.DisplayHint("Уничтожить врагов, появившихся с wild turn");
+        _showHint.DisplayHint("Уничтожить врагов, появившихся с диких волн");
         yield return new WaitForSeconds(timeDuration);
         _showHint.DisplayHint("Стройте здания для добычи ресурсов");
         yield return new WaitForSeconds(timeDuration);
-        _showHint.DisplayHint("Летать на AWSD. Перезагрузка уровня F1");
+        _showHint.DisplayHint("Перемещаться на AWSD. Перезагрузка уровня F1");
     }
 }

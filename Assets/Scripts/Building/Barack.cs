@@ -66,7 +66,7 @@ public class Barack : PlayerBuildings
     void UpdateUpgradeUI()
     {
         //if (_currentUpdate - 1 == _updatePrice.Count) return;
-        _upgradeCount.text = "Update attack " + _currentUpdate + "/" + _updatePrice.Count;
+        _upgradeCount.text = "Улучшить аттаку " + _currentUpdate + "/" + _updatePrice.Count;
         if (_currentUpdate == _updatePrice.Count)
         {
             _upgradeStonePrice.text = _updatePrice[_currentUpdate - 1].ToString();
@@ -100,17 +100,17 @@ public class Barack : PlayerBuildings
                 }
                 else
                 {
-                    GameManager.Instance._showHint.DisplayHint("You can't buy this upgrade. Need more stone");
+                    GameManager.Instance._showHint.DisplayHint("Вы не можете улучшить здание. Нужно больше камня");
                 }
             }
             else
             {
-                GameManager.Instance._showHint.DisplayHint("No more updates");
+                GameManager.Instance._showHint.DisplayHint("Больше нет обновлений");
             }
         }
         else
         {
-            GameManager.Instance._showHint.DisplayHint("You can't buy this unit. No more slots");
+            GameManager.Instance._showHint.DisplayHint("Вы не можете купить юнита. Нет больше свободных мест");
         }
     }
     public void TryBuyUnit(Unit unit)
@@ -129,12 +129,12 @@ public class Barack : PlayerBuildings
             }
             else
             {
-                GameManager.Instance._showHint.DisplayHint("You can't buy this unit. Need more money");
+                GameManager.Instance._showHint.DisplayHint("Вы не можете купить юнита. Нужно больше денег");
             }
         }
         else
         {
-            GameManager.Instance._showHint.DisplayHint("You can't buy this unit. No more slots");
+            GameManager.Instance._showHint.DisplayHint("Вы не можете купить юнита. Нет больше свободных мест");
         }
     }
     private void OnDestroy()

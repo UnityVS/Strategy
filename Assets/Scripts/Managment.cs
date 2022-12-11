@@ -48,7 +48,7 @@ public class Managment : MonoBehaviour
         float decreasteSpeed;
         if (Input.GetKey(KeyCode.LeftShift))
         {
-            decreasteSpeed = 0.5f;
+            decreasteSpeed = 1.5f;
         }
         else
         {
@@ -284,17 +284,6 @@ public class Managment : MonoBehaviour
                 UnselectAll();
             }
 
-        }
-    }
-    void GoToPoint(RaycastHit hit)
-    {
-        int rowNumber = Mathf.CeilToInt(Mathf.Sqrt(_listOfSelected.Count));
-        for (int i = 0; i < _listOfSelected.Count; i++)
-        {
-            int row = i / rowNumber;
-            int column = i % rowNumber;
-            Vector3 point = hit.point + new Vector3(row, 0f, column);
-            _listOfSelected[i].WhenClickOnGround(point);
         }
     }
     void Select(SelectableObject selectableObject)
