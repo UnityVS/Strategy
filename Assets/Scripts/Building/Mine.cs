@@ -37,7 +37,7 @@ public class Mine : PlayerBuildings
     public override void Start()
     {
         UpdateUI(0);
-        _textDescription.text = "Вы получите " + _updateValue[_capacity - _availabelCapacity] + "+ к добыче";
+        _textDescription.text = "Вы получите +" + _updateValue[_capacity - _availabelCapacity] + " к добыче";
         _textNameBuilding.text = _nameOfBuilding;
         _textNameBuildingShadow.text = _nameOfBuilding;
         _priceUIOriginal.text = _updatePrice[_capacity - _availabelCapacity] + "$";
@@ -120,7 +120,7 @@ public class Mine : PlayerBuildings
         _availabelCapacity -= valueAdd;
         if (_availabelCapacity != 0)
         {
-            _textDescription.text = "Вы получите " + _updateValue[_capacity - _availabelCapacity] + "+ к добыче";
+            _textDescription.text = "Вы получите +" + _updateValue[_capacity - _availabelCapacity] + " к добыче";
             _priceUIOriginal.text = _updatePrice[_capacity - _availabelCapacity] + "$";
             _priceUIShadow.text = _updatePrice[_capacity - _availabelCapacity] + "$";
         }

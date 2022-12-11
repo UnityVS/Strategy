@@ -7,7 +7,8 @@ public enum SelectionState
 {
     UnitsSelected,
     Frame,
-    Other
+    Other,
+    UI
 }
 
 public class Managment : MonoBehaviour
@@ -21,9 +22,11 @@ public class Managment : MonoBehaviour
     Vector2 _frameStart;
     Vector2 _frameEnd;
     SelectionState _currentSelectionState;
-    CollectableObject _currentCollectableObject;
     public static Managment Instance;
     [SerializeField] LayerMask _layerMask;
+    [SerializeField] float _yMin = 5f;
+    [SerializeField] float _yMax = 10f;
+    float _yPosition;
     private void Awake()
     {
         if (!Instance)
@@ -56,8 +59,19 @@ public class Managment : MonoBehaviour
         }
         if (Input.mouseScrollDelta.y != 0)
         {
+            if (_camera.transform.position.y >= _yMax || _camera.transform.position.y <= _yMin)
+            {
+                if (_camera.transform.position.y >= _yMax && Input.mouseScrollDelta.y > 0)
+                {
+                    _camera.transform.Translate(0f, 0f, Input.mouseScrollDelta.y);
+                }
+                else if (_camera.transform.position.y <= _yMin && Input.mouseScrollDelta.y < 0)
+                {
+                    _camera.transform.Translate(0f, 0f, Input.mouseScrollDelta.y);
+                }
+                return;
+            }
             _camera.transform.Translate(0f, 0f, Input.mouseScrollDelta.y);
-            CameraMovementByKeyboardInputs();
         }
         if (Input.GetKey(KeyCode.W))
         {
@@ -83,10 +97,15 @@ public class Managment : MonoBehaviour
     }
     void CameraMovementByKeyboardInputs()
     {
-        float _yPosition = Mathf.Clamp(_camera.transform.position.y, 5f, 10f);
         float _xPosition = Mathf.Clamp(_camera.transform.position.x, -15f, 15f);
         float _zPosition = Mathf.Clamp(_camera.transform.position.z, -15f, 15f);
-        Vector3 _newPosition = new Vector3(_xPosition, _yPosition, _zPosition);
+        Vector3 _newPosition = new Vector3(_xPosition, _camera.transform.position.y, _zPosition);
+        _camera.transform.position = _newPosition;
+    }
+    void ScrollCamera()
+    {
+        float _yPosition = Mathf.Clamp(_camera.transform.position.y, _yMin, _yMax);
+        Vector3 _newPosition = new Vector3(_camera.transform.position.x, _yPosition, _camera.transform.position.z);
         _camera.transform.position = _newPosition;
     }
     public List<SelectableObject> ListObjects()
@@ -95,18 +114,23 @@ public class Managment : MonoBehaviour
     }
     void FrameSelect()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject())
         {
             _frameStart = Input.mousePosition;
+            _currentSelectionState = SelectionState.Other;
         }
-        if (Input.GetMouseButton(0))
+        else if (Input.GetMouseButtonDown(0) && EventSystem.current.IsPointerOverGameObject())
+        {
+            _currentSelectionState = SelectionState.UI;
+        }
+        if (Input.GetMouseButton(0) && !EventSystem.current.IsPointerOverGameObject())
         {
             _frameEnd = Input.mousePosition;
             Vector2 min = Vector2.Min(_frameStart, _frameEnd);
             Vector2 max = Vector2.Max(_frameStart, _frameEnd);
 
             Vector2 size = max - min;
-            if (size.magnitude > 10)
+            if (size.magnitude > 10 && _currentSelectionState != SelectionState.UI)
             {
                 _frameSelect.enabled = true;
                 _frameSelect.rectTransform.anchoredPosition = min;
@@ -124,7 +148,6 @@ public class Managment : MonoBehaviour
                 }
                 _currentSelectionState = SelectionState.Frame;
             }
-
         }
         if (Input.GetMouseButtonUp(0))
         {

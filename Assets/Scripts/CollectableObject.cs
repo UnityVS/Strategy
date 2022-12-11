@@ -13,7 +13,6 @@ public enum BuildingMineTypes
     GoldMine,
     WoodMine
 }
-//[DefaultExecutionOrder(1)]
 public class CollectableObject : MonoBehaviour
 {
     [SerializeField] int _collectableCapacity = 100;
@@ -25,7 +24,6 @@ public class CollectableObject : MonoBehaviour
     [SerializeField] TextMeshProUGUI _textCapacityShadow;
     Unit _currentWorkUnit;
     [SerializeField] FarmResource _currentFarm;
-    //Transform _nearTargetMinePosition;
     public Mine _currentMine;
     bool _unitIsMoving = false;
     bool _nextPosition = false;
@@ -64,7 +62,7 @@ public class CollectableObject : MonoBehaviour
     {
         if (Managment.Instance.ListObjects().Count <= 1)
         {
-            GameManager.Instance._showHint.DisplayHint("At first pick civilian to set on work");
+            GameManager.Instance._showHint.DisplayHint("Сначала вам нужно выбрать жителя");
             return;
         }
         FindNearBuilding();
@@ -74,7 +72,7 @@ public class CollectableObject : MonoBehaviour
         _currentMine = currentMine;
         if (currentMine == null)
         {
-            GameManager.Instance._showHint.DisplayHint("You need to create building for work");
+            GameManager.Instance._showHint.DisplayHint("Вам нужно создать здание для работы");
             return;
         }
         for (int i = 0; i < Managment.Instance.ListObjects().Count; i++)
@@ -83,7 +81,7 @@ public class CollectableObject : MonoBehaviour
             {
                 if (!_currentWorkUnit.GetComponent<Citizen>())
                 {
-                    GameManager.Instance._showHint.DisplayHint("You need to pick civilian unit to set on work");
+                    GameManager.Instance._showHint.DisplayHint("Сначала вам нужно выбрать жителя");
                     return;
                 }
                 if (_currentWorkUnit.CheckWorkStatus() == false)

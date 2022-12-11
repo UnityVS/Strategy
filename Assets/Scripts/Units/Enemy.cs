@@ -40,6 +40,10 @@ public class Enemy : MonoBehaviour
     {
         _distanceToFollow = 1000;
     }
+    public void ChangeStoppingDistance()
+    {
+        _navMeshAgent.stoppingDistance = 10;
+    }
     public void UnSubscribeToAttack(Unit unit)
     {
         _subscribersAttackers.Remove(unit);

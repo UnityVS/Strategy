@@ -41,6 +41,7 @@ public class WildTurn : MonoBehaviour
         {
             Enemy newEnemy = Instantiate(_enemyPrefab, newPosition + Vector3.back * Random.Range(-2f, 2f), Quaternion.identity);
             newEnemy.ChangeDistanceToFollow();
+            //newEnemy.ChangeStoppingDistance();
             _enemysList.Add(newEnemy);
         }
         AddTurn();
