@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2687351519617767493}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Count
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -49,7 +49,7 @@ GameObject:
   - component: {fileID: 2687351519824403137}
   - component: {fileID: 2687351519824403139}
   - component: {fileID: 2687351519824403138}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: ShadowUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -74,7 +74,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 7.339985}
-  m_SizeDelta: {x: 700, y: 50}
+  m_SizeDelta: {x: 500, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2687351519824403139
 CanvasRenderer:
@@ -126,7 +126,7 @@ GameObject:
   - component: {fileID: 2687351519972178282}
   - component: {fileID: 2687351519972178281}
   - component: {fileID: 9080648610521751347}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -225,7 +225,7 @@ GameObject:
   - component: {fileID: 2687351520006004190}
   - component: {fileID: 2687351520006004189}
   - component: {fileID: 2687351520006004176}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -321,7 +321,7 @@ GameObject:
   - component: {fileID: 2687351520229732829}
   - component: {fileID: 2687351520229732831}
   - component: {fileID: 2687351520229732830}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: TextOrigin
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -457,7 +457,7 @@ GameObject:
   - component: {fileID: 2687351520277796582}
   - component: {fileID: 2687351520277796600}
   - component: {fileID: 2687351520277796583}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: TextShadow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -593,7 +593,7 @@ GameObject:
   - component: {fileID: 2687351520576496592}
   - component: {fileID: 2687351520576496593}
   - component: {fileID: 2687351520576496594}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: TextCount
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -729,7 +729,7 @@ GameObject:
   - component: {fileID: 2687351520907803982}
   - component: {fileID: 2687351520907803981}
   - component: {fileID: 2687351520907803980}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: TextCountShadow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -867,7 +867,7 @@ GameObject:
   - component: {fileID: 2687351520980152455}
   - component: {fileID: 2687351520980152454}
   - component: {fileID: 2687351520980152453}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: CanvasWorld
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -982,7 +982,7 @@ GameObject:
   - component: {fileID: 2687351521384662411}
   - component: {fileID: 2687351521384662413}
   - component: {fileID: 2687351521384662412}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: ShadowUI (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1008,7 +1008,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: -7.34}
-  m_SizeDelta: {x: 600, y: 50}
+  m_SizeDelta: {x: 500, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2687351521384662413
 CanvasRenderer:

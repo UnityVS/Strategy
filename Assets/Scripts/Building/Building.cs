@@ -25,6 +25,12 @@ public class Building : SelectableObject
     {
         return _static;
     }
+    public virtual void SetDeleteUnitToThisBuilding(Unit newUnit, bool createNew)
+    {
+    }
+    public virtual void TryBuyUnit(Unit unit)
+    {
+    }
     public void ObstacleStatus(bool status)
     {
         _obstacle.enabled = status;

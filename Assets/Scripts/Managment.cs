@@ -282,7 +282,11 @@ public class Managment : MonoBehaviour
         }
         if (_currentSelectionState == SelectionState.UnitsSelected)
         {
-            if (Input.GetMouseButtonUp(1))
+            if (Input.GetMouseButtonUp(0) && hit.collider.tag == "Ground" && !EventSystem.current.IsPointerOverGameObject())
+            {
+                UnselectAll();
+            }
+            else if (Input.GetMouseButtonUp(1))
             {
                 if (hit.collider.tag == "Ground" && !EventSystem.current.IsPointerOverGameObject())
                 {
@@ -296,11 +300,13 @@ public class Managment : MonoBehaviour
                     }
                 }
             }
-            else if (Input.GetMouseButtonUp(0) && hit.collider.tag == "Ground" && !EventSystem.current.IsPointerOverGameObject())
+        }
+        else if (_currentSelectionState == SelectionState.Other)
+        {
+            if (Input.GetMouseButtonUp(0) && hit.collider.tag == "Ground" && !EventSystem.current.IsPointerOverGameObject())
             {
                 UnselectAll();
             }
-
         }
     }
     void Select(SelectableObject selectableObject)

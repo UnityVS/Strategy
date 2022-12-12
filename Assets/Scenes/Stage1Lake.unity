@@ -16034,7 +16034,7 @@ MonoBehaviour:
   _frameSelect: {fileID: 356321450}
   _layerMask:
     serializedVersion: 2
-    m_Bits: 1
+    m_Bits: 2147483647
   _yMin: 5
   _yMax: 10
 --- !u!1 &1784763917
@@ -16873,9 +16873,9 @@ MonoBehaviour:
   _textTurnCount: {fileID: 1433602700}
   _textTimeToTurn: {fileID: 1254338114}
   _timers:
-  - 10
-  - 10
-  - 10
+  - 150
+  - 50
+  - 30
   _enemyPrefab: {fileID: 2687351519972178282, guid: d1a44fdaed823364aae677634a4549af,
     type: 3}
   _currentEnemyCount: 0
@@ -18361,6 +18361,9 @@ MonoBehaviour:
   - {fileID: 297971800}
   - {fileID: 1804221307}
   AllBuildingInScene: []
+  _layerMaskForBuilding:
+    serializedVersion: 2
+    m_Bits: 192
 --- !u!1001 &2038370441
 PrefabInstance:
   m_ObjectHideFlags: 0

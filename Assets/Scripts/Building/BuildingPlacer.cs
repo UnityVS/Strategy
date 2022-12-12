@@ -14,6 +14,7 @@ public class BuildingPlacer : MonoBehaviour
     [SerializeField] Building[] _listOfPrefabs;
     [SerializeField] UISettingOnPlay[] _listOfUI;
     public List<Building> AllBuildingInScene;
+    [SerializeField] LayerMask _layerMaskForBuilding;
     private void Awake()
     {
         if (!Instance)
@@ -96,6 +97,10 @@ public class BuildingPlacer : MonoBehaviour
             {
                 Vector2Int coordinate = new Vector2Int(xPosition + x, zPosition + z);
                 if (_buildingDictionary.ContainsKey(coordinate))
+                {
+                    return false;
+                }
+                if (Physics.CheckSphere(_currentBuilding.transform.position, 3f, _layerMaskForBuilding))
                 {
                     return false;
                 }

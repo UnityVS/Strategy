@@ -255,6 +255,7 @@ public class Knight : Unit
         if (_livingBuilding != null)
         {
             _livingBuilding.ReturnUnit();
+            _livingBuilding.SetDeleteUnitToThisBuilding(this, false);
         }
     }
 }

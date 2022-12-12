@@ -29,6 +29,9 @@ public class Barack : PlayerBuildings
     [SerializeField] TextMeshProUGUI _upgradeCount;
     [SerializeField] List<int> _updatePrice;
     [SerializeField] int _currentUpdate = 0;
+    [SerializeField] TextMeshProUGUI _currentUnitAttack;
+    int _currentAttack = 1;
+    List<Unit> _unitsOfThisBuilding = new List<Unit>();
     override public void Start()
     {
         UpdateUI(0);
@@ -57,6 +60,7 @@ public class Barack : PlayerBuildings
     }
     void RegualUpdateUI()
     {
+        _currentUnitAttack.text = "Атака юнитов этого здания \n" + _currentAttack + " урон в секунду";
         _textCapacity.text = (_capacity - _availabelCapacity) + "/" + _capacity;
         _shadowCapacityText.text = (_capacity - _availabelCapacity) + "/" + _capacity;
         string newText = _nameOfUnits + " - " + (_capacity - _availabelCapacity) + "/" + _capacity;
@@ -70,9 +74,11 @@ public class Barack : PlayerBuildings
         if (_currentUpdate == _updatePrice.Count)
         {
             _upgradeStonePrice.text = _updatePrice[_currentUpdate - 1].ToString();
+            _upgradeStonePrice.gameObject.SetActive(false);
             return;
         }
         _upgradeStonePrice.text = _updatePrice[_currentUpdate].ToString();
+        RegualUpdateUI();
     }
     public override void ReturnUnit()
     {
@@ -90,13 +96,16 @@ public class Barack : PlayerBuildings
                 {
                     Resources.Instance.UpdateResource(FarmResource.Stone, stoneBalance - _updatePrice[_currentUpdate]);
                     _currentUpdate += 1;
-                    Knight[] allKnights = FindObjectsOfType<Knight>();
-                    for (int i = 0; i < allKnights.Length; i++)
+                    if (_unitsOfThisBuilding.Count != 0)
                     {
-                        allKnights[i].ChangeAttackPower(1);
+                        for (int i = 0; i < _unitsOfThisBuilding.Count; i++)
+                        {
+                            _unitsOfThisBuilding[i].GetComponent<Knight>().ChangeAttackPower(1);
+                        }
                     }
                     UpdateUpgradeUI();
-                    UnitsManager.Instance.SetAttackPowerKnight(UnitsManager.Instance.GetAttackPowerKnight() + 1);
+                    _currentAttack++;
+                    RegualUpdateUI();
                 }
                 else
                 {
@@ -113,7 +122,7 @@ public class Barack : PlayerBuildings
             GameManager.Instance._showHint.DisplayHint("Вы не можете купить юнита. Нет больше свободных мест");
         }
     }
-    public void TryBuyUnit(Unit unit)
+    public override void TryBuyUnit(Unit unit)
     {
         int balance = Resources.Instance.CheckBalance(FarmResource.Gold);
         int price = unit.CheckPrice();
@@ -126,6 +135,11 @@ public class Barack : PlayerBuildings
                 Resources.Instance.UpdateResource(FarmResource.Gold, balance - price);
                 UpdateUI(1);
                 newUnit.SetLivingBuilding(this);
+                if (newUnit.GetComponent<Knight>() is Knight _knightUnit)
+                {
+                    _knightUnit.SetAttackPower(_currentAttack);
+                }
+                SetDeleteUnitToThisBuilding(newUnit, true);
             }
             else
             {
@@ -135,6 +149,17 @@ public class Barack : PlayerBuildings
         else
         {
             GameManager.Instance._showHint.DisplayHint("Вы не можете купить юнита. Нет больше свободных мест");
+        }
+    }
+    public override void SetDeleteUnitToThisBuilding(Unit newUnit, bool createNew)
+    {
+        if (createNew)
+        {
+            _unitsOfThisBuilding.Add(newUnit);
+        }
+        else
+        {
+            _unitsOfThisBuilding.Remove(newUnit);
         }
     }
     public void SellBuilding()
