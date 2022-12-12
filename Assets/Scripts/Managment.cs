@@ -26,7 +26,7 @@ public class Managment : MonoBehaviour
     [SerializeField] LayerMask _layerMask;
     [SerializeField] float _yMin = 5f;
     [SerializeField] float _yMax = 10f;
-    float _yPosition;
+    float _shiftSpeed = 2;
     private void Awake()
     {
         if (!Instance)
@@ -51,7 +51,7 @@ public class Managment : MonoBehaviour
         float decreasteSpeed;
         if (Input.GetKey(KeyCode.LeftShift))
         {
-            decreasteSpeed = 1.5f;
+            decreasteSpeed = _shiftSpeed;
         }
         else
         {
@@ -100,12 +100,6 @@ public class Managment : MonoBehaviour
         float _xPosition = Mathf.Clamp(_camera.transform.position.x, -15f, 15f);
         float _zPosition = Mathf.Clamp(_camera.transform.position.z, -15f, 15f);
         Vector3 _newPosition = new Vector3(_xPosition, _camera.transform.position.y, _zPosition);
-        _camera.transform.position = _newPosition;
-    }
-    void ScrollCamera()
-    {
-        float _yPosition = Mathf.Clamp(_camera.transform.position.y, _yMin, _yMax);
-        Vector3 _newPosition = new Vector3(_camera.transform.position.x, _yPosition, _camera.transform.position.z);
         _camera.transform.position = _newPosition;
     }
     public List<SelectableObject> ListObjects()

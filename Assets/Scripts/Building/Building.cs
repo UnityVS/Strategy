@@ -6,9 +6,9 @@ using UnityEngine.AI;
 
 public class Building : SelectableObject
 {
-    [SerializeField] int _goldPrice = 10;
-    [SerializeField] int _woodPrice = 0;
-    [SerializeField] int _stonePrice = 0;
+    [SerializeField] protected int _goldPrice = 10;
+    [SerializeField] protected int _woodPrice = 0;
+    [SerializeField] protected int _stonePrice = 0;
     [SerializeField] int _xSize = 3;
     [SerializeField] int _zSize = 3;
     Color _startColor;
