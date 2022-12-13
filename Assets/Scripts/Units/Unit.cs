@@ -63,7 +63,7 @@ public class Unit : SelectableObject
     }
     private void Update()
     {
-        if (Vector3.Distance(_navMeshAgent.gameObject.transform.position, _navMeshAgent.destination) < 0.41f)
+        if (Vector3.Distance(_navMeshAgent.gameObject.transform.position, _navMeshAgent.destination) < 0.5f)
         {
             _animator.SetBool("Walk", false);
         }

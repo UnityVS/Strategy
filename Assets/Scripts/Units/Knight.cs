@@ -6,7 +6,8 @@ public enum AttackingUnits
 {
     Idle,
     WalkToEnemy,
-    Attack
+    Attack,
+    WalkToPoint
 }
 
 public class Knight : Unit
@@ -85,15 +86,30 @@ public class Knight : Unit
             yield return null;
         }
     }
+    public override void WhenClickOnGround(Vector3 point)
+    {
+        _currentState = AttackingUnits.WalkToPoint;
+        base.WhenClickOnGround(point);
+
+    }
     void Update()
     {
-        if (_targetEnemy != null)
-        {
-            transform.rotation = Quaternion.LookRotation(_targetEnemy.transform.position - transform.position, Vector3.up);
-        }
         if (Vector3.Distance(_navMeshAgent.gameObject.transform.position, _navMeshAgent.destination) < 0.41f)
         {
             _animator.SetBool("Walk", false);
+        }
+        if (AttackingUnits.WalkToPoint == _currentState)
+        {
+
+            if (_animator.GetBool("Walk") == false)
+            {
+                _currentState = AttackingUnits.Idle;
+            }
+            return;
+        }
+        if (_targetEnemy != null)
+        {
+            transform.rotation = Quaternion.LookRotation(_targetEnemy.transform.position - transform.position, Vector3.up);
         }
         _timer -= Time.deltaTime;
         if (_currentState == AttackingUnits.Idle)
@@ -138,7 +154,7 @@ public class Knight : Unit
                 if (_targetEnemy != null)
                 {
                     _animator.SetTrigger("Attack");
-                    _targetEnemy.GetComponent<Health>().ChangeHealthSubtract(_attackPower);
+
                     SetEnemyState(AttackingUnits.Attack);
                     _timer = _maxTimer;
                     return;
@@ -152,6 +168,13 @@ public class Knight : Unit
                 _pointToChillWalk = Vector3.zero;
                 SetEnemyState(AttackingUnits.Idle);
             }
+        }
+    }
+    public void PullDamage()
+    {
+        if (_targetEnemy != null)
+        {
+            _targetEnemy.GetComponent<Health>().ChangeHealthSubtract(_attackPower);
         }
     }
     public void SetEnemyState(AttackingUnits enemystate)

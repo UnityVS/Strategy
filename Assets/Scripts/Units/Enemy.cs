@@ -115,7 +115,7 @@ public class Enemy : MonoBehaviour
             {
                 _navMeshAgent.SetDestination(_targetUnit.transform.position);
             }
-            if (Vector3.Distance(transform.position, _targetUnit.transform.position) < 1.5f)
+            if (Vector3.Distance(transform.position, _targetUnit.transform.position) < 1f)
             {
                 _currentEnemyState = EnemyStates.Attack;
                 return;
@@ -129,7 +129,7 @@ public class Enemy : MonoBehaviour
         {
             if (_timer < 0)
             {
-                if (_targetUnit != null)
+                if (_targetUnit != null && Vector3.Distance(transform.position, _targetUnit.transform.position) < 1f)
                 {
                     _targetUnit.GetComponent<Health>().ChangeHealthSubtract(1);
                     SetEnemyState(EnemyStates.Attack);

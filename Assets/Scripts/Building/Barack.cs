@@ -116,7 +116,7 @@ public class Barack : PlayerBuildings
         if (_currentUnitAttack != null)
         {
             _textHowValueWillBeAdded.text = "Добавит +" + attackToAdd + "к аттаке юнитам";
-            _currentUnitAttack.text = "Атака юнитов этого здания \n" + _currentAttack + " урон в секунду";
+            _currentUnitAttack.text = "Атака юнитов этого здания " + _currentAttack;
         }
         _textCapacity.text = (_capacity - _availabelCapacity) + "/" + _capacity;
         _shadowCapacityText.text = (_capacity - _availabelCapacity) + "/" + _capacity;
