@@ -153,6 +153,27 @@ public class Mine : PlayerBuildings
             GameManager.Instance._showHint.DisplayHint("Вы не можете купить юнита. Нет больше свободных мест");
         }
     }
+    public void SellBuilding()
+    {
+        if (_goldPrice != 0)
+        {
+            Resources.Instance.AddResources(FarmResource.Gold, _goldPrice / 2);
+        }
+        if (_stonePrice != 0)
+        {
+            Resources.Instance.AddResources(FarmResource.Stone, _stonePrice / 2);
+        }
+        if (_woodPrice != 0)
+        {
+            Resources.Instance.AddResources(FarmResource.Wood, _woodPrice / 2);
+        }
+        Vector3 point = transform.position / BuildingPlacer.Instance.CellSize;
+        int x = Mathf.RoundToInt(point.x);
+        int z = Mathf.RoundToInt(point.z);
+        BuildingPlacer.Instance.DeleteBuilding(x, z, this);
+        Managment.Instance.UnselectAll();
+        Destroy(gameObject);
+    }
     private void OnDestroy()
     {
         Vector3 point = transform.position / BuildingPlacer.Instance.CellSize;
