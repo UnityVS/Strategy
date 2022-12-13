@@ -26,6 +26,8 @@ public class Managment : MonoBehaviour
     [SerializeField] LayerMask _layerMask;
     [SerializeField] float _yMin = 5f;
     [SerializeField] float _yMax = 10f;
+    [SerializeField] float _xMinMax = 20f;
+    [SerializeField] float _zMinMax = 15f;
     float _shiftSpeed = 2;
     private void Awake()
     {
@@ -92,15 +94,41 @@ public class Managment : MonoBehaviour
     }
     void CameraDirectionMove(Vector3 direction, float decreasteSpeed)
     {
+        if (_cameraMoveController.transform.position.x >= _xMinMax || _cameraMoveController.transform.position.x <= -_xMinMax)
+        {
+            if (_cameraMoveController.transform.position.x >= _xMinMax && direction.x < 0)
+            {
+                _cameraMoveController.Translate(direction * decreasteSpeed);
+            }
+            else if (_cameraMoveController.transform.position.x <= -_xMinMax && direction.x > 0)
+            {
+                _cameraMoveController.Translate(direction * decreasteSpeed);
+            }
+            else if (_cameraMoveController.transform.position.z <= _zMinMax && direction.x == 0 || _cameraMoveController.transform.position.z >= -_zMinMax && direction.x == 0)
+            {
+                _cameraMoveController.Translate(direction * decreasteSpeed);
+                return;
+            }
+            return;
+        }
+        if (_cameraMoveController.transform.position.z >= _zMinMax || _cameraMoveController.transform.position.z <= -_zMinMax)
+        {
+            if (_cameraMoveController.transform.position.z >= _zMinMax && direction.z < 0)
+            {
+                _cameraMoveController.Translate(direction * decreasteSpeed);
+            }
+            else if (_cameraMoveController.transform.position.z <= -_zMinMax && direction.z > 0)
+            {
+                _cameraMoveController.Translate(direction * decreasteSpeed);
+            }
+            else if (_cameraMoveController.transform.position.x <= _xMinMax && direction.z == 0 || _cameraMoveController.transform.position.x >= -_xMinMax && direction.z == 0)
+            {
+                _cameraMoveController.Translate(direction * decreasteSpeed);
+                return;
+            }
+            return;
+        }
         _cameraMoveController.Translate(direction * decreasteSpeed);
-        CameraMovementByKeyboardInputs();
-    }
-    void CameraMovementByKeyboardInputs()
-    {
-        float _xPosition = Mathf.Clamp(_camera.transform.position.x, -15f, 15f);
-        float _zPosition = Mathf.Clamp(_camera.transform.position.z, -15f, 15f);
-        Vector3 _newPosition = new Vector3(_xPosition, _camera.transform.position.y, _zPosition);
-        _camera.transform.position = _newPosition;
     }
     public List<SelectableObject> ListObjects()
     {

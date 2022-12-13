@@ -30,6 +30,21 @@ public class ShowHint : MonoBehaviour
         _image.DOFade(1, _fadeDuration);
         Invoke(nameof(HideHint), _hintDuration + _fadeDuration);
     }
+    public void DisplayHintTutorial(string updateText)
+    {
+        if (_tween != null) return;
+        _image.gameObject.SetActive(true);
+        _text.text = updateText;
+        _tween = _text.DOFade(1, _fadeDuration);
+        _image.DOFade(1, _fadeDuration);
+        //Invoke(nameof(HideHintTutorial), _hintDuration + _fadeDuration);
+    }
+    public void HideHintTutorial()
+    {
+        _text.DOFade(0, 0.5f);
+        _image.DOFade(0, 0.5f);
+        Invoke(nameof(DeactivationObject), 0.5f);
+    }
     public void HideHint()
     {
         _text.DOFade(0, _fadeDuration);

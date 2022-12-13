@@ -32,6 +32,14 @@ public class Barack : PlayerBuildings
     [SerializeField] TextMeshProUGUI _currentUnitAttack;
     int _currentAttack = 1;
     List<Unit> _unitsOfThisBuilding = new List<Unit>();
+    [SerializeField] List<int> _buyCapacityGoldPrice;
+    [SerializeField] List<int> _buyCapacityStonePrice;
+    int _currentUpgradeLvlOfCapacity = 0;
+    [SerializeField] TextMeshProUGUI _textUpgradeUnitsCount;
+    [SerializeField] TextMeshProUGUI _textGoldPrice;
+    [SerializeField] TextMeshProUGUI _textStonePrice;
+    [SerializeField] TextMeshProUGUI _textHowValueWillBeAdded;
+    int attackToAdd = 1;
     override public void Start()
     {
         UpdateUI(0);
@@ -53,6 +61,38 @@ public class Barack : PlayerBuildings
     {
         //base.OnHover();
     }
+    public void IncreasteCountOfUnits()
+    {
+        int stoneBalance = Resources.Instance.CheckBalance(FarmResource.Stone);
+        int goldBalance = Resources.Instance.CheckBalance(FarmResource.Gold);
+        if (_currentUpgradeLvlOfCapacity != _buyCapacityGoldPrice.Count)
+        {
+            if (goldBalance >= _buyCapacityGoldPrice[_currentUpgradeLvlOfCapacity])
+            {
+                if (stoneBalance >= _buyCapacityStonePrice[_currentUpgradeLvlOfCapacity])
+                {
+                    _capacity++;
+                    _availabelCapacity++;
+                    _currentUpgradeLvlOfCapacity++;
+                    RegualUpdateUI();
+                    Resources.Instance.UpdateResource(FarmResource.Stone, stoneBalance - _buyCapacityStonePrice[_currentUpgradeLvlOfCapacity - 1]);
+                    Resources.Instance.UpdateResource(FarmResource.Gold, goldBalance - _buyCapacityStonePrice[_currentUpgradeLvlOfCapacity - 1]);
+                }
+                else
+                {
+                    GameManager.Instance._showHint.DisplayHint("Нехватает камня");
+                }
+            }
+            else
+            {
+                GameManager.Instance._showHint.DisplayHint("Нехватает золота");
+            }
+        }
+        else
+        {
+            GameManager.Instance._showHint.DisplayHint("Больше нет расширений");
+        }
+    }
     void UpdateUI(int valueAdd)
     {
         _availabelCapacity -= valueAdd;
@@ -60,7 +100,24 @@ public class Barack : PlayerBuildings
     }
     void RegualUpdateUI()
     {
-        _currentUnitAttack.text = "Атака юнитов этого здания \n" + _currentAttack + " урон в секунду";
+        if (_textUpgradeUnitsCount != null)
+        {
+            if (_currentUpgradeLvlOfCapacity != _buyCapacityGoldPrice.Count)
+            {
+                _textGoldPrice.text = _buyCapacityGoldPrice[_currentUpgradeLvlOfCapacity] + "$";
+                _textStonePrice.text = _buyCapacityStonePrice[_currentUpgradeLvlOfCapacity].ToString();
+            }
+            else if (_textGoldPrice != null)
+            {
+                Destroy(_textGoldPrice.transform.parent.gameObject);
+            }
+        }
+        _textUpgradeUnitsCount.text = "Увеличить число \nжителей - " + _currentUpgradeLvlOfCapacity + "/" + _buyCapacityGoldPrice.Count;
+        if (_currentUnitAttack != null)
+        {
+            _textHowValueWillBeAdded.text = "Добавит +" + attackToAdd + "к аттаке юнитам";
+            _currentUnitAttack.text = "Атака юнитов этого здания \n" + _currentAttack + " урон в секунду";
+        }
         _textCapacity.text = (_capacity - _availabelCapacity) + "/" + _capacity;
         _shadowCapacityText.text = (_capacity - _availabelCapacity) + "/" + _capacity;
         string newText = _nameOfUnits + " - " + (_capacity - _availabelCapacity) + "/" + _capacity;
@@ -74,7 +131,7 @@ public class Barack : PlayerBuildings
         if (_currentUpdate == _updatePrice.Count)
         {
             _upgradeStonePrice.text = _updatePrice[_currentUpdate - 1].ToString();
-            _upgradeStonePrice.gameObject.SetActive(false);
+            Destroy(_upgradeStonePrice.transform.parent.gameObject);
             return;
         }
         _upgradeStonePrice.text = _updatePrice[_currentUpdate].ToString();
